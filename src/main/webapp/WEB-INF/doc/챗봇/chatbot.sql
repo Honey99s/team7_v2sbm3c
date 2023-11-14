@@ -1,0 +1,26 @@
+DROP TABLE CHATBOT;
+
+CREATE TABLE CHATBOT(
+    CHATBOTSURVICENO         NUMBER(10)       NOT NULL PRIMARY KEY,
+    QNANO                    NUMBER(10)       NOT NULL , 
+    CUSTOMERNO               NUMBER(10)       NOT NULL,
+    RECORD                   NUMBER(10)       NOT NULL,
+    FOREIGN KEY (QNANO) REFERENCES QNA (QNANO),
+    FOREIGN KEY (CUSTOMERNO) REFERENCES CUSTOMER (CUSTOMERNO)
+);
+
+COMMENT ON TABLE CHATBOT is '챗봇';
+COMMENT ON COLUMN CHATBOT.CHATBOTSURVICENO is '챗봇 서비스 번호';
+COMMENT ON COLUMN CHATBOT.QNANO is '문의 번호';
+COMMENT ON COLUMN CHATBOT.CUSTOMERNO is '고객 번호';
+COMMENT ON COLUMN CHATBOT.RECORD is '기록';
+
+
+
+DROP SEQUENCE chatbot_seq;
+CREATE SEQUENCE chatbot_seq
+  START WITH 1              -- 시작 번호
+  INCREMENT BY 1          -- 증가값
+  MAXVALUE 9999999999 -- 최대값: 9999999 --> NUMBER(7) 대응
+  CACHE 2                       -- 2번은 메모리에서만 계산
+  NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
