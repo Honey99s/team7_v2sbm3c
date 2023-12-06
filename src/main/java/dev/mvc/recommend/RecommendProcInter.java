@@ -2,6 +2,8 @@ package dev.mvc.recommend;
 
 import java.util.ArrayList;
 
+import dev.mvc.recommend.RecommendVO;
+
 public interface RecommendProcInter {
 
   /**
@@ -30,8 +32,4 @@ public interface RecommendProcInter {
    * @return 삭제된 레코드 개수
    */
   public int delete(int recommendno);
-  
-  
-  
-  
 }

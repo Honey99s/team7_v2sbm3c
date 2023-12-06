@@ -39,12 +39,12 @@
       <col style='width: 10%;'/>
     </colgroup>
     <tr>
-      <th class='th_bs'>번호</th>
-      <th class='th_bs'>제목</th>
-      <th class='th_bs'>내용</th>
-      <th class='th_bs'>최소가격</th>
-      <th class='th_bs'>최대가격</th>
-      <th class='th_bs'>자녀수</th>
+      <th class='th_bs'>추천번호</th>
+      <th class='th_bs'>차종</th>
+      <th class='th_bs'>자동차</th>
+      <th class='th_bs'>회원</th>
+      <th class='th_bs'>순서</th>
+      <th class='th_bs'>등록일</th>
       <th class='th_bs'></th>
     </tr>
    <tbody>
@@ -53,20 +53,12 @@
 
       <tr>
           <td class="td_bs">${recommendno }</td>
-          <td><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.title}</a></td>
-           <td><a href="./read.do?recommendno=${recommendno}" style="display:block;"> <c:choose>
-              <c:when test="${recommendVO.content.length() > 160 }">
-                ${recommendVO.content.substring(0, 160) }...
-              </c:when>
-              <c:otherwise>
-                ${recommendVO.content }
-              </c:otherwise>
-              </c:choose>
-              </a>
-              </td>
-          <td class="td_bs">${recommendVO.minprice}</td>
-          <td class="td_bs">${recommendVO.maxprice}</td>
-          <td class="td_bs">${recommendVO.children}</td>
+          <td><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.modelno}</a></td>
+           <td><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.carno }</a></td>
+       
+          <td class="td_bs">${recommendVO.customerno}</td>
+          <td class="td_bs">${recommendVO.seq}</td>
+          <td class="td_bs">${recommendVO.rdate}</td>
           <td class="td_bs">
           <a href="./update.do?recommendno=${recommendno}"><IMG src='/recommend/images/update.png' title='수정' class="icon"></a>
           <a href="./delete.do?recommendno=${recommendno}"><IMG src='/recommend/images/delete.png' title='삭제' class="icon"></a>

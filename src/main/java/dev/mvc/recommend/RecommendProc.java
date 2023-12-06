@@ -34,6 +34,5 @@ public class RecommendProc implements RecommendProcInter {
     int cnt = this.recommendDAO.delete(recommendno);
     return cnt;
   }
-  
 
 }
