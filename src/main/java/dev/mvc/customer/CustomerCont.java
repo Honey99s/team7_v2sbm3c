@@ -2,8 +2,6 @@ package dev.mvc.customer;
  
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -21,7 +19,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.master.MasterProcInter;
-import dev.mvc.customer.CustomerVO;
  
 @Controller
 public class CustomerCont {
@@ -404,6 +401,11 @@ public ModelAndView login_cookie_proc(
                          String passwd,
                          @RequestParam(value="id_save", defaultValue="") String id_save,
                          @RequestParam(value="passwd_save", defaultValue="") String passwd_save) {
+  
+  //client ip
+  String ip = request.getRemoteAddr();
+  System.out.println("-> ip: " + ip); // 자기 자신은 0.0.0.0 으로 출력되고 외부 접속은 정상적으로 ip가 나옴
+  
  ModelAndView mav = new ModelAndView();
  HashMap<String, Object> map = new HashMap<String, Object>();
  map.put("id", id);
@@ -476,7 +478,7 @@ public ModelAndView login_cookie_proc(
    * @return
    */
   @RequestMapping(value="/customer/passwd_update.do", method=RequestMethod.GET)
-  public ModelAndView passwd_update(int customerno){
+  public ModelAndView passwd_update(){
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/customer/passwd_update"); // passwd_update.jsp
     
@@ -525,7 +527,7 @@ public ModelAndView login_cookie_proc(
     //int customerno = 3; // 테스트
     
     CustomerVO customerVO = this.customerProc.read(customerno); // 패스워드를 변경하려는 회원 정보를 읽음
-    mav.addObject("mname", customerVO.getCname());  
+    mav.addObject("cname", customerVO.getCname());  
     mav.addObject("id", customerVO.getId());
     
     // 현재 패스워드 검사용 데이터

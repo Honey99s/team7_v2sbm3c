@@ -18,52 +18,40 @@
 
 <c:set var="code" value="${param.code }" /> <%--mav.addObject("code", "create_success"); --%>
 <c:set var="cnt" value="${param.cnt }" />     <%-- mav.addObject("cnt", cnt); --%>
-<c:set var="modelno" value="${param.modelno }" /> <%-- mav.addObject("modelno", carVO.getmodelno()); // redirect parameter 적용 --%>
+<c:set var="conditionno" value="${param.conditionno }" /> <%-- mav.addObject("modelno", carVO.getmodelno()); // redirect parameter 적용 --%>
 
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
     <UL>
       <c:choose>
-        <c:when test="${code == 'passwd_fail'}">
-          <LI class='li_none'>
-            <span class="span_fail">패스워드가 일치하지 않습니다.</span>
-          </LI> 
-        </c:when>
         
         <c:when test="${code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">새로운 자동차를 등록했습니다.</span>
-          </LI> 
-        </c:when>
-        
-         <c:when test="${code == 'check_upload_file_fail'}"> <%-- Java if --%>
-          <LI class='li_none'>
-            <span class="span_fail">업로드 할 수 없는 파일 형식입니다.</span>
-            <span>가능한 파일 형식[jpg, jpeg, png, gif, txt, hwp, doc, ppt, pptx, xls, xlsx, zip, tar, gz, ipynb]</span>
+            <span class="span_success">새로운 조건을 등록했습니다.</span>
           </LI> 
         </c:when>
         
         <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">새로운 자동차 등록에 실패했습니다.</span>
+            <span class="span_fail">새로운 조건 등록에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">자동차 수정에 실패했습니다.</span>
+            <span class="span_fail">조건 수정에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">자동차 삭제에 성공했습니다.</span>
+            <span class="span_success">조건 삭제에 성공했습니다.</span>
           </LI>                                                                      
         </c:when>        
         
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">자동차 삭제에 실패했습니다.</span>
+            <span class="span_fail">조건 삭제에 실패했습니다.</span>
           </LI>                                                                      
         </c:when> 
         
@@ -84,9 +72,8 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?modelno=${modelno}'" class="btn btn-secondary btn-sm">새로운 자동차 등록</button>
-        <button type='button' onclick="location.href='./list_by_modelno.do?modelno=${modelno}'" class="btn btn-secondary btn-sm">목록</button>
-        <button type='button' onclick="location.href='./list_by_modelno_grid.do?modelno=${modelno}'" class="btn btn-secondary btn-sm">갤러리 목록</button>
+        <button type='button' onclick="location.href='./create.do?conditionno=${conditionno}'" class="btn btn-secondary btn-sm">새로운 조건 등록</button>
+        <button type='button' onclick="location.href='./list_all'" class="btn btn-secondary btn-sm">목록</button>
       </LI>
     </UL>
   </fieldset>

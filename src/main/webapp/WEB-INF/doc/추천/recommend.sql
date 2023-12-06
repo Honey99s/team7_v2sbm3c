@@ -3,10 +3,9 @@ DROP TABLE RECOMMEND;
 CREATE TABLE RECOMMEND (
   RECOMMENDNO NUMBER(10)         NOT NULL PRIMARY KEY, -- 회원 번호, 레코드를 구분하는 컬럼 
   MODELNO     NUMBER(10)         NOT NULL,
-  CARNO       NUMBER(10)         NOT NULL, 
+  CARNO       NUMBER(10)         NOT NULL,
   CUSTOMERNO  NUMBER(10)         NOT NULL,
-  TITLE       VARCHAR2(100)      NOT NULL,
-  CONTENT     CLOB               NOT NULL,
+  SEQ         NUMBER(2)          DEFAULT 1         NOT NULL,
   RDATE       DATE               NOT NULL,
   FOREIGN KEY (MODELNO) REFERENCES MODEL (MODELNO),
   FOREIGN KEY (CARNO) REFERENCES CAR (CARNO),
@@ -14,11 +13,11 @@ CREATE TABLE RECOMMEND (
 );
 
 COMMENT ON TABLE RECOMMEND is '추천';
+COMMENT ON COLUMN RECOMMEND.RECOMMENDNO is '추천 번호';
 COMMENT ON COLUMN RECOMMEND.MODELNO is '차종 번호';
 COMMENT ON COLUMN RECOMMEND.CARNO is '자동차 번호';
 COMMENT ON COLUMN RECOMMEND.CUSTOMERNO is '고객 번호';
-COMMENT ON COLUMN RECOMMEND.TITLE is '제목';
-COMMENT ON COLUMN RECOMMEND.CONTENT is '내용';
+COMMENT ON COLUMN RECOMMEND.SEQ is '추천 우선 순위';
 COMMENT ON COLUMN RECOMMEND.RDATE is '등록일';
 
 DROP SEQUENCE recommend_seq;
@@ -29,12 +28,20 @@ CREATE SEQUENCE recommend_seq
   CACHE 2                       -- 2번은 메모리에서만 계산
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
-INSERT INTO recommend(recommendno, modelno, carno, customerno, title, content, rdate)
-VALUES (recommend_seq.nextval, 1, 1, 1, "자녀 2명 ,연봉 5000", "suv 스포티지 를 추천합니다.", sysdate);
+INSERT INTO recommend(recommendno, modelno, carno, customerno, seq, rdate)
+VALUES(RECOMMEND_SEQ.nextval, 1, 1, 1, 1, sysdate);
+
+INSERT INTO recommend(recommendno, modelno, carno, customerno, seq, rdate)
+VALUES(RECOMMEND_SEQ.nextval, 2, 1, 1, 1, sysdate);
 
 COMMIT;
 
 조회
-SELECT recommendno, modelno, carno, customerno, title, content, rdate
+SELECT recommendno, modelno, carno, customerno, seq, rdate
 FROM recommend
 WHERE recommendno = 1;
+
+삭제
+DELETE FROM recommend;
+DELETE FROM recommend WHERE customerno=1;
+COMMIT;

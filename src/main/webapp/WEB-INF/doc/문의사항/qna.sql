@@ -1,5 +1,4 @@
 DROP TABLE qna;
-DROP TABLE reply;
 
 -- 제약 조건과 함께 삭제(제약 조건이 있어도 삭제됨, 권장하지 않음.)
 DROP TABLE qna CASCADE CONSTRAINTS; 

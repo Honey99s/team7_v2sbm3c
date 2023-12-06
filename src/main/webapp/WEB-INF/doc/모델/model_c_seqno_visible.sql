@@ -32,6 +32,7 @@ CREATE SEQUENCE model_SEQ
 -- CREATE
 INSERT INTO model(modelno, name, cnt, rdate) VALUES(model_seq.nextval, '경차', 0, sysdate);
 INSERT INTO model(modelno, name, cnt, rdate) VALUES(model_seq.nextval, '승용차', 0, sysdate);
+INSERT INTO model(modelno, name, cnt, rdate) VALUES(model_seq.nextval, '해치백', 0, sysdate);
 INSERT INTO model(modelno, name, cnt, rdate) VALUES(model_seq.nextval, 'SUV', 0, sysdate);
 INSERT INTO model(modelno, name, cnt, rdate) VALUES(model_seq.nextval, '승합차', 0, sysdate);
 
@@ -59,7 +60,7 @@ UPDATE model SET name='소형차', cnt=1 WHERE modelno=1;
          1 소형차                                  1 2023-09-09 01:41:57
 
 -- DELETE
-DELETE FROM model WHERE modelno=1;
+DELETE FROM model WHERE modelno=8;
 
 COMMIT;
 -- COUNT

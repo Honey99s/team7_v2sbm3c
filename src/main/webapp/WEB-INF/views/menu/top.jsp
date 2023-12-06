@@ -64,11 +64,13 @@
                     <a class="dropdown-item" href="#">비밀번호 찾기</a>
                   </c:when>
                   <c:otherwise>
-                    <a class="dropdown-item" href="/customer/read.do">가입 정보</a>
-                    <a class="dropdown-item" href="/customer/passwd_update.do">비밀번호 변경</a>
+                    <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?customerno=${sessionScope.customerno }">관심분야 등록하고 추천받기</a>
                     <a class="dropdown-item" href="/customer/read.do">고객정보 수정</a>
-                    <a class="dropdown-item" href="javascript: alert('개발 예정')">로그인 내역</a>
-                    <a class="dropdown-item" href="#">고객탈퇴</a>
+                    <a class="dropdown-item" href="/customer/passwd_update.do">비밀번호 변경</a>
+                    <a class="dropdown-item" href="/sms/form.do">로그인 내역</a>
+                     <a class="dropdown-item" href="/condition/create.do">조건 등록</a>
+                     <a class="dropdown-item" href="/condition/list_all.do">조건 전체 목록</a>
+                     <a class="dropdown-item" href="#">고객탈퇴</a>
                   </c:otherwise>
                 </c:choose>
               </div>
@@ -86,6 +88,8 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href='/model/list_all.do'>차종 전체 목록</a>
                     <a class="dropdown-item" href='/customer/list.do'>고객목록</a>
+                    <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
+                    <a class="dropdown-item" href='/good/list.do'>좋아요 목록</a>
                     <a class="dropdown-item" href='/master/logout.do'>마스터 ${sessionScope.master_id } 로그아웃</a>
                   </div>
                 </li>
