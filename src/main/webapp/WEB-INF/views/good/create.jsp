@@ -1,12 +1,10 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
-<c:set var="recommendno" value="${recommendVO.recommendno }" />
-<c:set var="modelno" value="${recommendVO.modelno }" />
-<c:set var="carno" value="${recommendVO.carno }" />
-<c:set var="customerno" value="${recommendVO.customerno }" />
-<c:set var="seq" value="${recommendVO.seq }" />
-<c:set var="rdate" value="${recommendVO.rdate }" />
+<c:set var="goodno" value="${goodVO.goodno }" />
+<c:set var="modelno" value="${goodVO.carno }" />
+<c:set var="customerno" value="${goodVO.customerno }" />
+<c:set var="rdate" value="${goodVO.rdate }" />
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -22,34 +20,39 @@
 <body>
 <c:import url="/menu/top.do" />
  
-  <div class='title_line'>추천 차종 등록</div>
+  <div class='title_line'>좋아요</div>
   
   <aside class="aside_right">
     <span class='menu_divide' >│</span>
     <a href="javascript:location.reload();">새로고침</a>
     <span class='menu_divide' >│</span>
-    <a href="./list_all.do">추천 목록</a>    
+    <a href="./list_all.do">추천 상품 목록</a>    
   </aside>
     
     <div class='menu_line'></div>
    <form name='frm' method='post' action='./create.do'>
 
     <div>
-       <label>추천 차종</label>
-       <input type='int' name='modelno' value='1' required="required" autofocus="autofocus" class="form-control" style='width: 100%;'>
+       <label>추천 상품</label>
+       <input type='int' name='goodno' value='1' required="required" autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     <div>
         <label>추천 자동차</label>
-       <input type='int' name='carno' value='1' required="required" class="form-control" style='width: 100%;'>
+       <input type='text' name='title' value='모닝' required="required" class="form-control" style='width: 100%;'>
     </div>
      <div>
-       <label>고객 번호</label>
-       <input type='int' name='customerno' value='1' required="required" class="form-control" style='width: 100%;'>
+      <label>최소가격</label>
+       <input type='int' name='minprice' value='500' required="required" class="form-control" style='width: 100%;'>
+    </div>
+     <div>
+       <label>최대가격</label>
+       <input type='int' name='maxprice' value='9999' required="required" class="form-control" style='width: 100%;'>
     </div>
     <div>
-       <label>순서</label>
-       <input type='int' name='seq' value='1' required="required" class="form-control" style='width: 100%;'>
-    </div>   
+     <div>
+       <label>이미지</label>
+       <input type='file' class="form-control" name='file1MF' id='file1MF' value='' placeholder="파일 선택">
+    </div> 
 
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-secondary btn-sm">등록</button>

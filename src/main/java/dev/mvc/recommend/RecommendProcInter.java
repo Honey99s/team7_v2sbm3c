@@ -27,6 +27,13 @@ public interface RecommendProcInter {
   public RecommendVO read(int recommendno);
   
   /**
+   * customerno 조회
+   * @param recommendno
+   * @return
+   */
+  public RecommendVO read_by_customerno(int customerno);
+  
+  /**
    * 삭제
    * @param recommendno
    * @return 삭제된 레코드 개수

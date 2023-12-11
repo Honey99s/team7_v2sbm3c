@@ -107,6 +107,13 @@ public class CarProc implements CarProcInter {
     
     return list;
   }
+  
+   @Override
+  public ArrayList<CarVO> list_recommend_by_modelno(int modelno) {
+     ArrayList<CarVO> list = this.carDAO.list_recommend_by_modelno(modelno);
+     return list;
+   
+  }
 
 //  <!-- 페이지 목록 출력 부분 시작 -->
 //  <DIV class='bottom_menu'>

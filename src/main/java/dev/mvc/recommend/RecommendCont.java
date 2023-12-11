@@ -11,8 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import dev.mvc.car.CarProcInter;
 import dev.mvc.customer.CustomerProcInter;
+import dev.mvc.model.ModelProcInter;
 import dev.mvc.tool.Tool;
 
 
@@ -23,6 +24,14 @@ public class RecommendCont {
   @Autowired
   @Qualifier("dev.mvc.recommend.RecommendProc")
   private RecommendProcInter recommendProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.model.ModelProc")
+  private ModelProcInter modelProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.car.CarProc")
+  private CarProcInter carProc;
   
   @Autowired
   @Qualifier("dev.mvc.customer.CustomerProc")
@@ -120,29 +129,23 @@ public class RecommendCont {
     }
     
     /**
-     * 수정폼
-     * http://localhost:9093/recommend/update.do?recommendno=1
+     * 조회
+     * http://localhost:9093/recommend/read_by_customerno.do?customerno=1
      * @return
      */
-    @RequestMapping(value="/recommend/update.do", method = RequestMethod.GET)
-    public ModelAndView update(HttpSession session, int recommendno) {  //int recommendno = (int)request.getParameter("recommendno");
-      System.out.println("->update");
+    @RequestMapping(value="/recommend/read_by_customerno.do", method = RequestMethod.GET)
+    public ModelAndView read_by_customerno(int customerno) { 
+      System.out.println("-> read_by_customerno");
       ModelAndView mav = new ModelAndView();
+      mav.setViewName("/recommend/read");
       
-      if(this.customerProc.isCustomer(session) == true) {
-      System.out.println("->customer");
-  
-      RecommendVO recommendVO = this.recommendProc.read(recommendno);
+      RecommendVO recommendVO = this.recommendProc.read_by_customerno(customerno);
+      System.out.println("-> done");
+      
       mav.addObject("recommendVO", recommendVO);
-      mav.setViewName("/recommend/update"); // /WEB-INF/views/customer/update.jsp
-      
-      }else {
-        mav.setViewName("/customer/login_need");
-      }
       
       return mav;
     }
-    
   
     /**
      * 파일 삭제 폼

@@ -25,6 +25,7 @@ CREATE SEQUENCE chatbot_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 1) 등록
+
 INSERT INTO chatbot(chatbotno, customerno, record, cdate)
 VALUES (chatbot_seq.nextval, 1, '안녕 반가워', sysdate);
 

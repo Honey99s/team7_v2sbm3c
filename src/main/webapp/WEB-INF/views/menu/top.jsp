@@ -90,7 +90,7 @@
                   <div class="dropdown-menu">
                     <a class="dropdown-item" href='/model/list_all.do'>차종 전체 목록</a>
                     <a class="dropdown-item" href='/customer/list.do'>고객목록</a>
-                    <a class="dropdown-item" href='/recommend/list.do'>추천 목록</a>
+                    <a class="dropdown-item" href='/recommend/list_all.do'>추천 목록</a>
                     <a class="dropdown-item" href='/good/list.do'>좋아요 목록</a>
                     <a class="dropdown-item" href='/master/logout.do'>마스터 ${sessionScope.master_id } 로그아웃</a>
                   </div>

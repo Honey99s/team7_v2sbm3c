@@ -28,11 +28,18 @@ public class RecommendProc implements RecommendProcInter {
     RecommendVO recommendVO = this.recommendDAO.read(recommendno);
     return recommendVO;
   }
-
+  
+  @Override
+  public RecommendVO read_by_customerno(int customerno) {
+    RecommendVO recommendVO = this.recommendDAO.read_by_customerno(customerno);
+    return recommendVO;
+  }
+  
   @Override
   public int delete(int recommendno) {
     int cnt = this.recommendDAO.delete(recommendno);
     return cnt;
   }
+
 
 }

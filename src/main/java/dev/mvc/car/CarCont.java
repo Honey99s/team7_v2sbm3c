@@ -8,16 +8,19 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.customer.CustomerProcInter;
+import dev.mvc.customer.CustomerVO;
 import dev.mvc.master.MasterProcInter;
 import dev.mvc.model.ModelProcInter;
 import dev.mvc.model.ModelVO;
+import dev.mvc.recommend.RecommendProcInter;
+import dev.mvc.recommend.RecommendVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -32,8 +35,16 @@ public class CarCont {
   private ModelProcInter modelProc;
   
   @Autowired
+  @Qualifier("dev.mvc.customer.CustomerProc")  // @Component("dev.mvc.customer.CustomerProc")
+  private CustomerProcInter customerProc;
+  
+  @Autowired
   @Qualifier("dev.mvc.car.CarProc") // @Component("dev.mvc.car.CarProc")
   private CarProcInter carProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.recommend.RecommendProc") // @Component("dev.mvc.car.CarProc")
+  private RecommendProcInter recommendProc;
   
   public CarCont () {
     System.out.println("-> CarCont created.");
@@ -364,6 +375,33 @@ public class CarCont {
     // mav.addObject("now_page", now_page);
   
   mav.setViewName("/car/list_by_modelno_grid");  // /car/list_by_modelno_grid.jsp
+  
+    return mav;
+  }
+ 
+ /**
+ * 추천 차종 그리드
+ * http://localhost:9093/car/list_recommend_by_modelno.do?recommendno=1
+ * 
+ * 
+ * @param modelno
+ * @param now_page
+ * @return
+ */
+ @RequestMapping(value = "/car/list_recommend_by_modelno.do", method = RequestMethod.GET)
+ public ModelAndView list_recommend_by_modelno(HttpSession session) {
+    ModelAndView mav = new ModelAndView();
+    System.out.println("->list");
+    
+    int customerno = (int)(session.getAttribute("customerno"));
+    System.out.println("-> customerno : " +session.getAttribute("customerno") );
+    int modelno = this.recommendProc.read_by_customerno(customerno).getModelno(); //회원의 관심모델
+    System.out.println("->modelno : " + this.recommendProc.read_by_customerno(customerno).getModelno());
+    
+  
+    ArrayList<CarVO> list_recommend_by_modelno = this.carProc.list_recommend_by_modelno(modelno);
+    mav.addObject("list_recommend_by_modelno", list_recommend_by_modelno);
+    mav.setViewName("/car/list_recommend_by_modelno");  
   
     return mav;
   }

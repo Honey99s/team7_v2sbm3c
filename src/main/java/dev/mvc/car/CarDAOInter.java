@@ -76,6 +76,13 @@ public interface CarDAOInter {
   public ArrayList<CarVO> list_by_modelno_search_paging(CarVO carVO);
   
   /**
+   * 차종 추천
+   * @param modelno
+   * @return
+   */
+  public ArrayList<CarVO> list_recommend_by_modelno(int modelno);
+  
+  /**
    *  패스워드 검사
    * @param hashMap
    * @return

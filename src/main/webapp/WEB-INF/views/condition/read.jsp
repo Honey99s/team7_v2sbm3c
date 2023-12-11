@@ -51,11 +51,11 @@
       <li class="li_none">
         <DIV style="width: 100%; word-break: break-all;">
 
-           <span style="font-size: 3.5em; font-weight: bold;">${title }</span><br>
+           <span style="font-size: 3em; font-weight: bold;">${title }</span><br>
            <span style="font-size: 2em;">${content }</span><br>
            <span  style="font-size: 2em;" >가격 : \ ${minprice }~</span>
            <span style="font-size: 2em;">${maxprice } 만원</span><br>
-          <span style="font-size: 1em;">자녀수 : ${children }</span><br>
+          <span style="font-size: 2em;">자녀수 : ${children }</span><br>
         </DIV>
     </ul>
   </fieldset>

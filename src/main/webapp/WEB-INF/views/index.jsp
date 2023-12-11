@@ -11,6 +11,7 @@
 <title>http://localhost:9093/</title>
 <link rel="shortcut icon" href="/images/honeycar.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
+ 
 
 <style type="text/css">
   *{ font-family: Malgun Gothic; font-size: 14px;}
@@ -22,6 +23,21 @@
 <div style="width: 70%; margin: 30px auto;">
   <img src="/images/home.jpg" style="width: 100%;">
 </div>
+
+<c:choose>
+     <c:when test="${sessionScope.id != null }">
+       <div class='title_line'>
+          ${customerVO.cname }님을 위한 추천 차종
+       </div>
+       <c:import url="/car/list_recommend_by_modelno.do" /> <%-- http://localhost:9093/car/list_recommend_by_modelno.do  --%>
+         <DIV style='width: 100%; margin: 0px auto;'>
+         </DIV>
+     </c:when>
+     <c:otherwise>
+       <!-- 추천 없음 -->
+     </c:otherwise>
+   </c:choose>
+   
   
 <jsp:include page="./menu/bottom.jsp" flush='false' /> 
 </body>
