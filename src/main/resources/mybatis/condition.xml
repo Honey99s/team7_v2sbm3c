@@ -4,20 +4,20 @@
 
 <mapper namespace="dev.mvc.condition.ConditionDAOInter">
   <insert id="create" parameterType="dev.mvc.condition.ConditionVO">
-    INSERT INTO condition(conditionno, title, content, minprice, maxprice, children) 
-    VALUES(condition_seq.nextval, #{title}, #{content} , #{minprice}, #{maxprice}, #{children})
+    INSERT INTO condition(conditionno, title, content, minprice, maxprice, children, rdate) 
+    VALUES(condition_seq.nextval, #{title}, #{content} , #{minprice}, #{maxprice}, #{children}, sysdate)
   </insert>
   
   <!--  조건 목록  -->
   <select id="list_all" resultType="dev.mvc.condition.ConditionVO">
-    SELECT conditionno, title, content, minprice, maxprice, children
+    SELECT conditionno, title, content, minprice, maxprice, children, rdate
     FROM condition
     ORDER BY conditionno DESC
   </select>
   
     <!-- 조건 조회 -->
   <select id="read" resultType="dev.mvc.condition.ConditionVO" parameterType="int">
-    SELECT conditionno, title, content, minprice, maxprice, children
+    SELECT conditionno, title, content, minprice, maxprice, children, rdate
     FROM condition
     WHERE conditionno =#{conditionno}
   </select>

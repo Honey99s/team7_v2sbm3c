@@ -8,7 +8,8 @@ package dev.mvc.condition;
     CONTENT        CLOB             NOT NULL, 
     MINPRICE       NUMBER(10)       NOT NULL, 
     MAXPRICE       NUMBER(10)       NOT NULL,   
-    CHILDREN       NUMBER(10)       NOT NULL
+    CHILDREN       NUMBER(10)       NOT NULL,
+    RDATE            DATE                 NOT NULL
    */
 
 public class ConditionVO {
@@ -24,6 +25,8 @@ public class ConditionVO {
   private int maxprice;
   /** 자녀수*/
   private int children;
+  /** 등록일*/
+  private String rdate;
   public int getConditionno() {
     return conditionno;
   }
@@ -60,11 +63,18 @@ public class ConditionVO {
   public void setChildren(int children) {
     this.children = children;
   }
+  public String getRdate() {
+    return rdate;
+  }
+  public void setRdate(String rdate) {
+    this.rdate = rdate;
+  }
   @Override
   public String toString() {
     return "ConditionVO [conditionno=" + conditionno + ", title=" + title + ", content=" + content + ", minprice="
-        + minprice + ", maxprice=" + maxprice + ", children=" + children + "]";
+        + minprice + ", maxprice=" + maxprice + ", children=" + children + ", rdate=" + rdate + "]";
   }
+
   
   
   

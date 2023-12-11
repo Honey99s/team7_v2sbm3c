@@ -23,8 +23,31 @@ CREATE SEQUENCE good_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 INSERT INTO good(goodno, carno, customerno, rdate)
-VALUES(good_seq.nextval, 1, '1', sysdate);
+VALUES(good_seq.nextval, 1, 1, sysdate);
 
 SELECT goodno, carno, customerno, rdate
 FROM good
 ORDER BY goodno DESC;
+
+SELECT COUNT(*) as cnt 
+FROM good
+WHERE carno=1 AND customerno=1;
+
+SELECT carno, masterno, modelno, title, content, recom, cnt, replycnt, rdate,
+           file1, file1saved, thumb1, size1, map, youtube, r
+FROM (
+           SELECT carno, masterno, modelno, title, content, recom, cnt, replycnt, rdate,
+                      file1, file1saved, thumb1, size1, map, youtube, rownum as r
+           FROM (
+                     SELECT carno, masterno, modelno, title, content, recom, cnt, replycnt, rdate,
+                                file1, file1saved, thumb1, size1, map, youtube
+                     FROM car
+                     WHERE modelno=1 AND (title LIKE '%경차%' OR content LIKE '%경차%' OR word LIKE '%경차%')
+                     ORDER BY recom DESC
+           )          
+)
+WHERE r >= 1 AND r <= 6;
+
+
+DELETE FROM good WHERE goodno=2;
+COMMIT;

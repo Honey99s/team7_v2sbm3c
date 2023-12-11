@@ -5,25 +5,33 @@
 <mapper namespace="dev.mvc.recommend.RecommendDAOInter">
   <insert id="create" parameterType="dev.mvc.recommend.RecommendVO">
     INSERT INTO recommend(recommendno, modelno, carno, customerno, seq, rdate)
-    VALUES(RECOMMEND_SEQ.nextval, #{modelno}, #{carno}, #{customerno}, #{seqno}, #{sysdate});
+    VALUES(recommend_seq.nextval, #{modelno}, #{carno}, #{customerno}, #{seq}, sysdate)
   </insert>
   
-  <!--  조건 목록  -->
+  <!--  추천 차종 목록  -->
   <select id="list_all" resultType="dev.mvc.recommend.RecommendVO">
-    SELECT recommendno, modelno, carno, customerno, seq, rdate
-    FROM recommend
-    ORDER BY recommendno DESC
+   SELECT recommendno, modelno, carno, customerno, seq, rdate
+   FROM recommend
+   ORDER BY recommendno DESC
   </select>
   
-    <!-- 조건 조회 -->
+  <!-- 추천 차종 조회 -->
   <select id="read" resultType="dev.mvc.recommend.RecommendVO" parameterType="int">
     SELECT recommendno, modelno, carno, customerno, seq, rdate
     FROM recommend
     WHERE recommendno =#{recommendno}
   </select>
   
-     <!-- 조건 삭제 -->
-    <delete id="delete" parameterType="int">
+  <!-- customerno를 이용한 조회 -->
+  <select id="read_by_customerno" resultType="dev.mvc.recommend.RecommendVO" parameterType="int">
+    SELECT recommendno, modelno, carno, customerno, seq, rdate
+    FROM recommend
+    WHERE customerno = #{customerno}
+ </select>
+ 
+
+  <!-- 추천 차종 삭제 -->
+  <delete id="delete" parameterType="int">
     DELETE FROM recommend
     WHERE recommendno=#{recommendno}
   </delete>

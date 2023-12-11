@@ -6,7 +6,7 @@
   <!-- 등록한 레코드 갯수 1 리턴, #{masterno}: public int getMasterno() 호출됨 -->
   <insert id="create" parameterType="dev.mvc.car.CarVO">
     INSERT INTO car(carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, passwd, word, rdate, file1, file1saved, thumb1, size1, minprice, maxprice)
-    VALUES(car_seq.nextval, #{modelno}, #{masterno}, #{title} , #{content},  #{manufacturer}, 0, 0, 0, #{passwd} , #{word}, sysdate, #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{minprice}, #{maxprice})
+    VALUES(car_seq.nextval, #{modelno}, #{masterno}, #{title} , #{content},  #{manufacturer}, #{recom}, #{cnt}, #{replycnt}, #{passwd} , #{word}, sysdate, #{file1}, #{file1saved}, #{thumb1}, #{size1}, #{minprice}, #{maxprice})
   </insert>
 
  <!--  모든 차종의 등록된 차목록 -->
@@ -102,6 +102,25 @@
           3 page: WHERE r >= 21 AND r <= 30; -->
   </select>
   
+    <!-- 차종 추천 + 페이징 목록 -->
+  <select id="list_recommend_by_modelno" resultType="dev.mvc.car.CarVO" parameterType="int">
+		SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
+		       file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice, r
+		FROM (
+		           SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
+		                  file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice, rownum as r
+		           FROM (
+		                     SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
+		                            file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice
+		                     FROM car
+		                     WHERE modelno=#{modelno}
+		                     ORDER BY carno DESC
+		           )          
+		)
+		WHERE r &gt;= 1 AND r &lt;= 6
+	     
+  </select>
+  
     <!-- 패스워드 검사 -->
   <select id="password_check" resultType="int" parameterType="HashMap">
     SELECT COUNT(*) as cnt 
@@ -141,6 +160,32 @@
     DELETE FROM car
     WHERE modelno=#{modelno}
   </delete>   
+  
+    
+    <!-- 추천 테이블에서 추천 차종 가져오기 -->
+  <select id="search_model" resultType="int" parameterType="HashMap">
+  SELECT modelno 
+  FROM recommend 
+  WHERE customerno=#{customerno}
+  </select>
+  
+   <!-- 추천 많이받은 차종 가져오기 -->
+  <select id="find_model" resultType="int" parameterType="HashMap">
+		SELECT carno, masterno, modelno, title, content, recom, cnt, replycnt, rdate,
+		           file1, file1saved, thumb1, size1, map, youtube, r
+		FROM (
+		           SELECT carno, masterno, modelno, title, content, recom, cnt, replycnt, rdate,
+		                      file1, file1saved, thumb1, size1, map, youtube, rownum as r
+		           FROM (
+		                     SELECT carno, masterno, modelno, title, content, recom, cnt, replycnt, rdate,
+		                                file1, file1saved, thumb1, size1, map, youtube
+		                     FROM car
+		                     WHERE modelno={modelno} 
+		                     ORDER BY recom DESC
+		           )          
+		)
+		 WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
+  </select>
   
          
 </mapper> 

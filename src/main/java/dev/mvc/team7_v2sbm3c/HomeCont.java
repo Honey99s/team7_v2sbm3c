@@ -23,7 +23,7 @@ public class HomeCont {
   System.out.println("-> HomeCont created");
   }
   
-  //http://localhost:9092/
+  //http://localhost:9093/
   @RequestMapping(value = {"","/","/index.do","/index.resort"}, method=RequestMethod.GET)
   public ModelAndView home() {
     System.out.println("-> home() ver 2.0");
@@ -34,7 +34,7 @@ public class HomeCont {
 
     return mav;
   }
-  // http://localhost:9092/menu/top.do
+  // http://localhost:9093/menu/top.do
   @RequestMapping(value= {"/menu/top.do"}, method=RequestMethod.GET)
   public ModelAndView top() {
     ModelAndView mav = new ModelAndView();

@@ -24,6 +24,12 @@ public interface RecommendDAOInter {
    */
   public RecommendVO read(int recommendno);
   
+  /**
+   * customerno 조회
+   * @param recommendno
+   * @return
+   */
+  public RecommendVO read_by_customerno(int customerno);
   
   /**
    * 삭제

@@ -15,14 +15,14 @@
 <body>
 <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>조건 목록</DIV>
+  <DIV class='title_line'>추천 목록</DIV>
 
   <ASIDE class="aside_right">
     <A href="javascript:location.reload();">새로고침</A>
     <span class='menu_divide' >│</span> 
-    <A href='./create.do'>조건 등록</A>
+    <A href='./create.do'>추천 등록</A>
     <span class='menu_divide' >│</span> 
-    <A href='./list_all.do'>조건 목록</A>
+    <A href='./list_all.do'>추천 목록</A>
   </ASIDE> 
    
   <div class='menu_line'></div>
@@ -53,14 +53,13 @@
 
       <tr>
           <td class="td_bs">${recommendno }</td>
-          <td><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.modelno}</a></td>
-           <td><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.carno }</a></td>
+          <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${modelVO.name}</a></td>
+           <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${carVO.title }</a></td>
        
           <td class="td_bs">${recommendVO.customerno}</td>
           <td class="td_bs">${recommendVO.seq}</td>
           <td class="td_bs">${recommendVO.rdate}</td>
           <td class="td_bs">
-          <a href="./update.do?recommendno=${recommendno}"><IMG src='/recommend/images/update.png' title='수정' class="icon"></a>
           <a href="./delete.do?recommendno=${recommendno}"><IMG src='/recommend/images/delete.png' title='삭제' class="icon"></a>
         </td>
       </tr>
