@@ -8,7 +8,8 @@
 
 
 <h3>물리적 모델링</h3>
-<img width="1196" alt="image" src="https://github.com/Honey99s/team7_v2sbm3c/assets/107997462/fd3998db-03ed-473d-b957-18a99f7ceaf3">
+<img width="1148" alt="image" src="https://github.com/Honey99s/team7_v2sbm3c/assets/107997462/aec776c3-78b3-469a-a12b-74c7504af0e7">
+
 
 
 
