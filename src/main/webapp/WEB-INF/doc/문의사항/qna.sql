@@ -67,4 +67,7 @@ DELETE FROM qna;
 DELETE FROM qna
 WHERE qnano=3;
 
+<<<<<<< HEAD
 COMMIT;
+
+             

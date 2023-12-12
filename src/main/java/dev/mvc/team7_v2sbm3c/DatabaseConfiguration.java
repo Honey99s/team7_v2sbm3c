@@ -18,18 +18,21 @@ import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
 @PropertySource("classpath:/application.properties")  // 설정 파일 위치
-@MapperScan(basePackages= {"dev.mvc.model","dev.mvc.master","dev.mvc.car","dev.mvc.customer", "dev.mvc.condition", "dev.mvc.recommend","dev.mvc.good"})
-public class DatabaseConfiguration {
+
+@MapperScan(basePackages= {"dev.mvc.model","dev.mvc.master","dev.mvc.car","dev.mvc.customer", "dev.mvc.condition", "dev.mvc.recommend",
+                                          "dev.mvc.good", "dev.mvc.chatbot" })
+public class DatabaseConfiguration { 
+
     
     @Autowired
-    private ApplicationContext applicationContext;
+    private ApplicationContext applicationContext;  
     
     @Bean
     @ConfigurationProperties(prefix="spring.datasource.hikari")  // 설정 파일의 접두사 선언 spring.datasource.hikari....
     public HikariConfig hikariConfig() {
         return new HikariConfig();
     }
-    
+   
     @Bean
     public DataSource dataSource() throws Exception{
         DataSource dataSource = new HikariDataSource(hikariConfig());
