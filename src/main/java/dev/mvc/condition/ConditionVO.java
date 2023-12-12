@@ -25,6 +25,8 @@ public class ConditionVO {
   private int maxprice;
   /** 자녀수*/
   private int children;
+  /** 답변*/
+  private String reply = "";
   /** 등록일*/
   private String rdate;
   public int getConditionno() {
@@ -63,6 +65,12 @@ public class ConditionVO {
   public void setChildren(int children) {
     this.children = children;
   }
+  public String getReply() {
+    return reply;
+  }
+  public void setReply(String reply) {
+    this.reply = reply;
+  }
   public String getRdate() {
     return rdate;
   }
@@ -72,7 +80,7 @@ public class ConditionVO {
   @Override
   public String toString() {
     return "ConditionVO [conditionno=" + conditionno + ", title=" + title + ", content=" + content + ", minprice="
-        + minprice + ", maxprice=" + maxprice + ", children=" + children + ", rdate=" + rdate + "]";
+        + minprice + ", maxprice=" + maxprice + ", children=" + children + ", reply=" + reply + ", rdate=" + rdate + "]";
   }
 
   

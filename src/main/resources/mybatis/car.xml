@@ -102,7 +102,7 @@
           3 page: WHERE r >= 21 AND r <= 30; -->
   </select>
   
-    <!-- 차종 추천 + 페이징 목록 -->
+    <!-- 차종 추천  -->
   <select id="list_recommend_by_modelno" resultType="dev.mvc.car.CarVO" parameterType="int">
 		SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
 		       file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice, r
@@ -121,8 +121,7 @@
 	     
   </select>
   
-    <!-- 차종별 검색 목록 -->
-  <!-- 차종별 검색 + 페이징 목록 -->
+  <!-- 조회수별 자동차 추천 -->
   <select id="list_recommend_by_cnt" resultType="dev.mvc.car.CarVO" parameterType="int">
   SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
            file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice, r

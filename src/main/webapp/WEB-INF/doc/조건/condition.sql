@@ -7,6 +7,7 @@ CREATE TABLE CONDITION(
     MINPRICE       NUMBER(10)       NOT NULL, 
     MAXPRICE       NUMBER(10)       NOT NULL,   
     CHILDREN       NUMBER(10)       NOT NULL,
+    REPLY          CLOB             NULL,   
     RDATE          DATE             NOT NULL
 );
 
@@ -17,6 +18,7 @@ COMMENT ON COLUMN CONDITION.CONTENT is '조건 내용';
 COMMENT ON COLUMN CONDITION.MINPRICE is '최소 가격';
 COMMENT ON COLUMN CONDITION.MAXPRICE is '최대 가격';
 COMMENT ON COLUMN CONDITION.CHILDREN is '자녀수';
+COMMENT ON COLUMN CONDITION.REPLY is '답변';
 COMMENT ON COLUMN CONDITION.RDATE is '등록일';
 
 DROP SEQUENCE condition_seq;
@@ -28,16 +30,16 @@ CREATE SEQUENCE condition_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 -- CREATE
-INSERT INTO condition(conditionno, title, content, minprice, maxprice, children, rdate) VALUES(condition_seq.nextval, '중고차 추천', '자녀2명에 2000만원~3000만원 사이의 차량 추천해주세요' , 2000, 3000, 2, sysdate);
-INSERT INTO condition(conditionno, title, content, minprice, maxprice, children, rdate) VALUES(condition_seq.nextval, '중고차 추천', '사회초년생 1000만원~1500만원 예산의 차량 추천해주세요' , 1000, 1500, 0, sysdate);
+INSERT INTO condition(conditionno, title, content, minprice, maxprice, children, reply, rdate) VALUES(condition_seq.nextval, '중고차 추천', '자녀2명에 2000만원~3000만원 사이의 승용차 추천해주세요' , 2000, 3000, 2, '쏘나타DN8, K5 3세대, 그랜져IG 추천합니다', sysdate);
+INSERT INTO condition(conditionno, title, content, minprice, maxprice, children, reply, rdate) VALUES(condition_seq.nextval, '중고차 추천', '사회초년생 1000만원~1500만원 예산의 차량 추천해주세요' , 1000, 1500, 0, sysdate);
 
 -- SELECT
-SELECT conditionno, title, content, minprice, maxprice, children, rdate
+SELECT conditionno, title, content, minprice, maxprice, children, reply, rdate
 FROM condition
 ORDER BY conditionno DESC;
 
 -- READ
-SELECT conditionno, title, content, minprice, maxprice, children, rdate
+SELECT conditionno, title, content, minprice, maxprice, children, reply, rdate
 FROM condition
 WHERE conditionno =1;
 

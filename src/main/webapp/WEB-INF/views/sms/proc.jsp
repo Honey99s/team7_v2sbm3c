@@ -85,7 +85,7 @@
         
         // Spring SMSCont.java 보낸 문자열을 사용
         String msg = (String)request.getAttribute("msg");
-        msg = base64Encode(nullcheck(msg, ""));
+        msg = base64Encode(nullcheck(msg, "2a828056a1882665c31fc8538c56c1bf"));
                 
         // System.out.println(" ->msg: " + msg);
         String rphone = base64Encode(nullcheck(request.getParameter("rphone"), ""));

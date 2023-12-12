@@ -7,6 +7,7 @@
 <c:set var="content" value="${conditionVO.content }" />
 <c:set var="minprice" value="${conditionVO.minprice }" />
 <c:set var="maxprice" value="${conditionVO.maxprice }" />
+<c:set var="reply" value="${conditionVO.reply }" />
 <c:set var="children" value="${conditionVO.children }" />
  
 <!DOCTYPE html> 
@@ -56,6 +57,7 @@
            <span  style="font-size: 2em;" >가격 : \ ${minprice }~</span>
            <span style="font-size: 2em;">${maxprice } 만원</span><br>
           <span style="font-size: 2em;">자녀수 : ${children }</span><br>
+          <span style="font-size: 2em;">답변 : ${reply}</span><br>
         </DIV>
     </ul>
   </fieldset>
