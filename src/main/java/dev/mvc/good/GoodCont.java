@@ -11,11 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-
+import dev.mvc.car.CarProcInter;
 import dev.mvc.customer.CustomerProcInter;
 import dev.mvc.tool.Tool;
-
-
 
 
 @Controller
@@ -23,6 +21,10 @@ public class GoodCont {
   @Autowired
   @Qualifier("dev.mvc.good.GoodProc")
   private GoodProcInter goodProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.car.CarProc")
+  private CarProcInter carProc;
   
   @Autowired
   @Qualifier("dev.mvc.customer.CustomerProc")
@@ -44,33 +46,6 @@ public class GoodCont {
     
     return mav; // forward
   }
-    //FORM 출력 // http://localhost:9093/good/create.do
-    @RequestMapping(value="/good/create.do", method=RequestMethod.GET)
-    public ModelAndView create() {
-      ModelAndView mav =  new ModelAndView();
-      mav.setViewName("/good/create"); // /WEB-INF/views/good/create.jsp
-      
-      return mav;
-    }
-    //FORM 데이터 처리 // http://localhost:9093/good/create.do
-    @RequestMapping(value="/good/create.do", method=RequestMethod.POST)
-    public ModelAndView create(GoodVO goodVO) {
-      System.out.println("->create");
-      ModelAndView mav =  new ModelAndView();
-      
-     int cnt = this.goodProc.create(goodVO);
-     System.out.println("->cnt: " + cnt);
-     
-     if(cnt==1) {
-       mav.setViewName("redirect:/good/list_all.do");
-     }else {
-       mav.addObject("code","create_fail");
-       mav.setViewName("/good/msg");
-     }
-     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt);
-      
-      return mav;
-    }
     
     /**
      * 전체 목록

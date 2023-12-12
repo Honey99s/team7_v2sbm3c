@@ -45,7 +45,7 @@
       <th class='th_bs'>회원</th>
       <th class='th_bs'>순서</th>
       <th class='th_bs'>등록일</th>
-      <th class='th_bs'></th>
+      <th class='th_bs'>삭제</th>
     </tr>
    <tbody>
     <c:forEach var="recommendVO" items="${list }" varStatus="info">
@@ -53,8 +53,8 @@
 
       <tr>
           <td class="td_bs">${recommendno }</td>
-          <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${modelVO.name}</a></td>
-           <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${carVO.title }</a></td>
+          <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.modelno}</a></td>
+           <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.carno }</a></td>
        
           <td class="td_bs">${recommendVO.customerno}</td>
           <td class="td_bs">${recommendVO.seq}</td>
@@ -70,7 +70,6 @@
   </TABLE>
    
   <DIV class='bottom_menu'>
-    <button type='button' onclick="location.href='./create.do'" class="btn btn-primary btn-sm">등록</button>
     <button type='button' onclick="location.reload();" class="btn btn-primary btn-sm">새로 고침</button>
   </DIV>
 

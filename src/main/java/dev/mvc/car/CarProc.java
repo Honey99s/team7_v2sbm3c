@@ -114,6 +114,12 @@ public class CarProc implements CarProcInter {
      return list;
    
   }
+   
+   @Override
+   public ArrayList<CarVO> list_recommend_by_cnt(int cnt) {
+     ArrayList<CarVO> list = this.carDAO.list_recommend_by_cnt(cnt);
+     return list;
+   }
 
 //  <!-- 페이지 목록 출력 부분 시작 -->
 //  <DIV class='bottom_menu'>
@@ -289,4 +295,5 @@ public class CarProc implements CarProcInter {
       int cnt = this.carDAO.delete_by_modelno(modelno);
       return cnt;
     }
+
 }
