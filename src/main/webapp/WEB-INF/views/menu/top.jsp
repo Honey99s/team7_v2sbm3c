@@ -64,8 +64,8 @@
                     <a class="dropdown-item" href="#">비밀번호 찾기</a>
                   </c:when>
                   <c:otherwise>
-                    <a class="dropdown-item" href="http://localhost:8000/ais/recommend_form/?customerno=${sessionScope.customerno }">관심분야 등록하고 추천받기</a>
-                    <a class="dropdown-item" href="http://localhost:5000/chatbot">챗봇</a>
+                    <a class="dropdown-item" href="http://43.202.225.181:8000/ais/recommend_form/?customerno=${sessionScope.customerno }">관심분야 등록하고 추천받기</a>
+                    <a class="dropdown-item" href="http://13.124.141.127:5000/chatbot?customerno=${sessionScope.customerno }">챗봇</a>
                     
                     <a class="dropdown-item" href="/customer/read.do">고객정보 수정</a>
                     <a class="dropdown-item" href="/customer/passwd_update.do">비밀번호 변경</a>
