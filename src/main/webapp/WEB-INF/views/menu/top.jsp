@@ -74,7 +74,7 @@
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
                      <a class="dropdown-item" href="#">고객탈퇴</a>
                   </c:otherwise>
-                </c:choose>
+                </c:choose>    
               </div>
             </li>
           
