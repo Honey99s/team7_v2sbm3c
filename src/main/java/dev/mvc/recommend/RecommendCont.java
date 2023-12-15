@@ -53,33 +53,6 @@ public class RecommendCont {
     
     return mav; // forward
   }
-    //FORM 출력 // http://localhost:9093/recommend/create.do
-    @RequestMapping(value="/recommend/create.do", method=RequestMethod.GET)
-    public ModelAndView create() {
-      ModelAndView mav =  new ModelAndView();
-      mav.setViewName("/recommend/create"); // /WEB-INF/views/recommend/create.jsp
-      
-      return mav;
-    }
-    //FORM 데이터 처리 // http://localhost:9093/recommend/create.do
-    @RequestMapping(value="/recommend/create.do", method=RequestMethod.POST)
-    public ModelAndView create(RecommendVO recommendVO) {
-      System.out.println("->create");
-      ModelAndView mav =  new ModelAndView();
-      
-     int cnt = this.recommendProc.create(recommendVO);
-     System.out.println("->cnt: " + cnt);
-     
-     if(cnt==1) {
-       mav.setViewName("redirect:/recommend/list_all.do");
-     }else {
-       mav.addObject("code","create_fail");
-       mav.setViewName("/recommend/msg");
-     }
-     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt);
-      
-      return mav;
-    }
     
     /**
      * 전체 목록

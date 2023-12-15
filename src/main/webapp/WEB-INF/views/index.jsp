@@ -34,7 +34,6 @@
          </DIV>
      </c:when>
      <c:otherwise>
-       <!-- 추천 없음 -->
      </c:otherwise>
    </c:choose>
    

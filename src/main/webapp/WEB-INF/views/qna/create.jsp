@@ -1,10 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
-<c:set var="goodno" value="${goodVO.goodno }" />
-<c:set var="modelno" value="${goodVO.carno }" />
-<c:set var="customerno" value="${goodVO.customerno }" />
-<c:set var="rdate" value="${goodVO.rdate }" />
+<c:set var="qnano" value="${qnaVO.qnano}" />
+<c:set var="customerno" value="${qnaVO.customerno}" />
+<c:set var="pw" value="${qnaVO.pw}" />
+<c:set var="title" value="${qnaVO.title}" />
+<c:set var="content" value="${qnaVO.content}" />
+<c:set var="qdate" value="${qnaVO.qdate}" />
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -15,44 +17,36 @@
 <link rel="shortcut icon" href="/images/honeycar.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
   
-</head>
+</head> 
  
 <body>
 <c:import url="/menu/top.do" />
  
-  <div class='title_line'>좋아요</div>
+  <div class='title_line'>문의사항 등록</div>
   
   <aside class="aside_right">
     <span class='menu_divide' >│</span>
     <a href="javascript:location.reload();">새로고침</a>
     <span class='menu_divide' >│</span>
-    <a href="./list_all.do">추천 상품 목록</a>    
+    <a href="./list_all.do">문의사항 목록</a>    
   </aside>
     
     <div class='menu_line'></div>
    <form name='frm' method='post' action='./create.do'>
 
     <div>
-       <label>추천 상품</label>
-       <input type='int' name='goodno' value='1' required="required" autofocus="autofocus" class="form-control" style='width: 100%;'>
+       <label>제목</label>
+       <input type='text' name='title' required="required" autofocus="autofocus" class="form-control" style='width: 100%;'>
     </div>
     <div>
-        <label>추천 자동차</label>
-       <input type='text' name='title' value='모닝' required="required" class="form-control" style='width: 100%;'>
-    </div>
-     <div>
-      <label>최소가격</label>
-       <input type='int' name='minprice' value='500' required="required" class="form-control" style='width: 100%;'>
-    </div>
-     <div>
-       <label>최대가격</label>
-       <input type='int' name='maxprice' value='9999' required="required" class="form-control" style='width: 100%;'>
+       <label>내용</label>
+       <textarea name='content' required="required" class="form-control" rows="20" style='width: 100%;'></textarea>
     </div>
     <div>
-     <div>
-       <label>이미지</label>
-       <input type='file' class="form-control" name='file1MF' id='file1MF' value='' placeholder="파일 선택">
-    </div> 
+       <label>비밀번호</label>
+       <input type='int' name='pw'  required="required" 
+                 class="form-control" style='width: 20%;'>
+    </div>   
 
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-secondary btn-sm">등록</button>

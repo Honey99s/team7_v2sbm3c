@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+  <mapper namespace="dev.mvc.sms.SMSDAOInter">
+  <!--  로그인 내역 목록  -->
+  <select id="list_all" parameterType="dev.mvc.sms.SMSVO">
+    SELECT loginno, customerno, ip, logindate FROM login ORDER BY loginno DESC;
+  </select>
+  </mapper>
+

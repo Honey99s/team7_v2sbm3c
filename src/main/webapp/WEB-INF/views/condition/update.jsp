@@ -6,6 +6,7 @@
 <c:set var="content" value="${conditionVO.content }" />
 <c:set var="minprice" value="${conditionVO.minprice }" />
 <c:set var="maxprice" value="${conditionVO.maxprice }" />
+<c:set var="maxprice" value="${conditionVO.reply }" />
 <c:set var="children" value="${conditionVO.children }" />
  
 <!DOCTYPE html> 
@@ -64,7 +65,11 @@
        <label>자녀수</label>
        <input type='int' name='children' value='2' required="required" 
                  class="form-control" style='width: 100%;'>
-    </div>   
+    </div>
+     <div>
+       <label>답변</label>
+       <textarea name='content' required="required" class="form-control" rows="12" style='width: 100%;'>쏘나타DN8, K5 3세대, 그랜져IG 를추천합니다</textarea>
+    </div>  
        
     <div class="content_body_bottom">
       <button type="submit" class="btn btn-secondary btn-sm">저장</button>

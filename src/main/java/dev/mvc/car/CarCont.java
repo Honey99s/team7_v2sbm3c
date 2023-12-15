@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.customer.CustomerProcInter;
 import dev.mvc.customer.CustomerVO;
+import dev.mvc.good.GoodProcInter;
 import dev.mvc.master.MasterProcInter;
 import dev.mvc.model.ModelProcInter;
 import dev.mvc.model.ModelVO;
@@ -43,8 +44,12 @@ public class CarCont {
   private CarProcInter carProc;
   
   @Autowired
-  @Qualifier("dev.mvc.recommend.RecommendProc") // @Component("dev.mvc.car.CarProc")
+  @Qualifier("dev.mvc.recommend.RecommendProc") 
   private RecommendProcInter recommendProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.good.GoodProc") 
+  private GoodProcInter goodProc;
   
   public CarCont () {
     System.out.println("-> CarCont created.");
@@ -402,6 +407,28 @@ public class CarCont {
     ArrayList<CarVO> list_recommend_by_modelno = this.carProc.list_recommend_by_modelno(modelno);
     mav.addObject("list_recommend_by_modelno", list_recommend_by_modelno);
     mav.setViewName("/car/list_recommend_by_modelno");  
+  
+    return mav;
+  }
+ 
+ /**
+ * 추천 차종 그리드
+ * http://localhost:9093/car/list_by_cnt.do?
+ * 
+ * 
+ * @param modelno
+ * @param now_page
+ * @return
+ */
+ @RequestMapping(value = "/car/list_recommend_by_cnt.do", method = RequestMethod.GET)
+ public ModelAndView list_recommend_by_cnt(int cnt) {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/car/list_recommend_by_cnt");
+
+    ArrayList <CarVO> list_recommend_by_cnt = this.carProc.list_recommend_by_cnt(cnt);
+    mav.addObject("list_recommend_by_cnt", list_recommend_by_cnt);
+    mav.setViewName("car/list_recommend_by_cnt");
+      
   
     return mav;
   }

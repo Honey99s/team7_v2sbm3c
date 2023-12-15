@@ -31,11 +31,12 @@
   <table class="table table-hover" style='width: 100%;'>
     <colgroup>
       <col style='width: 5%;'/>
-      <col style='width: 15%;'/>
-      <col style='width: 40%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
+      <col style='width: 30%;'/>
+      <col style='width: 7.5%;'/>
+      <col style='width: 7.5%;'/>
+      <col style='width: 5%;'/>
+      <col style='width: 25%;'/>
       <col style='width: 10%;'/>
     </colgroup>
     <tr>
@@ -45,6 +46,7 @@
       <th class='th_bs'>최소가격</th>
       <th class='th_bs'>최대가격</th>
       <th class='th_bs'>자녀수</th>
+      <th class='th_bs'>답변</th>
       <th class='th_bs'>등록일</th>
     </tr>
    <tbody>
@@ -67,7 +69,8 @@
           <td class="td_bs">${conditionVO.minprice}</td>
           <td class="td_bs">${conditionVO.maxprice}</td>
           <td class="td_bs">${conditionVO.children}</td>
-            <td class="td_bs">(${conditionVO.rdate.substring(0,16) })</td>
+          <td class="td_bs">${conditionVO.reply}</td>
+          <td class="td_bs">(${conditionVO.rdate.substring(0,16) })</td>
           <td class="td_bs">
           <a href="./update.do?conditionno=${conditionno}"><IMG src='/condition/images/update.png' title='수정' class="icon"></a>
           <a href="./delete.do?conditionno=${conditionno}"><IMG src='/condition/images/delete.png' title='삭제' class="icon"></a>
