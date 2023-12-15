@@ -4,25 +4,22 @@ DROP TABLE qna;
 DROP TABLE qna CASCADE CONSTRAINTS; 
  
 CREATE TABLE qna (
-  qnano          NUMBER(10)     NOT NULL     PRIMARY KEY, -- 회원 번호, 레코드를 구분하는 컬럼 
-  carno          NUMBER(10)     NOT NULL,
-  customerno     NUMBER(10)     NOT NULL,
-  id             VARCHAR(20)    NOT NULL    UNIQUE, -- 이메일(아이디), 중복 안됨, 레코드를 구분 
-  cname          VARCHAR(10)    NOT NULL, -- 성명, 한글 10자 저장 가능
-  title          VARCHAR(30)  NOT NULL,
-  content        CLOB           NOT NULL,
-  FOREIGN KEY (carno) REFERENCES car (carno),
+  QNANO          NUMBER(10)     NOT NULL     PRIMARY KEY, -- 회원 번호, 레코드를 구분하는 컬럼 
+  CUSTOMERNO     NUMBER(10)     NOT NULL,
+  PW             VARCHAR(20)    NOT NULL, -- 비밀번호, 글 수정이나 비밀글로 했을
+  TITLE          VARCHAR(30)    NOT NULL,
+  CONTENT        CLOB           NOT NULL,
+  QDATE          DATE           NOT NULL,
   FOREIGN KEY (customerno) REFERENCES customer (customerno)
 );
  
 COMMENT ON TABLE QNA is '문의사항';
-COMMENT ON COLUMN QNA.QNANO is '고객 번호';
-COMMENT ON COLUMN QNA.CARNO is '자동차 번호';
+COMMENT ON COLUMN QNA.QNANO is '문의사항 번호';
 COMMENT ON COLUMN QNA.CUSTOMERNO is '고객 번호';
-COMMENT ON COLUMN QNA.ID is '아이디';
-COMMENT ON COLUMN QNA.CNAME is '성명';
+COMMENT ON COLUMN QNA.PW is '비밀번호';
 COMMENT ON COLUMN QNA.TITLE is '제목';
 COMMENT ON COLUMN QNA.CONTENT is '내용';
+COMMENT ON COLUMN QNA.QDATE is '등록일';
 
 DROP SEQUENCE qna_seq;
 CREATE SEQUENCE qna_seq
@@ -33,28 +30,29 @@ CREATE SEQUENCE qna_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 1) 등록
-INSERT INTO qna(qnano, carno, customerno, id, cname, title, content)
-VALUES (qna_seq.nextval, 1, 1, 'user2@gmail.com', '이동우','차 얼마임?', '승용차 5인승 얼마임?');
+INSERT INTO qna(qnano, customerno, pw, title, content)
+VALUES (qna_seq.nextval, 1, '1234','차 얼마임?', '승용차 5인승 얼마임?');
 
 2) 목록
 - 검색을 하지 않는 경우, 전체 목록 출력
  
-SELECT qnano, carno, customerno, id, cname, title, content
+SELECT qnano, customerno, pw, title, content
 FROM qna
 ORDER BY qnano ASC, customerno ASC;
      
      
 3. 조회
  
-1) user1@gmail.com 사원 정보 보기
-SELECT qnano, carno, customerno, id, cname, title, content
+1) customerno = 1 문의사항 보기
+SELECT qnano, customerno, pw, title, content
 FROM qna
 WHERE customerno = 1;
 
     
 4. 수정
 UPDATE qna 
-SET id='dleh6454@naver.com'
+SET title='차 얼마일까요?',
+    content= '승용차 5인승 얼마일까요?'
 WHERE customerno=1 and qnano = 1;
 
 COMMIT;
@@ -67,7 +65,6 @@ DELETE FROM qna;
 DELETE FROM qna
 WHERE qnano=3;
 
-<<<<<<< HEAD
 COMMIT;
 
              
