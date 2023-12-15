@@ -64,7 +64,10 @@
                     <a class="dropdown-item" href="#">비밀번호 찾기</a>
                   </c:when>
                   <c:otherwise>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 5f312bc83b6be8fdb35b575b199304a94f74bc47
                     <a class="dropdown-item" href="http://43.202.225.181:8000/ais/recommend_form/?customerno=${sessionScope.customerno }">관심분야 등록하고 추천받기</a>
                     <a class="dropdown-item" href="http://13.124.141.127:5000/chatbot?customerno=${sessionScope.customerno }">챗봇</a>
                     <a class="dropdown-item" href="/customer/read.do">고객정보 수정</a>
@@ -75,7 +78,7 @@
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
                      <a class="dropdown-item" href="#">고객탈퇴</a>
                   </c:otherwise>
-                </c:choose>
+                </c:choose>    
               </div>
             </li>
           
