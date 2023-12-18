@@ -120,6 +120,12 @@ public class CarProc implements CarProcInter {
      ArrayList<CarVO> list = this.carDAO.list_recommend_by_cnt(cnt);
      return list;
    }
+   
+   @Override
+   public ArrayList<CarVO> list_recommend_by_rdate(String rdate) {
+     ArrayList<CarVO> list = this.carDAO.list_recommend_by_rdate(rdate);
+     return list;
+   }
 
 //  <!-- 페이지 목록 출력 부분 시작 -->
 //  <DIV class='bottom_menu'>

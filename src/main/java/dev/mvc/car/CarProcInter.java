@@ -101,6 +101,13 @@ public interface CarProcInter {
    */
   public ArrayList<CarVO> list_recommend_by_cnt(int cnt);
   
+  /**
+   * 등록일순 자동차 목록
+   * @param rdate
+   * @return
+   */
+  public ArrayList<CarVO> list_recommend_by_rdate(String rdate);
+  
   
   /**
    *  패스워드 검사
