@@ -132,7 +132,6 @@
                          SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
                                 file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice
                          FROM car
-                         WHERE modelno=#{modelno}
                          ORDER BY cnt DESC
                )          
     )

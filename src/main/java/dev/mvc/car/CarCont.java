@@ -424,8 +424,9 @@ public class CarCont {
  public ModelAndView list_recommend_by_cnt(int cnt) {
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/car/list_recommend_by_cnt");
+    
 
-    ArrayList <CarVO> list_recommend_by_cnt = this.carProc.list_recommend_by_cnt(cnt);
+    ArrayList<CarVO> list_recommend_by_cnt = this.carProc.list_recommend_by_cnt(cnt);
     mav.addObject("list_recommend_by_cnt", list_recommend_by_cnt);
     mav.setViewName("car/list_recommend_by_cnt");
       

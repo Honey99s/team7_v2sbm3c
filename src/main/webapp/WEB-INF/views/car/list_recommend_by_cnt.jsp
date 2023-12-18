@@ -13,65 +13,52 @@
   
 </head>
 <body>
-<c:import url="/menu/top.do" />
 
  <div class='title_line'>
     조회수를 기반한 추천
   </div>
   
-  <div class="menu_line"></div> 
-  
-  <table class="table table-hover">
-    <colgroup>
-       <col style="width: 10%;"></col>
-      <col style="width: 80%;"></col>
-      <col style="width: 10%;"></col>
-    </colgroup>
-      <thead>
-        <tr>
-         <th style='text-align: center;'>파일</th>
-        <th style='text-align: center;'>제목</th>
-        <th style='text-align: center;'>기타</th>
-        </tr>
-      </thead>
-      <tbody>
-        <c:forEach var="carVO" items="${list_recommend_by_cnt }" varStatus="info">
-          <c:set var="carno" value="${carVO.carno }" />
-          <c:set var="thumb1" value="${carVO.thumb1 }" />
-          <tr onclick="location.href='./read.do?carno=${carno}&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }&modelno=${param.modelno }'" style="cursor: pointer;">
-            <td>
-              <c:choose>
-              <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
-                <%-- registry.addResourceHandler("/car/storage/**").addResourceLocations("file:///" +  car.getUploadDir()); --%>
-                <img src="/car/storage/${thumb1 }" style="width: 120px; height: 90px;">
+  <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
+    <c:forEach var="carVO" items="${list_recommend_by_cnt }" varStatus="status">
+      <c:set var="title" value="${carVO.title.trim() }" />
+      <c:set var="content" value="${carVO.content.trim() }" />
+      <c:set var="modelno" value="${carVO.modelno }" />
+      <c:set var="carno" value="${carVO.carno }" />
+      <c:set var="thumb1" value="${carVO.thumb1 }" />
+      <c:set var="size1" value="${carVO.size1 }" />
+        
+      <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
+      <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
+      <!-- 6기준 하나의 이미지, 16 * 6 = 96% -->
+      <div onclick="location.href='/car/read.do?carno=${carno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
+             style='width: 15%; height: 168px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left; cursor: pointer;'>
+        
+        <c:choose> 
+          <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>
+            <%-- registry.addResourceHandler("/car/storage/**").addResourceLocations("file:///" +  Contents.getUploadDir()); --%>
+            <img src="/car/storage/${thumb1 }" style="width: 100%; height: 140px;">
+          </c:when>
+          <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/car/images/none1.png -->
+            <IMG src="/car/images/none1.png" style="width: 100%; height: 140px;">
+          </c:otherwise>
+        </c:choose>
+        
+        <strong>
+          <span style="font-size: 0.8em;">
+            <c:choose>
+              <c:when test="${title.length() > 20 }"> <%-- 20 이상이면 20자만 출력, 공백:  6자 --%>
+                ${title.substring(0, 20)}...
               </c:when>
-              <c:otherwise> <!-- 이미지가 없는 경우 기본 이미지 출력: /static/car/images/none1.png -->
-                <img src="/car/images/none1.png" style="width: 120px; height: 90px;">
-              </c:otherwise>
+              <c:when test="${title.length() <= 20 }">
+                ${title}
+              </c:when>
             </c:choose>
-            </td>
-            <td class="td_bs_left">
-             <span style="font-weight: bold">${carVO.title }</span><br>
-             <c:choose>
-              <c:when test="${carVO.content.length() > 160 }">
-                ${carVO.content.substring(0, 160) }...
-              </c:when>
-              <c:otherwise>
-                ${carVO.content }
-              </c:otherwise>
-              </c:choose>
-               (${carVO.rdate.substring(0,16) })
-            </td>
-          </tr>
-        </c:forEach>
-      </tbody>
-      
-  </table>
+          </span>
+        </strong>
+        <br>
+       
+      </div>
+     
+    </c:forEach>
+  </div>
   
-   <!-- 페이지 목록 출력 부분 시작 -->
-  <DIV class='bottom_menu'>${paging }</DIV> <%-- 페이지 리스트 --%>
-  <!-- 페이지 목록 출력 부분 종료 -->
- 
-<jsp:include page="../menu/bottom.jsp" flush='false' /> 
-</body>
-</html>
