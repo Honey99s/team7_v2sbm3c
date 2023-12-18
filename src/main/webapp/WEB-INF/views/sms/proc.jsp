@@ -78,7 +78,7 @@
         String sms_url = "";
         sms_url = "https://sslsms.cafe24.com/sms_sender.php"; // SMS 전송요청 URL
         String user_id = base64Encode("itwillsms"); // SMS 아이디
-        String secure = base64Encode(""); // 인증키
+        String secure = base64Encode("2a828056a1882665c31fc8538c56c1bf"); // 인증키
         
         // form.jsp에서 보낸 문자열을 사용
         // String msg = base64Encode(nullcheck(request.getParameter("msg"), ""));

@@ -16,7 +16,7 @@
       <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->
       <!-- 6기준 하나의 이미지, 16 * 6 = 96% -->
       <div onclick="location.href='/car/read.do?carno=${carno }&word=${param.word }&now_page=${param.now_page == null ? 1 : param.now_page }'" class='hover'  
-             style='width: 15%; height: 168px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left;'>
+             style='width: 15%; height: 168px; float: left; margin: 0.5%; padding: 0.1%; background-color: #EEEFFF; text-align: left; cursor: pointer;'>
         
         <c:choose> 
           <c:when test="${thumb1.endsWith('jpg') || thumb1.endsWith('png') || thumb1.endsWith('gif')}"> <%-- 이미지인지 검사 --%>

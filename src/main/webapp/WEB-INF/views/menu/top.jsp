@@ -69,7 +69,6 @@
                     <a class="dropdown-item" href="/customer/read.do">고객정보 수정</a>
                     <a class="dropdown-item" href="/customer/passwd_update.do">비밀번호 변경</a>
                     <a class="dropdown-item" href="/sms/form.do">로그인 내역</a>
-                     <a class="dropdown-item" href="/condition/create.do">조건 등록</a>
                      <a class="dropdown-item" href="/condition/list_all.do">조건 전체 목록</a>
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
                      <a class="dropdown-item" href="/review/list_all.do">구매후기</a>

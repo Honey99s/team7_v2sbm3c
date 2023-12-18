@@ -7,17 +7,27 @@ import org.springframework.stereotype.Component;
 
 
 
-@Component("dev.mvc.sms.SMSProc")
-public class SMSProc implements SMSProcInter {
+@Component("dev.mvc.sms.SmsProc")
+public class SmsProc implements SmsProcInter {
   @Autowired
-  private SMSDAOInter smsDAO;
+  private SmsDAOInter smsDAO;
 
   @Override
-  public ArrayList<SMSVO> list_all() {
-    ArrayList<SMSVO> list = this.smsDAO.list_all();
+  public ArrayList<SmsVO> list_all() {
+    ArrayList<SmsVO> list = this.smsDAO.list_all();
     return list;
   }
+  
+  @Override
+  public SmsVO read(int loginno) {
+    SmsVO smsVO = this.smsDAO.read(loginno);
+    return smsVO;
+  }
 
-
+  @Override
+  public int delete(int loginno) {
+    int cnt = this.smsDAO.delete(loginno);
+    return cnt;
+  }
 
 }
