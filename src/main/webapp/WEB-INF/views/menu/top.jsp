@@ -72,6 +72,7 @@
                      <a class="dropdown-item" href="/condition/create.do">조건 등록</a>
                      <a class="dropdown-item" href="/condition/list_all.do">조건 전체 목록</a>
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
+                     <a class="dropdown-item" href="/review/list_all.do">구매후기</a>
                      <a class="dropdown-item" href="#">고객탈퇴</a>
                   </c:otherwise>
                 </c:choose>    
