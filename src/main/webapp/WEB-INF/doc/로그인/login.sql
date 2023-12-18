@@ -22,7 +22,7 @@ CREATE SEQUENCE login_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 INSERT INTO login(loginno, customerno, ip, logindate)
-VALUES(login_seq.nextval, 1, '0', sysdate);
+VALUES(login_seq.nextval, 3, '211.201.201.229', sysdate);
 
 SELECT loginno, customerno, ip, logindate FROM login ORDER BY loginno DESC;
 

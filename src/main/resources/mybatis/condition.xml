@@ -15,24 +15,24 @@
     ORDER BY conditionno DESC
   </select>
   
-    <!-- 조건 조회 -->
+  <!-- 조건 조회 -->
   <select id="read" resultType="dev.mvc.condition.ConditionVO" parameterType="int">
     SELECT conditionno, title, content, minprice, maxprice, children, reply, rdate
     FROM condition
     WHERE conditionno =#{conditionno}
   </select>
   
-    <!-- 조건 수정 -->
+  <!-- 조건 수정 -->
   <update id="update" parameterType="dev.mvc.condition.ConditionVO">
     UPDATE condition
     SET title=#{title}, content=#{content},  minprice=#{minprice}, maxprice=#{maxprice}, children=#{children}, reply=${reply}
     WHERE conditionno = #{conditionno}
   </update>
   
-     <!-- 조건 삭제 -->
-    <delete id="delete" parameterType="int">
+   <!-- 조건 삭제 -->
+   <delete id="delete" parameterType="int">
     DELETE FROM condition
     WHERE conditionno=#{conditionno}
-  </delete>
+   </delete>
 
 </mapper>

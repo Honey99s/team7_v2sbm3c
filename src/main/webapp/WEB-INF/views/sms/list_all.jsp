@@ -24,9 +24,10 @@
 
 <table class="table table-hover">
   <colgroup>
-      <col style='width: 10%;'/>
-      <col style='width: 40%;'/>
-      <col style='width: 10%;'/>    
+      <col style='width: 20%;'/>
+      <col style='width: 20%;'/>
+      <col style='width: 20%;'/>    
+      <col style='width: 20%;'/>
       <col style='width: 20%;'/>
     </colgroup>
     <thead>
@@ -39,10 +40,19 @@
     </thead>
     <tbody>
       <c:forEach var="smsVO" items="${list }" varStatus="info">
-      <c:set var="loginno" value="${SMSVO.loginno }"/>
-      <c:set var="customerno" value="${SMSVO.customerno }"/>
-      <c:set var="ip" value="${SMSVO.ip }"/>
-      <c:set var="logindate" value="${SMSVO.logindate }"/>
+      <c:set var="loginno" value="${smsVO.loginno }"/>
+      <c:set var="customerno" value="${smsVO.customerno }"/>
+      <c:set var="ip" value="${smsVO.ip }"/>
+      <c:set var="logindate" value="${smsVO.logindate }"/>
+      
+      <tr>
+      <td class="td_bs">${loginno }</td>
+       <td class="td_bs">${customerno }</td>
+       <td class="td_bs">${ip }</td>
+       <td class="td_bs">${logindate }</td>
+       <td class="td_bs">
+          <a href="./delete.do?loginno=${loginno}"><IMG src='/sms/images/delete.png' title='삭제' class="icon"></a>
+       </td>
       
   
     </c:forEach>

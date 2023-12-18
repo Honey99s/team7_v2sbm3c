@@ -10,7 +10,7 @@ package dev.mvc.sms;
 
 
 
-public class SMSVO {
+public class SmsVO {
   private int loginno;
   private int customerno;
   private String ip;

@@ -28,7 +28,7 @@ public class CustomerCont {
 
   @Autowired
   @Qualifier("dev.mvc.customer.CustomerProc")
-  private CustomerProcInter customerProc = null;
+  private CustomerProcInter customerProc;
   
   
   public CustomerCont(){
@@ -224,6 +224,7 @@ public class CustomerCont {
    */
   @RequestMapping(value="/customer/delete.do", method=RequestMethod.GET)
   public ModelAndView delete(int customerno){
+    System.out.println("->delete");
     ModelAndView mav = new ModelAndView();
     
     CustomerVO customerVO = this.customerProc.read(customerno); // 삭제할 레코드를 사용자에게 출력하기위해 읽음.
@@ -241,6 +242,7 @@ public class CustomerCont {
    */
   @RequestMapping(value="/customer/delete.do", method=RequestMethod.POST)
   public ModelAndView delete_proc(int customerno){
+    System.out.println("->deletedo");
     ModelAndView mav = new ModelAndView();
     
     // System.out.println("id: " + customerVO.getId());
@@ -264,6 +266,7 @@ public class CustomerCont {
     
     return mav;
   }
+  
   
 ///**
 //* 로그인 폼
