@@ -490,7 +490,7 @@ public ModelAndView login_cookie_proc(
   
   /**
    * 패스워드 검사 
-   * 로그인 실행 -> http://localhost:9092/customer/passwd_check.do?current_passwd=1234
+   * 로그인 실행 -> http://localhost:9093/customer/passwd_check.do?current_passwd=1234
    * @param session
    * @param current_passwd 현재 패스워드
    * @return 1: 일치, 0: 불일치
