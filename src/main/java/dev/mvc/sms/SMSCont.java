@@ -1,6 +1,6 @@
 package dev.mvc.sms;
 
-import java.util.ArrayList;
+
 import java.util.Random;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,17 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import dev.mvc.sms.SmsVO;
-import dev.mvc.tool.Tool;
-import dev.mvc.sms.SmsVO;
 import dev.mvc.customer.CustomerProcInter;
 
 
 @Controller
 public class SmsCont {
-  @Autowired
-  @Qualifier("dev.mvc.sms.SmsProc")
-  private SmsProcInter smsProc;
+
   
   @Autowired
   @Qualifier("dev.mvc.customer.CustomerProc")
@@ -121,99 +116,6 @@ public class SmsCont {
     return mav;
   }
   
-  /**
-   * 전체 목록
-   * http://localhost:9093/sms/list_all.do
-   * @return 
-   */
-  @RequestMapping(value="/sms/list_all.do", method = RequestMethod.GET)
-  public ModelAndView list_all(HttpSession session) {
-    System.out.println("-> list_all");
-    ModelAndView mav =  new ModelAndView();
-    mav.setViewName("/sms/list_all"); //WEB-INF/views/sms/list_all.jsp
-    
-    
-    if (this.customerProc.isCustomer(session) == true) {
-      mav.setViewName("/sms/list_all"); // /WEB-INF/views/sms/list_all.jsp
-      System.out.println("-> customer");
-      ArrayList<SmsVO> list = this.smsProc.list_all();
-      System.out.println("->listsize : " + list.size());
-      
-      mav.addObject("list", list);
-      
-    } else {
-      mav.setViewName("/customer/login_need"); // /WEB-INF/views/customer/login_need.jsp
-      
-    }
-    
-    return mav;
-  }
-  
-  /**
-   * 조회
-   * http://localhost:9093/sms/read.do?loginno=1
-   * @return
-   */
-  @RequestMapping(value="/sms/read.do", method = RequestMethod.GET)
-  public ModelAndView read(int loginno) { 
-    System.out.println("-> read");
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/sms/read");
-    
-    SmsVO smsVO = this.smsProc.read(loginno);
-    System.out.println("-> done");
-    
-    mav.addObject("smsVO", smsVO);
-    
-    return mav;
-  }
-  
-  
-  /**
-   * 파일 삭제 폼
-   * http://localhost:9093/sms/delete.do?loginno=1
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/sms/delete.do", method = RequestMethod.GET)
-  public ModelAndView delete(HttpSession session, int loginno) {
-    System.out.println("-> delete");
-    ModelAndView mav = new ModelAndView();
-    
-    if (customerProc.isCustomer(session)) { 
-      System.out.println("-> customer");
-      SmsVO smsVO = this.smsProc.read(loginno);
-      mav.addObject("smsVO", smsVO);
-      
-      mav.setViewName("/sms/delete"); 
-      
-    } else {
-      mav.addObject("url", "/customer/login_need"); 
-      mav.setViewName("redirect:/customer/msg.do"); 
-    }
-
-
-    return mav; 
-  }
-  /**
-   * 삭제 처리 http://localhost:9093/sms/delete.do
-   * 
-   * @return
-   */
-  @RequestMapping(value = "/sms/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete(SmsVO smsVO) {
-    System.out.println("-> deletedo");
-    ModelAndView mav = new ModelAndView();
-          
-    SmsVO smsVO_read = this.smsProc.read(smsVO.getLoginno());
-    this.smsProc.delete(smsVO.getLoginno()); // DBMS 삭제
-    
-
-    mav.addObject("loginno", smsVO.getLoginno());
-    mav.setViewName("redirect:/sms/list_all.do"); 
-    
-    return mav;
-  }  
   
   
 }

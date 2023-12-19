@@ -68,7 +68,7 @@
                     <a class="dropdown-item" href="http://13.124.141.127:5000/chatbot?customerno=${sessionScope.customerno }">챗봇</a>
                     <a class="dropdown-item" href="/customer/read.do">고객정보 수정</a>
                     <a class="dropdown-item" href="/sms/form.do">비밀번호 변경</a>
-                    <a class="dropdown-item" href="/sms/list_all.do">로그인 내역</a>
+                    <a class="dropdown-item" href="/clogin/list_all.do">로그인 내역</a>
                      <a class="dropdown-item" href="/condition/list_all.do">조건 등록</a>
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
                      <a class="dropdown-item" href="/review/list_all.do">구매후기</a>

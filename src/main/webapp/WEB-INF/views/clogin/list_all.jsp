@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, minimum-scale=1.0, maximum-scale=10.0, width=device-width" /> 
-<title>http://localhost:9093/sms/list_all.do</title>
+<title>http://localhost:9093/clogin/list_all.do</title>
 <link rel="shortcut icon" href="/images/honeycar.png" /> <%-- /static 기준 --%>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
   
@@ -39,19 +39,19 @@
       </tr>
     </thead>
     <tbody>
-      <c:forEach var="smsVO" items="${list }" varStatus="info">
-      <c:set var="loginno" value="${smsVO.loginno }"/>
-      <c:set var="customerno" value="${smsVO.customerno }"/>
-      <c:set var="ip" value="${smsVO.ip }"/>
-      <c:set var="logindate" value="${smsVO.logindate }"/>
+      <c:forEach var="cloginVO" items="${list }" varStatus="info">
+      <c:set var="cloginno" value="${cloginVO.cloginno }"/>
+      <c:set var="customerno" value="${cloginVO.customerno }"/>
+      <c:set var="ip" value="${cloginVO.ip }"/>
+      <c:set var="clogindate" value="${cloginVO.clogindate }"/>
       
       <tr>
-      <td class="td_bs">${loginno }</td>
+      <td class="td_bs">${cloginno }</td>
        <td class="td_bs">${customerno }</td>
        <td class="td_bs">${ip }</td>
-       <td class="td_bs">${logindate }</td>
+       <td class="td_bs">${clogindate }</td>
        <td class="td_bs">
-          <a href="./delete.do?loginno=${loginno}"><IMG src='/sms/images/delete.png' title='삭제' class="icon"></a>
+          <a href="./delete.do?cloginno=${cloginno}"><IMG src='/cclogin/images/delete.png' title='삭제' class="icon"></a>
        </td>
       
   

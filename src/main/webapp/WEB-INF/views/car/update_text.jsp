@@ -71,15 +71,15 @@
     </div>
     <div>
        <label>제조사</label>
-       <input type='text' name='manufacturer' value='현대' required="required" class="form-control" style='width: 100%;'>
+       <input type='text' name='manufacturer' value='${manufacturer }' required="required" class="form-control" style='width: 100%;'>
     </div>
     <div>
      <label>최소가격</label>
-       <input type='int' name='minprice' value='500' required="required" class="form-control" style='width: 100%;'>
+       <input type='int' name='minprice' value='${minprice }' required="required" class="form-control" style='width: 100%;'>
     </div>
      <div>
        <label>최대가격</label>
-       <input type='int' name='maxprice' value='9999' required="required" class="form-control" style='width: 100%;'>
+       <input type='int' name='maxprice' value='${maxprice }' required="required" class="form-control" style='width: 100%;'>
     </div>
     <div>
        <label>내용</label>

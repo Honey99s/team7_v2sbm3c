@@ -83,13 +83,6 @@ public interface CarDAOInter {
   public ArrayList<CarVO> list_recommend_by_modelno(int modelno);
   
   /**
-   * 조회순 자동차 목록
-   * @param cnt
-   * @return
-   */
-  public ArrayList<CarVO> list_recommend_by_cnt(int cnt);
-  
-  /**
    * 등록일순 자동차 목록
    * @param rdate
    * @return

@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<c:set var="loginno" value="${smsVO.loginno }"/>
-<c:set var="customerno" value="${smsVO.customerno }"/>
-<c:set var="ip" value="${smsVO.ip }"/>
-<c:set var="logindate" value="${smsVO.logindate }"/>
+<c:set var="cloginno" value="${cloginVO.cloginno }"/>
+<c:set var="customerno" value="${cloginVO.customerno }"/>
+<c:set var="ip" value="${cloginVO.ip }"/>
+<c:set var="logindate" value="${cloginVO.logindate }"/>
 
 <!DOCTYPE html>
 <html lang="ko">
@@ -38,7 +38,7 @@
 
           <br>
           <FORM name='frm' method='post' action='./delete.do'>
-              <input type='hidden' name='loginno' value='${loginno}'>
+              <input type='hidden' name='cloginno' value='${cloginno}'>
               <br><br>
               <div style='text-align: center; margin: 10px auto;'>
                 <span style="color: #FF0000; font-weight: bold;">삭제를 진행 하시겠습니까? 삭제하시면 복구 할 수 없습니다.</span><br><br>

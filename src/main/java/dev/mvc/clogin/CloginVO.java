@@ -1,7 +1,7 @@
-package dev.mvc.sms;
+package dev.mvc.clogin;
 
-//   CREATE TABLE login(
-//      loginno                    NUMBER(10) NOT NULL PRIMARY KEY,
+//  CREATE TABLE clogin(
+//      cloginno                    NUMBER(10) NOT NULL PRIMARY KEY,
 //      customerno                NUMBER(10) NOT NULL,
 //      ip                            VARCHAR2(15) NOT NULL,
 //      logindate                  DATE NOT NULL,
@@ -10,16 +10,16 @@ package dev.mvc.sms;
 
 
 
-public class SmsVO {
-  private int loginno;
+public class CloginVO {
+  private int cloginno;
   private int customerno;
   private String ip;
   private String logindate;
-  public int getLoginno() {
-    return loginno;
+  public int getCloginno() {
+    return cloginno;
   }
-  public void setLoginno(int loginno) {
-    this.loginno = loginno;
+  public void setCloginno(int cloginno) {
+    this.cloginno = cloginno;
   }
   public int getCustomerno() {
     return customerno;
@@ -41,7 +41,7 @@ public class SmsVO {
   }
   @Override
   public String toString() {
-    return "SMSVO [loginno=" + loginno + ", customerno=" + customerno + ", ip=" + ip + ", logindate=" + logindate + "]";
+    return "CloginVO [cloginno=" + cloginno + ", customerno=" + customerno + ", ip=" + ip + ", logindate=" + logindate + "]";
   }
   
 }

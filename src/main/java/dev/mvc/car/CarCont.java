@@ -412,30 +412,8 @@ public class CarCont {
   }
  
  /**
- * 조회수 별 추천 차종 그리드
- * http://localhost:9093/car/list_by_cnt.do?
- * 
- * 
- * @param modelno
- * @param now_page
- * @return
- */
- @RequestMapping(value = "/car/list_recommend_by_cnt.do", method = RequestMethod.GET)
- public ModelAndView list_recommend_by_cnt(int cnt) {
-    ModelAndView mav = new ModelAndView();
-    mav.setViewName("/car/list_recommend_by_cnt");
-    
-
-    ArrayList<CarVO> list_recommend_by_cnt = this.carProc.list_recommend_by_cnt(cnt);
-    mav.addObject("list_recommend_by_cnt", list_recommend_by_cnt);
-    mav.setViewName("car/list_recommend_by_cnt");
-      
-  
-    return mav;
-  }
- /**
  * 등록일자별 추천 차종 그리드
- * http://localhost:9093/car/list_by_cnt.do?
+ * http://localhost:9093/car/list_by_rdate.do?
  * 
  * 
  * @param modelno

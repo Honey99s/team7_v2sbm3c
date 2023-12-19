@@ -2,10 +2,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-      <c:set var="loginno" value="${smsVO.loginno }"/>
-      <c:set var="customerno" value="${smsVO.customerno }"/>
-      <c:set var="ip" value="${smsVO.ip }"/>
-      <c:set var="logindate" value="${smsVO.logindate }"/>
+      <c:set var="cloginno" value="${cloginVO.cloginno }"/>
+      <c:set var="customerno" value="${cloginVO.customerno }"/>
+      <c:set var="ip" value="${cloginVO.ip }"/>
+      <c:set var="logindate" value="${cloginVO.logindate }"/>
 
  
 <!DOCTYPE html> 
@@ -27,9 +27,9 @@
     <%-- 회원으로 로그인해야 메뉴가 출력됨 --%>
     <c:if test="${sessionScope.customer_id != null }">
       <%--
-      http://localhost:9093/sms/create.do?loginno=1
+      http://localhost:9093/clogin/create.do?cloginno=1
       --%>
-      <a href="./delete.do?loginno=${loginno}">로그인 내역 삭제</a>  
+      <a href="./delete.do?cloginno=${cloginno}">로그인 내역 삭제</a>  
       <span class='menu_divide' >│</span>
     </c:if>
 
@@ -46,7 +46,7 @@
       <li class="li_none">
         <DIV style="width: 100%; word-break: break-all;">
 
-           <span style="font-size: 2em; font-weight: bold;">로그인 번호: ${loginno }</span><br>
+           <span style="font-size: 2em; font-weight: bold;">로그인 번호: ${cloginno }</span><br>
            <span style="font-size: 2em;">회원 번호: ${customerno }</span><br>
            <span  style="font-size: 2em;" >IP : ${ip }</span>
            <span style="font-size: 2em;">로그인 날짜: ${logindate }</span><br>
