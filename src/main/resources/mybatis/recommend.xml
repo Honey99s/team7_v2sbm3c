@@ -35,5 +35,11 @@
     DELETE FROM recommend
     WHERE recommendno=#{recommendno}
   </delete>
+  
+  <!-- 추천 차종 삭제 -->
+  <delete id="delete1" parameterType="int">
+    DELETE FROM recommend
+    WHERE customerno=#{customerno}
+  </delete>
 
 </mapper>

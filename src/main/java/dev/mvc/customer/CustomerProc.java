@@ -100,7 +100,13 @@ public class CustomerProc implements CustomerProcInter {
     int cnt = this.customerDAO.delete(customerno);
     return cnt;
   }
-  
+    
+  @Override
+  public int child_delete(int customerno) {
+    int cnt = this.customerDAO.delete(customerno);
+    return 0;
+  }
+
   @Override
   public int passwd_check(HashMap<String, Object> map) {
     int cnt = this.customerDAO.passwd_check(map);

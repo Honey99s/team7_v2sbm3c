@@ -18,7 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.chatbot.ChatbotProcInter;
 import dev.mvc.master.MasterProcInter;
+import dev.mvc.recommend.RecommendDAOInter;
+import dev.mvc.recommend.RecommendProcInter;
  
 @Controller
 public class CustomerCont {
@@ -30,6 +33,13 @@ public class CustomerCont {
   @Qualifier("dev.mvc.customer.CustomerProc")
   private CustomerProcInter customerProc;
   
+  @Autowired
+  @Qualifier("dev.mvc.recommend.RecommendProc")
+  private RecommendProcInter recommendProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.chatbot.ChatbotProc")
+  private ChatbotProcInter chatbotProc;
   
   public CustomerCont(){
     System.out.println("-> CustomerCont created.");
@@ -234,7 +244,7 @@ public class CustomerCont {
     
     return mav; // forward
   }
- 
+  
   /**
    * 회원 삭제 처리
    * @param customerVO
@@ -266,6 +276,8 @@ public class CustomerCont {
     
     return mav;
   }
+
+
 
 
 
@@ -493,7 +505,7 @@ public ModelAndView login_cookie_proc(
   
   /**
    * 패스워드 검사 
-   * 로그인 실행 -> http://localhost:9092/customer/passwd_check.do?current_passwd=1234
+   * 로그인 실행 -> http://localhost:9093/customer/passwd_check.do?current_passwd=1234
    * @param session
    * @param current_passwd 현재 패스워드
    * @return 1: 일치, 0: 불일치

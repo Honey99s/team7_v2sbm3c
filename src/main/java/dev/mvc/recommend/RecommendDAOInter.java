@@ -37,5 +37,12 @@ public interface RecommendDAOInter {
    * @return 삭제된 레코드 개수
    */
   public int delete(int recommendno);
+  
+  /**
+   * 삭제
+   * @param customerno
+   * @return 삭제된 레코드 개수
+   */
+  public int delete1(int customerno);
 
 }

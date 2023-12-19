@@ -32,6 +32,13 @@ public interface ChatbotDAOInter {
    */
   public int delete(int chatbotno);
   
+  /**
+   * 삭제
+   * @param customernono
+   * @return 삭제된 레코드 개수
+   */
+  public int delete1(int customerno);
+  
   
   
   

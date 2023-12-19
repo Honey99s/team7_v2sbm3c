@@ -71,6 +71,13 @@ public interface CustomerProcInter {
   public int delete(int customerno);
   
   /**
+   * 회원 자식 삭제 처리
+   * @param customerno
+   * @return
+   */
+  public int child_delete(int customerno);
+  
+  /**
    * 현재 패스워드 검사
    * @param map
    * @return 0: 일치하지 않음, 1: 일치함
