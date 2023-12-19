@@ -4,7 +4,6 @@
 
 <c:set var="recommendno" value="${recommendVO.recommendno }" />
 <c:set var="modelno" value="${recommendVO.modelno }" />
-<c:set var="carno" value="${recommendVO.carno }" />
 <c:set var="customerno" value="${recommendVO.customerno }" />
 <c:set var="seq" value="${recommendVO.seq }" />
 <c:set var="rdate" value="${recommendVO.rdate }" />
@@ -53,7 +52,6 @@
 
            <span style="font-size: 3.5em; font-weight: bold;">${recommendno }</span><br>
            <span style="font-size: 2em;">추천 차종${modelno }</span><br>
-           <span  style="font-size: 2em;" >추천 자동차${carno }</span>
            <span style="font-size: 2em;">회원${customerno }</span><br>
           <span style="font-size: 1em;">등록일: ${rdate }</span><br>
         </DIV>

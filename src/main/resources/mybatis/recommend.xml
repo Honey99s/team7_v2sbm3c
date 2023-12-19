@@ -4,27 +4,27 @@
 
 <mapper namespace="dev.mvc.recommend.RecommendDAOInter">
   <insert id="create" parameterType="dev.mvc.recommend.RecommendVO">
-    INSERT INTO recommend(recommendno, modelno, carno, customerno, seq, rdate)
-    VALUES(recommend_seq.nextval, #{modelno}, #{carno}, #{customerno}, #{seq}, sysdate)
+    INSERT INTO recommend(recommendno, modelno, customerno, seq, rdate)
+    VALUES(recommend_seq.nextval, #{modelno}, #{customerno}, #{seq}, sysdate)
   </insert>
   
   <!--  추천 차종 목록  -->
   <select id="list_all" resultType="dev.mvc.recommend.RecommendVO">
-   SELECT recommendno, modelno, carno, customerno, seq, rdate
+   SELECT recommendno, modelno, customerno, seq, rdate
    FROM recommend
    ORDER BY recommendno DESC
   </select>
   
   <!-- 추천 차종 조회 -->
   <select id="read" resultType="dev.mvc.recommend.RecommendVO" parameterType="int">
-    SELECT recommendno, modelno, carno, customerno, seq, rdate
+    SELECT recommendno, modelno, customerno, seq, rdate
     FROM recommend
     WHERE recommendno =#{recommendno}
   </select>
   
   <!-- customerno를 이용한 조회 -->
   <select id="read_by_customerno" resultType="dev.mvc.recommend.RecommendVO" parameterType="int">
-    SELECT recommendno, modelno, carno, customerno, seq, rdate
+    SELECT recommendno, modelno, customerno, seq, rdate
     FROM recommend
     WHERE customerno = #{customerno}
  </select>

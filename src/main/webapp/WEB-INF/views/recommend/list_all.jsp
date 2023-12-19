@@ -30,18 +30,16 @@
    
   <table class="table table-hover" style='width: 100%;'>
     <colgroup>
-      <col style='width: 5%;'/>
-      <col style='width: 15%;'/>
-      <col style='width: 40%;'/>
       <col style='width: 10%;'/>
+      <col style='width: 20%;'/>
+      <col style='width: 20%;'/>
       <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
-      <col style='width: 10%;'/>
+      <col style='width: 20%;'/>
+      <col style='width: 20%;'/>
     </colgroup>
     <tr>
       <th class='th_bs'>추천번호</th>
       <th class='th_bs'>차종</th>
-      <th class='th_bs'>자동차</th>
       <th class='th_bs'>회원</th>
       <th class='th_bs'>순서</th>
       <th class='th_bs'>등록일</th>
@@ -54,7 +52,6 @@
       <tr>
           <td class="td_bs">${recommendno }</td>
           <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.modelno}</a></td>
-           <td class="td_bs"><a href="./read.do?recommendno=${recommendno}" style="display:block;">${recommendVO.carno }</a></td>
        
           <td class="td_bs">${recommendVO.customerno}</td>
           <td class="td_bs">${recommendVO.seq}</td>
