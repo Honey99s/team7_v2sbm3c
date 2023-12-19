@@ -41,7 +41,10 @@ public class CloginVO {
   }
   @Override
   public String toString() {
-    return "CloginVO [cloginno=" + cloginno + ", customerno=" + customerno + ", ip=" + ip + ", logindate=" + logindate + "]";
+    return "CloginVO [cloginno=" + cloginno + ", customerno=" + customerno + ", ip=" + ip + ", logindate=" + logindate
+        + "]";
   }
+
+  
   
 }

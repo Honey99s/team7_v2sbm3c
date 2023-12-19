@@ -26,9 +26,5 @@ VALUES(clogin_seq.nextval, 3, '211.201.201.229', sysdate);
 
 SELECT cloginno, customerno, ip, logindate FROM clogin ORDER BY cloginno DESC;
 
-UPDATE clogin
-SET ip='211.201.201.229'
-WHERE cloginno=1;
-
 DELETE from clogin
 WHERE cloginno=1;

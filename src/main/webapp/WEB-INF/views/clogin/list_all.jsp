@@ -41,15 +41,13 @@
     <tbody>
       <c:forEach var="cloginVO" items="${list }" varStatus="info">
       <c:set var="cloginno" value="${cloginVO.cloginno }"/>
-      <c:set var="customerno" value="${cloginVO.customerno }"/>
-      <c:set var="ip" value="${cloginVO.ip }"/>
-      <c:set var="clogindate" value="${cloginVO.clogindate }"/>
+
       
       <tr>
       <td class="td_bs">${cloginno }</td>
-       <td class="td_bs">${customerno }</td>
-       <td class="td_bs">${ip }</td>
-       <td class="td_bs">${clogindate }</td>
+       <td class="td_bs">${cloginVO.customerno }</td>
+       <td class="td_bs">${cloginVO.ip }</td>
+       <td class="td_bs">(${cloginVO.logindate.substring(0,16) })</td>
        <td class="td_bs">
           <a href="./delete.do?cloginno=${cloginno}"><IMG src='/cclogin/images/delete.png' title='삭제' class="icon"></a>
        </td>

@@ -2,6 +2,7 @@ package dev.mvc.clogin;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,19 +38,21 @@ public class CloginCont {
    * @return 
    */
   @RequestMapping(value="/clogin/list_all.do", method = RequestMethod.GET)
-  public ModelAndView list_all(HttpSession session) {
+  public ModelAndView list_all(HttpSession session, HttpServletRequest request) {
     System.out.println("-> list_all");
     ModelAndView mav =  new ModelAndView();
-    mav.setViewName("/clogin/list_all"); //WEB-INF/views/clogin/list_all.jsp
+    
+    int customerno = (int)(session.getAttribute("customerno"));
+    System.out.println("-> customerno : " +session.getAttribute("customerno") );
+    String ip = request.getRemoteAddr();
+    System.out.println("-> ip: " + ip);
     
     
     if (this.customerProc.isCustomer(session) == true) {
       mav.setViewName("/clogin/list_all"); // /WEB-INF/views/clogin/list_all.jsp
       ArrayList<CloginVO> list = this.cloginProc.list_all();
-
-      
+      list.forEach(cloginVO -> cloginVO.setIp(ip));
       mav.addObject("list", list);
-      
     } else {
       mav.setViewName("/customer/login_need"); // /WEB-INF/views/customer/login_need.jsp
       
