@@ -34,10 +34,6 @@
          </DIV>
      </c:when>
      <c:otherwise>
-       <c:import url="/car/list_recommend_by_cnt.do?cnt=0"/>
-          <DIV style='width: 100%; margin: 0px auto;'>
-          </DIV>
-          <br><br><br><br><br><br><br><br><br>
           <c:import url="/car/list_recommend_by_rdate.do"/>
           <DIV style='width: 100%; margin: 0px auto;'>
           </DIV>

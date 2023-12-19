@@ -20,7 +20,7 @@ public class Car {
           
       } else { // Linux, AWS, 서비스용 배치 폴더 
           // System.out.println("Linux");
-          path = "/home/ubuntu/deploy/honeycar3/car/storage/";
+          path = "/home/ubuntu/deploy/team7_v2sbm3c/car/storage/";
       }
       
       return path;

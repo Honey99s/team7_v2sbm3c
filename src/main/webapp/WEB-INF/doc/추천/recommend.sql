@@ -29,7 +29,7 @@ CREATE SEQUENCE recommend_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 INSERT INTO recommend(recommendno, modelno, carno, customerno, seq, rdate)
-VALUES(RECOMMEND_SEQ.nextval, 1, 1, 3, 1, sysdate);
+VALUES(RECOMMEND_SEQ.nextval, 2, 1, 5, 1, sysdate);
 
 INSERT INTO recommend(recommendno, modelno, carno, customerno, seq, rdate)
 VALUES(RECOMMEND_SEQ.nextval, 2, 1, 1, 1, sysdate);
@@ -43,7 +43,7 @@ WHERE recommendno = 1;
 
 SELECT recommendno, modelno, carno, customerno, seq, rdate
 FROM recommend
-WHERE customerno = 1;
+WHERE customerno = 3;
 
 삭제
 DELETE FROM recommend;

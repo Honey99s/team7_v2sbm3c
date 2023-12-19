@@ -116,12 +116,6 @@ public class CarProc implements CarProcInter {
   }
    
    @Override
-   public ArrayList<CarVO> list_recommend_by_cnt(int cnt) {
-     ArrayList<CarVO> list = this.carDAO.list_recommend_by_cnt(cnt);
-     return list;
-   }
-   
-   @Override
    public ArrayList<CarVO> list_recommend_by_rdate(String rdate) {
      ArrayList<CarVO> list = this.carDAO.list_recommend_by_rdate(rdate);
      return list;

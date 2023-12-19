@@ -13,8 +13,8 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
       // Windows: path = "C:/kd/deploy/honeycar3_blog/car/storage";
       // ▶ file:///C:/kd/deploy/honeycar3_blog/car/storage
     
-      // Ubuntu: path = "/home/ubuntu/deploy/team7_v2sbm3c/car/storage";
-      // ▶ file:////home/ubuntu/deploy/team7_v2sbm3c/car/storage
+      // Ubuntu: path = "/home/ubuntu/deploy/team7_v2sbm3c_blog/car/storage";
+      // ▶ file:////home/ubuntu/deploy/team7_v2sbm3c_blog/car/storage
     
       // JSP 인식되는 경로: http://localhost:9093/car/storage";
       registry.addResourceHandler("/car/storage/**").addResourceLocations("file:///" +  Car.getUploadDir());

@@ -120,23 +120,6 @@
 		WHERE r &gt;= 1 AND r &lt;= 6
 	     
   </select>
-  
-  <!-- 조회수별 자동차 추천 -->
-  <select id="list_recommend_by_cnt" resultType="dev.mvc.car.CarVO" parameterType="int">
-	  SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
-	           file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice, r
-	    FROM (
-	               SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
-	                      file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice, rownum as r
-	               FROM (
-	                         SELECT carno, modelno, masterno, title, content, manufacturer, recom, cnt, replycnt, word, rdate,
-	                                file1, file1saved, thumb1, size1, map, youtube, minprice, maxprice
-	                         FROM car
-	                         ORDER BY cnt DESC
-	               )          
-	    )
-	    WHERE r &gt;= 1 AND r &lt;= 6
-    </select>
     
   <!-- 등록일자별 자동차 추천 -->
   <select id="list_recommend_by_rdate" resultType="dev.mvc.car.CarVO" parameterType="int">
