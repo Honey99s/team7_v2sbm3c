@@ -4,7 +4,6 @@
 
 <c:set var="recommendno" value="${recommendVO.recommendno }" />
 <c:set var="modelno" value="${recommendVO.modelno }" />
-<c:set var="carno" value="${recommendVO.carno }" />
 <c:set var="customerno" value="${recommendVO.customerno }" />
 <c:set var="seq" value="${recommendVO.seq }" />
 <c:set var="rdate" value="${recommendVO.rdate }" />

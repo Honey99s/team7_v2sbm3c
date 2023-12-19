@@ -3,7 +3,6 @@ package dev.mvc.recommend;
 // CREATE TABLE RECOMMEND (
 //  RECOMMENDNO NUMBER(10)         NOT NULL PRIMARY KEY, -- 회원 번호, 레코드를 구분하는 컬럼 
 //  MODELNO     NUMBER(10)         NOT NULL,
-//  CARNO       NUMBER(10)         NOT NULL,
 //  CUSTOMERNO  NUMBER(10)         NOT NULL,
 //  SEQ         NUMBER(2)          DEFAULT 1         NOT NULL,
 //  RDATE       DATE               NOT NULL,
@@ -16,7 +15,6 @@ package dev.mvc.recommend;
 public class RecommendVO {
   private int recommendno;
   private int modelno;
-  private int carno;
   private int customerno;
   private int seq;
   private String rdate;
@@ -31,12 +29,6 @@ public class RecommendVO {
   }
   public void setModelno(int modelno) {
     this.modelno = modelno;
-  }
-  public int getCarno() {
-    return carno;
-  }
-  public void setCarno(int carno) {
-    this.carno = carno;
   }
   public int getCustomerno() {
     return customerno;
@@ -58,9 +50,10 @@ public class RecommendVO {
   }
   @Override
   public String toString() {
-    return "RecommendVO [recommendno=" + recommendno + ", modelno=" + modelno + ", carno=" + carno + ", customerno="
-        + customerno + ", seq=" + seq + ", rdate=" + rdate + "]";
+    return "RecommendVO [recommendno=" + recommendno + ", modelno=" + modelno + ", customerno=" + customerno + ", seq="
+        + seq + ", rdate=" + rdate + "]";
   }
+
   
   
 }
