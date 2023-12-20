@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.chatbot.ChatbotProcInter;
+import dev.mvc.clogin.CloginProcInter;
 import dev.mvc.master.MasterProcInter;
 import dev.mvc.recommend.RecommendDAOInter;
 import dev.mvc.recommend.RecommendProcInter;
@@ -40,6 +41,10 @@ public class CustomerCont {
   @Autowired
   @Qualifier("dev.mvc.chatbot.ChatbotProc")
   private ChatbotProcInter chatbotProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.clogin.CloginProc")
+  private CloginProcInter cloginProc;
   
   public CustomerCont(){
     System.out.println("-> CustomerCont created.");
@@ -247,40 +252,55 @@ public class CustomerCont {
   
   /**
    * 회원 삭제 처리
-   * @param customerVO
+   * @param customerno
    * @return
    */
   @RequestMapping(value="/customer/delete.do", method=RequestMethod.POST)
   public ModelAndView delete_proc(int customerno){
-    System.out.println("->deletedo");
-    ModelAndView mav = new ModelAndView();
-    
-    // System.out.println("id: " + customerVO.getId());
-    // 삭제된 정보를 msg.jsp에 출력하기 위해, 삭제전에 회원 정보를 읽음.
-    CustomerVO customerVO = this.customerProc.read(customerno); 
-    
-    int cnt= this.customerProc.delete(customerno);
+      System.out.println("->deletedo");
+      ModelAndView mav = new ModelAndView();
+      
+      int chatbotResult = this.chatbotProc.delete1(customerno);
+      System.out.println("-> chatbotResult: " + chatbotResult);
+      
+      int recommendResult =this.recommendProc.delete1(customerno);
+      System.out.println("-> recommendResult: " + recommendResult); 
+      
+      int cloginResult = this.cloginProc.delete1(customerno);
+      System.out.println("-> cloginResult: " + cloginResult);
 
-    if (cnt == 1) {
-      mav.addObject("code", "delete_success");
-      mav.addObject("cname", customerVO.getCname());  // 홍길동님(user4) 회원 정보를 삭제했습니다.
-      mav.addObject("id", customerVO.getId());
-    } else {
-      mav.addObject("code", "delete_fail");
+      // 자식 테이블 레코드 삭제에 성공한 경우에만 부모 테이블 레코드 삭제 수행 로직
+  
+      CustomerVO customerVO = this.customerProc.read(customerno);
+      System.out.println("-> customerVO: " + customerVO);
+      
+      int cnt = this.customerProc.delete(customerno);
+      System.out.println("-> cnt: " + cnt); 
+
+      if (cnt == 1) {
+          mav.addObject("code", "delete_success");
+          mav.addObject("cname", customerVO.getCname());
+          mav.addObject("id", customerVO.getId());
+      } else {
+         mav.addObject("code", "delete_fail");
+      }
+      mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+      mav.addObject("url", "/customer/msg");  // /customer/msg -> /customer/msg.jsp
+      
+      mav.setViewName("redirect:/customer/msg.do");
+      
+      return mav;
     }
 
-    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
-    mav.addObject("url", "/customer/msg");  // /customer/msg -> /customer/msg.jsp
-    
-    mav.setViewName("redirect:/customer/msg.do");
-    
-    return mav;
-  }
 
 
-
-
-
+//       else {
+//          // 자식 테이블 레코드 삭제에 실패한 경우
+//          mav.addObject("code", "delete_fail_child");
+//          // mav.addObject("cnt", childDeleteResult);
+//          mav.addObject("url", "/customer/msg");
+//          mav.setViewName("redirect:/customer/msg.do");
+//      }
   
   
 ///**

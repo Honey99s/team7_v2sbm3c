@@ -44,7 +44,7 @@ public class RecommendProc implements RecommendProcInter {
   @Override
   public int delete1(int customerno) {
     int cnt = this.recommendDAO.delete(customerno);
-    return 0;
+    return cnt;
   }
 
   

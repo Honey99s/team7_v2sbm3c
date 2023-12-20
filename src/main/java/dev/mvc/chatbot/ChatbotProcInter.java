@@ -33,7 +33,7 @@ public interface ChatbotProcInter {
   
   /**
    * 삭제
-   * @param customernono
+   * @param customerno
    * @return 삭제된 레코드 개수
    */
   public int delete1(int customerno);
