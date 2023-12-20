@@ -49,7 +49,7 @@
        <td class="td_bs">${cloginVO.ip }</td>
        <td class="td_bs">(${cloginVO.logindate.substring(0,16) })</td>
        <td class="td_bs">
-          <a href="./delete.do?cloginno=${cloginno}"><IMG src='/cclogin/images/delete.png' title='삭제' class="icon"></a>
+          <a href="./delete.do?cloginno=${cloginno}"><IMG src='/clogin/images/delete.png' title='삭제' class="icon"></a>
        </td>
       
   
