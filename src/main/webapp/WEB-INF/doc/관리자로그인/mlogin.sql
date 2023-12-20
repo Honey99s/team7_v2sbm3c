@@ -7,9 +7,9 @@ CREATE TABLE mlogin(
   FOREIGN KEY (masterno) REFERENCES master (masterno)
 );
 
-COMMENT ON TABLE mlogin is '관리자 로그인 내역';
+COMMENT ON TABLE mlogin is '마스터 로그인 내역';
 COMMENT ON COLUMN mlogin.mloginno is '로그인 번호';
-COMMENT ON COLUMN mlogin.masterno is '관리자 번호';
+COMMENT ON COLUMN mlogin.masterno is '마스터 번호';
 COMMENT ON COLUMN mlogin.ip is '접속 IP';
 COMMENT ON COLUMN mlogin.logindate is '로그인 날짜';
 

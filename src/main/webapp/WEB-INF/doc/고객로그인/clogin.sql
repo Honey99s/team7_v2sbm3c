@@ -7,9 +7,9 @@ CREATE TABLE clogin(
   FOREIGN KEY (customerno) REFERENCES customer (customerno)
 );
 
-COMMENT ON TABLE clogin is '회원 로그인 내역';
+COMMENT ON TABLE clogin is '고객 로그인 내역';
 COMMENT ON COLUMN clogin.cloginno is '로그인 번호';
-COMMENT ON COLUMN clogin.customerno is '회원 번호';
+COMMENT ON COLUMN clogin.customerno is '고객 번호';
 COMMENT ON COLUMN clogin.ip is '접속 IP';
 COMMENT ON COLUMN clogin.logindate is '로그인 날짜';
 
