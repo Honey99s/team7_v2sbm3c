@@ -5,6 +5,13 @@ import java.util.ArrayList;
 public interface CloginProcInter {
   
   /**
+   * 로그인 내역 제작
+   * @param cloginVO
+   * @return 
+   */
+  public int create(CloginVO cloginVO);
+  
+  /**
    * 모든 조건 목록
    * @return
    */

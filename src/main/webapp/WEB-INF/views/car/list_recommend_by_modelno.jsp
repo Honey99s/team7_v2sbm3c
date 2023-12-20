@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
  
   
   <div style='width: 100%;'> <%-- 갤러리 Layout 시작 --%>
@@ -11,6 +12,7 @@
       <c:set var="carno" value="${carVO.carno }" />
       <c:set var="thumb1" value="${carVO.thumb1 }" />
       <c:set var="size1" value="${carVO.size1 }" />
+      
         
       <!-- 4기준 하나의 이미지, 24 * 4 = 96% -->
       <!-- 5기준 하나의 이미지, 19.2 * 5 = 96% -->

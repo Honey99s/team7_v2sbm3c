@@ -11,7 +11,13 @@ import org.springframework.stereotype.Component;
 public class CloginProc implements CloginProcInter {
   @Autowired
   private CloginDAOInter cloginDAO;
-
+  
+  @Override
+  public int create(CloginVO cloginVO) {
+    int cnt = this.cloginDAO.create(cloginVO);
+    return cnt;
+  }
+  
   @Override
   public ArrayList<CloginVO> list_all() {
     ArrayList<CloginVO> list = this.cloginDAO.list_all();
@@ -35,7 +41,4 @@ public class CloginProc implements CloginProcInter {
     int cnt = this.cloginDAO.delete(customerno);
     return cnt;
   }
-  
-  
-
 }

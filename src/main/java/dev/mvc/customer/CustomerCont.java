@@ -21,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 import dev.mvc.chatbot.ChatbotProcInter;
 import dev.mvc.clogin.CloginProcInter;
 import dev.mvc.master.MasterProcInter;
+import dev.mvc.model.ModelVO;
 import dev.mvc.recommend.RecommendDAOInter;
+import dev.mvc.clogin.CloginVO;
 import dev.mvc.recommend.RecommendProcInter;
  
 @Controller
@@ -428,7 +430,7 @@ public ModelAndView login_cookie(HttpServletRequest request) {
 * @param passwd_save 패스워드 Cookie에 저장 여부
 * @return
 */
-// http://localhost:9092/customer/login.do 
+// http://localhost:9093/customer/login.do 
 @RequestMapping(value = "/customer/login.do", 
                          method = RequestMethod.POST)
 public ModelAndView login_cookie_proc(
@@ -443,6 +445,8 @@ public ModelAndView login_cookie_proc(
   //client ip
   String ip = request.getRemoteAddr();
   System.out.println("-> ip: " + ip); // 자기 자신은 0.0.0.0 으로 출력되고 외부 접속은 정상적으로 ip가 나옴
+
+
   
  ModelAndView mav = new ModelAndView();
  HashMap<String, Object> map = new HashMap<String, Object>();
@@ -457,6 +461,11 @@ public ModelAndView login_cookie_proc(
    session.setAttribute("id", id);
    session.setAttribute("cname", customerVO.getCname());
    session.setAttribute("grade", customerVO.getGrade());
+   
+   CloginVO cloginVO = new CloginVO();
+   cloginVO.setCustomerno(customerVO.getCustomerno());
+   cloginVO.setIp(ip);
+   cnt = this.cloginProc.create(cloginVO);
 
    // -------------------------------------------------------------------
    // id 관련 쿠기 저장

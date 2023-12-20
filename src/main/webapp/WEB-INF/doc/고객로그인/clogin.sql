@@ -24,6 +24,8 @@ CREATE SEQUENCE clogin_seq
 INSERT INTO clogin(cloginno, customerno, ip, logindate)
 VALUES(clogin_seq.nextval, 3, '211.201.201.229', sysdate);
 
+commit;
+
 SELECT cloginno, customerno, ip, logindate FROM clogin ORDER BY cloginno DESC;
 
 DELETE from clogin

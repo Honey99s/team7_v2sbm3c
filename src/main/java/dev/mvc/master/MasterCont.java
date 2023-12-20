@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import dev.mvc.mlogin.MloginProcInter;
+import dev.mvc.mlogin.MloginVO;
 import dev.mvc.tool.Tool;
 
 @Controller
@@ -19,6 +21,10 @@ public class MasterCont {
   @Autowired
   @Qualifier("dev.mvc.master.MasterProc")
   private MasterProcInter masterProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.mlogin.MloginProc")
+  private MloginProcInter mloginProc;
   
   public MasterCont() {
     System.out.println("-> MasterCont created");
@@ -62,6 +68,8 @@ public class MasterCont {
       HttpServletResponse response,
       HttpSession session,
       MasterVO masterVO, String id_save, String passwd_save) {
+      String ip = request.getRemoteAddr();
+      System.out.println("-> ip: " + ip);
     ModelAndView mav = new ModelAndView();
     
     int cnt = this.masterProc.login(masterVO);
@@ -73,6 +81,13 @@ public class MasterCont {
       session.setAttribute("master_id", masterVO_read.getId());
       session.setAttribute("master_name", masterVO_read.getName());
       session.setAttribute("master_grade", masterVO_read.getGrade());
+      
+      
+      MloginVO mloginVO = new MloginVO();
+      mloginVO.setMasterno(masterVO_read.getMasterno());
+      mloginVO.setIp(ip);
+      cnt = this.mloginProc.create(mloginVO);
+      
       
       String id = masterVO.getId();                  // 폼에 입력된 id
       String passwd = masterVO.getPasswd();  // 폼에 입력된 passwd 

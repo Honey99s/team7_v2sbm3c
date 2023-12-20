@@ -1,4 +1,4 @@
-package dev.mvc.clogin;
+package dev.mvc.mlogin;
 
 import java.util.ArrayList;
 
@@ -13,43 +13,39 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-import dev.mvc.customer.CustomerProcInter;
+
 import dev.mvc.master.MasterProcInter;
 
 
 @Controller
-public class CloginCont {
+public class MloginCont {
   @Autowired
-  @Qualifier("dev.mvc.clogin.CloginProc")
-  private CloginProcInter cloginProc;
-  
-  @Autowired
-  @Qualifier("dev.mvc.customer.CustomerProc")
-  private CustomerProcInter customerProc;
+  @Qualifier("dev.mvc.mlogin.MloginProc")
+  private MloginProcInter mloginProc;
   
   @Autowired
   @Qualifier("dev.mvc.master.MasterProc") // @Component("dev.mvc.master.MasterProc")
   private MasterProcInter masterProc;
   
-  public CloginCont() {
-    System.out.println("-> CloginCont created.");
+  public MloginCont() {
+    System.out.println("-> MloginCont created.");
   }
   
 
   
   /**
    * 전체 목록
-   * http://localhost:9093/clogin/list_all.do
+   * http://localhost:9093/mlogin/list_all.do
    * @return 
    */
-  @RequestMapping(value="/clogin/list_all.do", method = RequestMethod.GET)
+  @RequestMapping(value="/mlogin/list_all.do", method = RequestMethod.GET)
   public ModelAndView list_all(HttpSession session, HttpServletRequest request) {
     System.out.println("-> list_all");
     ModelAndView mav =  new ModelAndView();
     
     if (this.masterProc.isMaster(session) == true) {
-      mav.setViewName("/clogin/list_all"); // /WEB-INF/views/clogin/list_all.jsp
-      ArrayList<CloginVO> list = this.cloginProc.list_all();
+      mav.setViewName("/mlogin/list_all"); // /WEB-INF/views/mlogin/list_all.jsp
+      ArrayList<MloginVO> list = this.mloginProc.list_all();
       System.out.println("-> list_size : " + list.size());
       mav.addObject("list", list);
      
@@ -63,19 +59,19 @@ public class CloginCont {
   
   /**
    * 조회
-   * http://localhost:9093/clogin/read.do?cloginno=1
+   * http://localhost:9093/mlogin/read.do?mloginno=1
    * @return
    */
-  @RequestMapping(value="/clogin/read.do", method = RequestMethod.GET)
-  public ModelAndView read(int cloginno) { 
+  @RequestMapping(value="/mlogin/read.do", method = RequestMethod.GET)
+  public ModelAndView read(int mloginno) { 
     System.out.println("-> read");
     ModelAndView mav = new ModelAndView();
-    mav.setViewName("/clogin/read");
+    mav.setViewName("/mlogin/read");
     
-    CloginVO cloginVO = this.cloginProc.read(cloginno);
+    MloginVO mloginVO = this.mloginProc.read(mloginno);
     System.out.println("-> done");
     
-    mav.addObject("cloginVO", cloginVO);
+    mav.addObject("mloginVO", mloginVO);
     
     return mav;
   }
@@ -83,21 +79,21 @@ public class CloginCont {
   
   /**
    * 파일 삭제 폼
-   * http://localhost:9093/clogin/delete.do?cloginno=1
+   * http://localhost:9093/mlogin/delete.do?mloginno=1
    * 
    * @return
    */
-  @RequestMapping(value = "/clogin/delete.do", method = RequestMethod.GET)
-  public ModelAndView delete(HttpSession session, int cloginno) {
+  @RequestMapping(value = "/mlogin/delete.do", method = RequestMethod.GET)
+  public ModelAndView delete(HttpSession session, int mloginno) {
     System.out.println("-> delete");
     ModelAndView mav = new ModelAndView();
     
     if (this.masterProc.isMaster(session) == true) {
-      System.out.println("-> customer");
-      CloginVO cloginVO = this.cloginProc.read(cloginno);
-      mav.addObject("cloginVO", cloginVO);
+      System.out.println("-> master");
+      MloginVO mloginVO = this.mloginProc.read(mloginno);
+      mav.addObject("mloginVO", mloginVO);
       
-      mav.setViewName("/clogin/delete"); 
+      mav.setViewName("/mlogin/delete"); 
       
     } else {
       mav.setViewName("/master/login_need"); // /WEB-INF/views/master/login_need.jsp
@@ -108,21 +104,21 @@ public class CloginCont {
     return mav; 
   }
   /**
-   * 삭제 처리 http://localhost:9093/clogin/delete.do
+   * 삭제 처리 http://localhost:9093/mlogin/delete.do
    * 
    * @return
    */
-  @RequestMapping(value = "/clogin/delete.do", method = RequestMethod.POST)
-  public ModelAndView delete(CloginVO cloginVO) {
+  @RequestMapping(value = "/mlogin/delete.do", method = RequestMethod.POST)
+  public ModelAndView delete(MloginVO mloginVO) {
     System.out.println("-> deletedo");
     ModelAndView mav = new ModelAndView();
           
-    CloginVO cloginVO_read = this.cloginProc.read(cloginVO.getCloginno());
-    this.cloginProc.delete(cloginVO.getCloginno()); // DBMS 삭제
+    MloginVO mloginVO_read = this.mloginProc.read(mloginVO.getMloginno());
+    this.mloginProc.delete(mloginVO.getMloginno()); // DBMS 삭제
     
 
-    mav.addObject("cloginno", cloginVO.getCloginno());
-    mav.setViewName("redirect:/clogin/list_all.do"); 
+    mav.addObject("mloginno", mloginVO.getMloginno());
+    mav.setViewName("redirect:/mlogin/list_all.do"); 
     
     return mav;
   }  

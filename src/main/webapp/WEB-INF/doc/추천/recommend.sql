@@ -44,5 +44,5 @@ WHERE customerno = 3;
 
 삭제
 DELETE FROM recommend;
-DELETE FROM recommend WHERE customerno=1;
+DELETE FROM recommend WHERE customerno=18;
 COMMIT;

@@ -24,6 +24,7 @@
   <img src="/images/home.jpg" style="width: 100%;">
 </div>
 
+
 <c:choose>
      <c:when test="${sessionScope.id != null }">
        <div class='title_line'>

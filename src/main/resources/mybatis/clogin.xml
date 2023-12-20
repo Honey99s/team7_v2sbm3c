@@ -3,6 +3,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
   <mapper namespace="dev.mvc.clogin.CloginDAOInter">
+  <!--  로그인 내역 제작  -->
+  <insert id="create" parameterType="dev.mvc.clogin.CloginVO">
+    INSERT INTO clogin(cloginno, customerno, ip, logindate)
+    VALUES(clogin_seq.nextval, #{customerno}, #{ip}, sysdate)
+  </insert>
+  
   <!--  로그인 내역 목록  -->
   <select id="list_all" parameterType="dev.mvc.clogin.CloginVO">
     SELECT cloginno, customerno, ip, logindate FROM clogin ORDER BY cloginno DESC

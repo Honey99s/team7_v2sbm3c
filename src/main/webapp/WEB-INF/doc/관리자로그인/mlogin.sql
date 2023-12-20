@@ -4,7 +4,7 @@ CREATE TABLE mlogin(
   masterno                NUMBER(10) NOT NULL,
   ip                            VARCHAR2(15) NOT NULL,
   logindate                  DATE NOT NULL,
-  FOREIGN KEY (masterno) REFERENCES master (masterno)
+  FOREIGN KEY (masterno) REFERENCES MASTER (masterno)
 );
 
 COMMENT ON TABLE mlogin is '마스터 로그인 내역';
@@ -22,7 +22,7 @@ CREATE SEQUENCE mlogin_seq
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
   
 INSERT INTO mlogin(mloginno, masterno, ip, logindate)
-VALUES(mlogin_seq.nextval, 3, '211.201.201.229', sysdate);
+VALUES(mlogin_seq.nextval, 1, '211.201.201.229', sysdate);
 
 SELECT mloginno, masterno, ip, logindate FROM mlogin ORDER BY mloginno DESC;
 
