@@ -23,10 +23,16 @@
   </select>
   
   
-    <!-- 조건 삭제 -->
+    <!-- 챗봇 삭제 -->
     <delete id="delete" parameterType="int">
     DELETE FROM chatbot
     WHERE chatbotno=#{chatbotno}
+  </delete>
+  
+  <!-- 챗봇 삭제 -->
+    <delete id="delete1" parameterType="int">
+    DELETE FROM chatbot
+    WHERE customerno=#{customerno}
   </delete>
 
 </mapper>

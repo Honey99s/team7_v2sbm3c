@@ -17,6 +17,7 @@ COMMENT ON COLUMN CHATBOT.CDATE is '등록일';
 
 
 DROP SEQUENCE chatbot_seq;
+
 CREATE SEQUENCE chatbot_seq
   START WITH 1              -- 시작 번호
   INCREMENT BY 1          -- 증가값
@@ -27,7 +28,7 @@ CREATE SEQUENCE chatbot_seq
 1) 등록
 
 INSERT INTO chatbot(chatbotno, customerno, record, cdate)
-VALUES (chatbot_seq.nextval, 1, '안녕 반가워', sysdate);
+VALUES (chatbot_seq.nextval, 5, '안녕 반가워', sysdate);
 
 2) 목록
 - 검색을 하지 않는 경우, 전체 목록 출력
@@ -41,13 +42,13 @@ ORDER BY chatbotno ASC, customerno ASC;
  
 SELECT chatbotno, customerno, record, cdate
 FROM chatbot
-WHERE customerno = 1;
+WHERE customerno = 4;
 
     
 4. 수정
 UPDATE chatbot 
 SET record='어떤 종류의 차량을 원하세요?'
-WHERE customerno=1 and qnano = 1;
+WHERE customerno=1;
 
 COMMIT;
 
@@ -57,6 +58,11 @@ DELETE FROM chatbot;
  
 2) 특정 챗봇 삭제
 DELETE FROM chatbot
-WHERE chatbotno=3;
+WHERE chatbotno=4;
+
+2) 특정 챗봇 삭제
+DELETE FROM chatbot
+WHERE customerno=5;
+
 
 COMMIT;

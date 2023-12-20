@@ -24,6 +24,13 @@ public interface CloginDAOInter {
    */
   public int delete(int cloginno);
   
+  /**
+   * 로그인내역 삭제
+   * @param customerno
+   * @return
+   */
+  public int delete1(int customerno);
+  
 
 
 }

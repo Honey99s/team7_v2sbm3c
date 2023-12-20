@@ -125,10 +125,15 @@ COMMIT;
 DELETE FROM customer;
  
 2) 특정 회원 삭제
+customerno=3인 경우 삭제
+
 DELETE FROM customer
-WHERE customerno=15;
+WHERE customerno = 3;
+
 
 COMMIT;
+
+
 
  
 6. 패스워드 변경

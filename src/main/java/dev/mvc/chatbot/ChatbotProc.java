@@ -34,6 +34,14 @@ public class ChatbotProc implements ChatbotProcInter {
     int cnt = this.chatbotDAO.delete(chatbotno);
     return cnt;
   }
+
+  @Override
+  public int delete1(int customerno) {
+    int cnt = this.chatbotDAO.delete1(customerno);
+    return cnt;
+  }
+  
+  
   
 
 }

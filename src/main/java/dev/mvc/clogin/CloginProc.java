@@ -30,4 +30,12 @@ public class CloginProc implements CloginProcInter {
     return cnt;
   }
 
+  @Override
+  public int delete1(int customerno) {
+    int cnt = this.cloginDAO.delete(customerno);
+    return cnt;
+  }
+  
+  
+
 }
