@@ -60,8 +60,6 @@
                 <c:choose>
                   <c:when test="${sessionScope.id == null }">
                     <a class="dropdown-item" href="/customer/create.do">회원가입</a>
-                    <a class="dropdown-item" href="#">아이디 찾기</a>
-                    <a class="dropdown-item" href="#">비밀번호 찾기</a>
                   </c:when>
                   <c:otherwise>
                     <a class="dropdown-item" href="http://43.202.225.181:8000/ais/recommend_form/?customerno=${sessionScope.customerno }">관심분야 등록하고 추천받기</a>
@@ -92,8 +90,9 @@
                     <a class="dropdown-item" href="/clogin/list_all.do">회원 로그인 내역</a>
                     <a class="dropdown-item" href="/mlogin/list_all.do">관리자 로그인 내역</a>
                     <a class="dropdown-item" href='/recommend/list_all.do'>추천 목록</a>
-                    <a class="dropdown-item" href='/good/list_all.do'>좋아요 목록</a>
+                    <a class="dropdown-item" href=#>좋아요 목록</a>
                     <a class="dropdown-item" href='/master/logout.do'>마스터 ${sessionScope.master_id } 로그아웃</a>
+                    <a class='dropdown-item'  href='/reply/list_join.do'>댓글 목록 조인</a>
                   </div>
                 </li>
               </c:otherwise>

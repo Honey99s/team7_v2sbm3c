@@ -204,5 +204,19 @@
 		 WHERE <![CDATA[ r >= #{start_num} AND r <= #{end_num} ]]>
   </select>
   
+  <!-- 댓글 수 증가 -->
+   <update id="increaseReplycnt" parameterType="int">
+     UPDATE car
+     SET replycnt = replycnt + 1
+     WHERE carno = #{carno}
+   </update>
+
+   <!-- 댓글 수 감소 -->
+   <update id="decreaseReplycnt" parameterType="int">
+     UPDATE car
+     SET replycnt = replycnt - 1
+     WHERE carno = #{carno}
+   </update>
+  
          
 </mapper> 

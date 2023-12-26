@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="reviewno" value="${reviewVO.reviewno}" />
-<c:set var="carno" value="${reviewVO.carno}" />
 <c:set var="title" value="${reviewVO.title}" />
 <c:set var="content" value="${reviewVO.content}" />
  
@@ -41,11 +40,7 @@
   
   <form name='frm' method='post' action='./update.do'>
     <input type="hidden" name="reviewno" value="${reviewno }">
-    
-    <div>
-       <label>자동차 번호</label>
-       <input type='int' name='carno' value="${carno}"  required="required" class="form-control" style='width: 20%;'>
-    </div>   
+      
     <div>
        <label>제목</label>
        <input type='text' name='title' value="${title}" required="required" autofocus="autofocus" class="form-control" style='width: 100%;'>

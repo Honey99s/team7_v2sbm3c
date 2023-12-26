@@ -30,13 +30,15 @@
     <colgroup>
       <col style='width: 5%;'/>
       <col style='width: 20%;'/>
-      <col style='width: 55%;'/>
+      <col style='width: 30%;'/>
+      <col style='width: 25%;'/>
       <col style='width: 20%;'/>
     </colgroup>
     <tr>
       <th class='th_bs'>번호</th>
       <th class='th_bs'>제목</th>
       <th class='th_bs'>내용</th>
+      <th class='th_bs'>답변</th>
       <th class='th_bs'>등록일</th>
     </tr>
    <tbody>
@@ -45,8 +47,8 @@
 
       <tr>
           <td class="td_bs">${qnano }</td>
-          <td><a href="./read.do?qnano=${qnano}" style="display:block;">${qnaVO.title}</a></td>
-           <td><a href="./read.do?qnano=${qnano}" style="display:block;"> <c:choose>
+          <td class="td_bs"><a href="./read.do?qnano=${qnano}" style="display:block;">${qnaVO.title}</a></td>
+           <td class="td_bs"><a href="./read.do?qnano=${qnano}" style="display:block;"> <c:choose>
               <c:when test="${qnaVO.content.length() > 160 }">
                 ${qnaVO.content.substring(0, 160) }...
               </c:when>
@@ -56,6 +58,7 @@
               </c:choose>
               </a>
               </td>
+          <td class="td_bs">${qnaVO.reply}</td>
           <td class="td_bs">${qnaVO.qdate.substring(0,16)}</td>
           <td class="td_bs">
           <a href="./update.do?qnano=${qnano}"><IMG src='/condition/images/update.png' title='수정' class="icon"></a>

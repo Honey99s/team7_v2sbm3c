@@ -4,20 +4,20 @@
 
 <mapper namespace="dev.mvc.qna.QnaDAOInter">
   <insert id="create" parameterType="dev.mvc.qna.QnaVO">
-    INSERT INTO qna(qnano, pw, title, content, qdate) 
-    VALUES(qna_seq.nextval, #{pw}, #{title}, #{content}, SYSDATE)
+    INSERT INTO qna(qnano, pw, title, content, reply, qdate) 
+    VALUES(qna_seq.nextval, #{pw}, #{title}, #{content}, #{reply}, SYSDATE)
   </insert>
   
   <!--  문의사항 목록  -->
   <select id="list_all" resultType="dev.mvc.qna.QnaVO">
-    SELECT qnano, pw, title, content, qdate
+    SELECT qnano, pw, title, content, reply, qdate
     FROM qna
     ORDER BY qnano ASC
   </select>
   
     <!-- 문의사항 조회 -->
   <select id="read" resultType="dev.mvc.qna.QnaVO" parameterType="int">
-    SELECT qnano, pw, title, content, qdate
+    SELECT qnano, pw, title, content, reply, qdate
     FROM qna
     WHERE qnano =#{qnano}
   </select>
@@ -25,7 +25,7 @@
     <!-- 문의사항 수정 -->
   <update id="update" parameterType="dev.mvc.qna.QnaVO">
     UPDATE qna
-    SET title=#{title}, content=#{content}
+    SET title=#{title}, content=#{content}, reply=#{reply}
     WHERE qnano = #{qnano}
   </update>
   

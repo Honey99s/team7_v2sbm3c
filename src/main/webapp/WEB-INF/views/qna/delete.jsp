@@ -6,6 +6,7 @@
 <c:set var="minprice" value="${qnaVO.pw}" />
 <c:set var="title" value="${qnaVO.title}" />
 <c:set var="content" value="${qnaVO.content}" />
+<c:set var="title" value="${qnaVO.reply}" />
 
 
 <!DOCTYPE html>

@@ -6,6 +6,7 @@
 <c:set var="pw" value="${qnaVO.pw}" />
 <c:set var="title" value="${qnaVO.title}" />
 <c:set var="content" value="${qnaVO.content}" />
+<c:set var="reply" value="${qnaVO.reply}" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -51,6 +52,7 @@
 
            <span style="font-size: 3em; font-weight: bold;">${title }</span><br>
            <span style="font-size: 2em;">${content }</span><br>
+            <span style="font-size: 2em;">${reply }</span><br>
         </DIV>
     </ul>
   </fieldset>

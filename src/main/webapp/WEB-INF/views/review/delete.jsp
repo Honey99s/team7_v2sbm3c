@@ -3,7 +3,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:set var="reviewno" value="${reviewVO.reviewno}" />
-<c:set var="minprice" value="${reviewVO.carno}" />
 <c:set var="title" value="${reviewVO.title}" />
 <c:set var="content" value="${reviewVO.content}" />
 

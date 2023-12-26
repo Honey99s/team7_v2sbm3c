@@ -5,6 +5,7 @@ package dev.mvc.qna;
   PW                    VARCHAR(20)    NOT NULL, -- 비밀번호, 글 수정이나 비밀글로 했을
   TITLE                  VARCHAR(30)    NOT NULL,
   CONTENT            CLOB               NOT NULL,
+  REPLY                 CLOB               NULL,
   QDATE                DATE               NOT NULL,
    */
 
@@ -17,6 +18,8 @@ public class QnaVO {
   private String title = "";
   /** 문의사항 내용*/
   private String content= "";
+  /** 답변*/
+  private String reply="";
   /** 등록일*/
   private String qdate;
   public int getQnano() {
@@ -43,6 +46,12 @@ public class QnaVO {
   public void setContent(String content) {
     this.content = content;
   }
+  public String getReply() {
+    return reply;
+  }
+  public void setReply(String reply) {
+    this.reply = reply;
+  }
   public String getQdate() {
     return qdate;
   }
@@ -51,8 +60,9 @@ public class QnaVO {
   }
   @Override
   public String toString() {
-    return "QnaVO [qnano=" + qnano + ", pw=" + pw + ", title=" + title + ", content=" + content + ", qdate=" + qdate
-        + "]";
+    return "QnaVO [qnano=" + qnano + ", pw=" + pw + ", title=" + title + ", content=" + content + ", reply=" + reply
+        + ", qdate=" + qdate + "]";
   }
+
   
 }

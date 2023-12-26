@@ -2,8 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
  
 <c:set var="reviewno" value="${reviewVO.reviewno}" />
-<c:set var="customerno" value="${reviewVO.customerno}" />
-<c:set var="pw" value="${reviewVO.pw}" />
 <c:set var="title" value="${reviewVO.title}" />
 <c:set var="content" value="${reviewVO.content}" />
 <c:set var="qdate" value="${reviewVO.qdate}" />
@@ -34,10 +32,6 @@
     <div class='menu_line'></div>
    <form name='frm' method='post' action='./create.do'>
 
-    <div>
-       <label>자동차 번호</label>
-       <input type='int' name='carno'  required="required" class="form-control" style='width: 20%;'>
-    </div>   
     <div>
        <label>제목</label>
        <input type='text' name='title' required="required" autofocus="autofocus" class="form-control" style='width: 100%;'>

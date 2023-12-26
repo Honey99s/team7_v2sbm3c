@@ -4,20 +4,20 @@
 
 <mapper namespace="dev.mvc.review.ReviewDAOInter">
   <insert id="create" parameterType="dev.mvc.review.ReviewVO">
-    INSERT INTO review(reviewno, carno, title, content, rdate) 
-    VALUES(review_seq.nextval, #{carno}, #{title}, #{content}, SYSDATE)
+    INSERT INTO review(reviewno, title, content, rdate) 
+    VALUES(review_seq.nextval, #{title}, #{content}, SYSDATE)
   </insert>
   
   <!--  문의사항 목록  -->
   <select id="list_all" resultType="dev.mvc.review.ReviewVO">
-    SELECT reviewno, carno, title, content, rdate
+    SELECT reviewno, title, content, rdate
     FROM review
     ORDER BY reviewno ASC
   </select>
   
     <!-- 문의사항 조회 -->
   <select id="read" resultType="dev.mvc.review.ReviewVO" parameterType="int">
-    SELECT reviewno, carno, title, content, rdate
+    SELECT reviewno, title, content, rdate
     FROM review
     WHERE reviewno =#{reviewno}
   </select>
@@ -25,8 +25,7 @@
     <!-- 문의사항 수정 -->
   <update id="update" parameterType="dev.mvc.review.ReviewVO">
     UPDATE review
-    SET carno = #{carno},
-    title=#{title},
+    SET title=#{title},
     content=#{content}
     WHERE reviewno = #{reviewno}
   </update>

@@ -5,6 +5,7 @@
 <c:set var="pw" value="${qnaVO.pw}" />
 <c:set var="title" value="${qnaVO.title}" />
 <c:set var="content" value="${qnaVO.content}" />
+<c:set var="reply" value="${qnaVO.reply}" />
  
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -51,6 +52,10 @@
        <label>내용</label>
        <textarea name='content' required="required" class="form-control" rows="12"
         style='width: 100%;'>${content}</textarea>
+    </div>
+    <div>
+      <label>답변</label>
+      <textarea name='reply' required="required" class="form-control" rows="12" style='width: 100%;'>${reply}</textarea>
     </div>
     <div>
        <label>비밀번호</label>

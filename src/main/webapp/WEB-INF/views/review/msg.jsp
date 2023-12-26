@@ -18,7 +18,7 @@
 
 <c:set var="code" value="${param.code }" /> <%--mav.addObject("code", "create_success"); --%>
 <c:set var="cnt" value="${param.cnt }" />     <%-- mav.addObject("cnt", cnt); --%>
-<c:set var="conditionno" value="${param.conditionno }" /> <%-- mav.addObject("modelno", carVO.getmodelno()); // redirect parameter 적용 --%>
+<c:set var="reviewno" value="${param.reviewno }" /> <%-- mav.addObject("modelno", carVO.getmodelno()); // redirect parameter 적용 --%>
 
 <DIV class='message'>
   <fieldset class='fieldset_basic'>
@@ -27,31 +27,31 @@
         
         <c:when test="${code == 'create_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">새로운 조건을 등록했습니다.</span>
+            <span class="span_success">새로운 구매후기을 등록했습니다.</span>
           </LI> 
         </c:when>
         
         <c:when test="${code == 'create_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">새로운 조건 등록에 실패했습니다.</span>
+            <span class="span_fail">새로운 구매후기 등록에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'update_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">조건 수정에 실패했습니다.</span>
+            <span class="span_fail">구매후기 수정에 실패했습니다.</span>
           </LI>                                                                      
         </c:when>
         
         <c:when test="${code == 'delete_success'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_success">조건 삭제에 성공했습니다.</span>
+            <span class="span_success">구매후기 삭제에 성공했습니다.</span>
           </LI>                                                                      
         </c:when>        
         
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <LI class='li_none'>
-            <span class="span_fail">조건 삭제에 실패했습니다.</span>
+            <span class="span_fail">구매후기 삭제에 실패했습니다.</span>
           </LI>                                                                      
         </c:when> 
         
@@ -72,7 +72,7 @@
             </c:when>
         </c:choose>
         
-        <button type='button' onclick="location.href='./create.do?conditionno=${conditionno}'" class="btn btn-secondary btn-sm">새로운 조건 등록</button>
+        <button type='button' onclick="location.href='./create.do?reviewno=${reviewno}'" class="btn btn-secondary btn-sm">새로운 구매후기 등록</button>
         <button type='button' onclick="location.href='./list_all'" class="btn btn-secondary btn-sm">목록</button>
       </LI>
     </UL>

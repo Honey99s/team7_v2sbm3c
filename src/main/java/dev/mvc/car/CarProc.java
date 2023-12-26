@@ -296,4 +296,16 @@ public class CarProc implements CarProcInter {
       return cnt;
     }
 
+    @Override
+    public int increaseReplycnt(int carno) {
+      int count = carDAO.increaseReplycnt(carno);
+      return count;
+    }
+
+    @Override
+    public int decreaseReplycnt(int carno) {
+      int count = carDAO.decreaseReplycnt(carno);
+      return count;
+    }
+
 }

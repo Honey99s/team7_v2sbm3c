@@ -6,7 +6,7 @@
 <c:set var="content" value="${conditionVO.content }" />
 <c:set var="minprice" value="${conditionVO.minprice }" />
 <c:set var="maxprice" value="${conditionVO.maxprice }" />
-<c:set var="maxprice" value="${conditionVO.reply }" />
+<c:set var="reply" value="${conditionVO.reply }" />
 <c:set var="children" value="${conditionVO.children }" />
  
 <!DOCTYPE html> 

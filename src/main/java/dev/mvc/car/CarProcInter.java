@@ -144,4 +144,18 @@ public interface CarProcInter {
    */
   public int delete_by_modelno(int modelno);
   
+  /**
+   * 글 수 증가
+   * @param 
+   * @return
+   */ 
+  public int increaseReplycnt(int carno);
+ 
+  /**
+   * 글 수 감소
+   * @param 
+   * @return
+   */   
+  public int decreaseReplycnt(int carno);
+  
 }

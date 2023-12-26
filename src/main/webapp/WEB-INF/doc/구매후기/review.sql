@@ -3,16 +3,13 @@ DROP TABLE REVIEW;
 
 CREATE TABLE REVIEW(
     REVIEWNO         NUMBER(10)       NOT NULL PRIMARY KEY, 
-    CARNO            NUMBER(10)       NOT NULL,
     TITLE            VARCHAR2(100)    NOT NULL, 
     CONTENT          CLOB             NOT NULL,   
-    RDATE            DATE             NOT NULL,
-    FOREIGN KEY (CARNO) REFERENCES CAR (CARNO)
+    RDATE            DATE             NOT NULL
 );
 
 COMMENT ON TABLE REVIEW is '구매 후기';
 COMMENT ON COLUMN REVIEW.REVIEWNO is '후기 번호';
-COMMENT ON COLUMN REVIEW.CARNO is '자동차 번호';
 COMMENT ON COLUMN REVIEW.TITLE is '후기 제목';
 COMMENT ON COLUMN REVIEW.CONTENT is '후기 내용';
 COMMENT ON COLUMN REVIEW.RDATE is '등록일';
@@ -25,28 +22,31 @@ CREATE SEQUENCE review_seq
   CACHE 2                       -- 2번은 메모리에서만 계산
   NOCYCLE;                     -- 다시 1부터 생성되는 것을 방지
 
-INSERT INTO review(reviewno, carno, title, content, rdate)
-VALUES(review_seq.nextval, 1, '구매 후기', '자녀2명 3000만원 이하 차량' ,sysdate);
+INSERT INTO review(reviewno, title, content, rdate)
+VALUES(review_seq.nextval, '아반떼 AD 구매 후기', '연비도 좋고 4명까지는 불편함없이 탈수 있어서 가성비가 좋아요.' ,sysdate);
 
 2) 목록
 - 검색을 하지 않는 경우, 전체 목록 출력
  
-SELECT reviewno, carno, title, content, rdate
+SELECT reviewno, title, content, rdate
 FROM review
 ORDER BY reviewno ASC     
      
 3. 조회
  
-SELECT reviewno, carno, title, content, rdate
+SELECT reviewno, title, content, rdate
 FROM review
 WHERE reviewno = 1;
     
 4. 수정
 UPDATE review
-SET carno = 3,
-title='EV9 후기',
+SET title='EV9 후기',
 content='전기차라 효율이 좋습니다.'
 WHERE reviewno=1;
+
+UPDATE review
+set reviewno = 2
+where reviewno = 13;
 
 COMMIT;
 
