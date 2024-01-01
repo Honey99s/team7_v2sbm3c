@@ -2,6 +2,7 @@ package dev.mvc.car;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -22,6 +23,9 @@ import dev.mvc.model.ModelProcInter;
 import dev.mvc.model.ModelVO;
 import dev.mvc.recommend.RecommendProcInter;
 import dev.mvc.recommend.RecommendVO;
+import dev.mvc.reply.ReplyCustomerVO;
+import dev.mvc.reply.ReplyProcInter;
+import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
 
@@ -50,6 +54,10 @@ public class CarCont {
   @Autowired
   @Qualifier("dev.mvc.good.GoodProc") 
   private GoodProcInter goodProc;
+  
+  @Autowired
+  @Qualifier("dev.mvc.reply.ReplyProc") 
+  private ReplyProcInter replyProc;
   
   public CarCont () {
     System.out.println("-> CarCont created.");
@@ -459,7 +467,11 @@ public class CarCont {
    String size1_label = Tool.unit(size1);
    carVO.setSize1_label(size1_label);
    
+   List<ReplyCustomerVO> list = replyProc.list_by_carno_join(carno);
+   
    mav.addObject("carVO", carVO);
+   mav.addObject("list", list);
+   
    
    ModelVO modelVO = this.modelProc.read(carVO.getModelno());
    mav.addObject("modelVO", modelVO);

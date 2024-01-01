@@ -17,7 +17,10 @@
 <c:set var="manufacturer" value="${carVO.manufacturer }" />
 <c:set var="minprice" value="${carVO.minprice }" />
 <c:set var="maxprice" value="${carVO.maxprice }" />
- 
+<c:set var="reply_id" value="" />
+<c:set var="reply_content" value="" />
+<c:set var="reply_rdate" value="" />
+
 <!DOCTYPE html> 
 <html lang="ko"> 
 <head> 
@@ -25,31 +28,40 @@
 <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, maximum-scale=3.0, width=device-width" /> 
 <title>HoneyCar</title>
 <link href="/css/style.css" rel="Stylesheet" type="text/css"> <!-- /static 기준 -->
- 
+<script type="text/JavaScript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
 
 <script type="text/javascript">
+
+$(document).ready(function()
+{
     // ---------------------------------------- 댓글 관련 시작 ----------------------------------------
     var frm_reply = $('#frm_reply');
     $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
     $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
     // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
     
-  });
-
 
   // 댓글 작성시 로그인 여부 확인
   function check_login() {
     var frm_reply = $('#frm_reply');
     if ($('#customerno', frm_reply).val().length == 0 ) {
-      $('#modal_title').html('댓글 등록'); // 제목 
+    	console.log("로그인 안되어 있슴");
+      $('#modal_title').html('댓글 등록'); // 제목
       $('#modal_content').html("로그인해야 등록 할 수 있습니다."); // 내용
-      $('#modal_panel').modal();            // 다이얼로그 출력
+      $('#modal_panel').modal('show');  // 다이얼로그 출력
+      // $('#modal_panel').modal();            
       return false;  // 실행 종료
     }
   }
 
   // 댓글 등록
-  function reply_create() {
+  function reply_create(e)
+  {
+	 e.preventDefault(); // 폼 제출 방지
+    
     var frm_reply = $('#frm_reply');
     
     if (check_login() !=false) { // 로그인 한 경우만 처리
@@ -62,11 +74,27 @@
       // alert('내용 길이: ' + $('#content', frm_reply).val().length);
       // return;
       
-      if ($('#content', frm_reply).val().length > 300) {
+      if ($('#content', frm_reply).val().length > 100) {
         $('#modal_title').html('댓글 등록'); // 제목 
-        $('#modal_content').html("댓글 내용은 300자이상 입력 할 수 없습니다."); // 내용
-        $('#modal_panel').modal();           // 다이얼로그 출력
-        return;  // 실행 종료
+        $('#modal_content').html("댓글 내용은 100자이상 입력 할 수 없습니다."); // 내용
+        $('#modal_panel').modal('show');           // 다이얼로그 출력
+        return false;  // 실행 종료
+      }
+
+      // 비밀번호 미입력 체크
+      if ($('#passwd', frm_reply).val().length === 0) {
+          $('#modal_title').html('댓글 등록'); // 제목 
+          $('#modal_content').html('비밀번호를 입력하세요.'); // 내용
+          $('#modal_panel').modal('show');           // 다이얼로그 출력
+          return false;  // 실행 종료
+      }
+      
+      // 댓글 내용 입력 여부 체크
+      if ($('#content', frm_reply).val().length === 0) {
+          $('#modal_title').html('댓글 등록'); // 제목 
+          $('#modal_content').html('내용을 입력하세요.'); // 내용
+          $('#modal_panel').modal('show');           // 다이얼로그 출력
+          return false;  // 실행 종료
       }
 
       $.ajax({
@@ -80,17 +108,25 @@
           // alert(rdata);
           var msg = ""; // 메시지 출력
           var tag = ""; // 글목록 생성 태그
-          
+       
           if (rdata.cnt > 0) {
-            $('#modal_content').attr('class', 'alert alert-success'); // CSS 변경
-            msg = "댓글을 등록했습니다.";
+            //$('#modal_content').attr('class', 'alert alert-success'); // CSS 변경
+            msg = "댓글을 등록했습니다.";      
             $('#content', frm_reply).val('');
             $('#passwd', frm_reply).val('');
+
+            // 댓글 목록 갱신
+            //refreshReplyList();
 
             // list_by_carno_join(); // 댓글 목록을 새로 읽어옴
             
             $('#reply_list').html(''); // 댓글 목록 패널 초기화, val(''): 안됨
             $("#reply_list").attr("data-replypage", 1);  // 댓글이 새로 등록됨으로 1로 초기화
+
+            // modal이 닫힌 후에 페이지 새로고침
+            $('#modal_panel').on('hidden.bs.modal', function (e) {
+              window.location.reload();
+            });
             
             // list_by_carno_join_add(); // 페이징 댓글, 페이징 문제 있음.
             // alert('댓글 목록 읽기 시작');
@@ -102,10 +138,11 @@
             $('#modal_content').attr('class', 'alert alert-danger'); // CSS 변경
             msg = "댓글 등록에 실패했습니다.";
           }
-          
           $('#modal_title').html('댓글 등록'); // 제목 
           $('#modal_content').html(msg);     // 내용
-          $('#modal_panel').modal();           // 다이얼로그 출력
+          $('#modal_panel').modal('show');           // 다이얼로그 출력
+          // 페이지 새로고침
+          // window.location.reload();
         },
         // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
         error: function(request, status, error) { // callback 함수
@@ -115,32 +152,47 @@
       });
     }
   }
+
+  //댓글 목록 갱신
+  /* function refreshReplyList() {
+    // 댓글 목록을 갱신하는 로직 추가
+    // 아마도 Ajax를 통해 서버에서 댓글 목록을 다시 불러와서 출력하는 방식으로 구현할 것입니다.
+  } */
+});
   
 </script>
  
 </head> 
  
 <body>
+
 <c:import url="/menu/top.do" />
 
-<!-- Modal 알림창 시작 -->
+<!-- The Modal -->
 <div class="modal fade" id="modal_panel" role="dialog">
   <div class="modal-dialog">
-    <!-- Modal content-->
+  Modal content
     <div class="modal-content">
+
+      <!-- Modal Header -->
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">×</button>
-        <h4 class="modal-title" id='modal_title'></h4><!-- 제목 -->
+        <h4 id="modal_title"></h4>
+        <button type="button" class="close" data-bs-dismiss="modal">x</button>
       </div>
+
+      <!-- Modal body -->
       <div class="modal-body">
-        <p id='modal_content'></p>  <!-- 내용 -->
+        <p id='modal_content'></p>  
       </div>
+
+      <!-- Modal footer -->
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
+      
     </div>
   </div>
-</div> <!-- Modal 알림창 종료 -->
+</div>
    
 <DIV class='title_line'>
   <A href="../modelgrp/list.do" class='title_link'>카테고리 그룹</A> > 
@@ -267,9 +319,39 @@
         <button type='submit' class='btn btn-secondary btn-sm' id='btn_create'>등록</button>
     </FORM>
     <HR>
-    <DIV id='reply_list' data-replypage='1'>  <%-- 댓글 목록 --%>
-    
+    <DIV id='reply_list' data-replypage='1'>
+      <%-- 댓글 목록 --%>
+      <table class="table table-hover">
+        <colgroup>
+            <col style='width: 20%;'/>
+            <col style='width: 60%;'/>
+            <col style='width: 20%;'/>    
+         </colgroup>
+<!--          <thead>
+            <tr>
+              <th class="th_bs">Id</th>
+              <th class="th_bs">내용</th>
+              <th class="th_bs">등록일</th>
+            </tr>
+          </thead> -->
+          <tbody>
+          <c:forEach var="reply" items="${list}">
+             <c:set var="reply_id" value="${reply.id}" />
+             <c:set var="reply_content" value="${reply.content}" />
+             <c:set var="reply_rdate" value="${reply.rdate}" />
+
+            <!-- 여기서부터 <tr> 태그 시작 -->    
+            <tr>
+              <td class="td_bs">${reply_id}</td>
+              <td class="td_bs">${reply_content}</td>
+              <td class="td_bs">${reply_rdate.substring(0,16)}</td>
+              <%-- <td class="td_bs">${modelVO.rdate.substring(0,10)}</td> --%>
+            </tr>
+            </c:forEach>
+          </tbody>
+         </table> 
     </DIV>
+
     <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>
         <button id='btn_add' class='btn btn-secondary btn-sm' style='width: 100%;'>더보기 ▽</button>
     </DIV>  

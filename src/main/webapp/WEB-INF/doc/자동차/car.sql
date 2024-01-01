@@ -492,6 +492,20 @@ SELECT COUNT(*) as cnt
 FROM car
 WHERE carno=1 AND passwd='123';
 
+-- 댓글 수 증감
+1) 댓글수 증가
+UPDATE car
+SET replycnt = replycnt + 1
+WHERE carno = 1;
+
+2) 댓글수 감소
+UPDATE car
+SET replycnt = replycnt - 1
+WHERE carno = 1;   
+
+commit;
+
+
 
 
 

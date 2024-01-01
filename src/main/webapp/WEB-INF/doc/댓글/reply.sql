@@ -33,11 +33,13 @@ CREATE SEQUENCE reply_seq
 
 1) 등록
 INSERT INTO reply(replyno, carno, customerno, content, passwd, rdate)
-VALUES(reply_seq.nextval, 5, 3, '댓글1', '1234', sysdate);
+VALUES(reply_seq.nextval, 10, 4, '댓글1', '1234', sysdate);
 INSERT INTO reply(replyno, carno, customerno, content, passwd, rdate)
 VALUES(reply_seq.nextval, 5, 3, '댓글2', '1234', sysdate);
 INSERT INTO reply(replyno, carno, customerno, content, passwd, rdate)
-VALUES(reply_seq.nextval, 5, 3, '댓글3', '1234', sysdate);             
+VALUES(reply_seq.nextval, 5, 3, '댓글3', '1234', sysdate);        
+
+commit;
 
 2) 전체 목록
 SELECT replyno, carno, customerno, content, passwd, rdate
