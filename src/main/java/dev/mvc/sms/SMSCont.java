@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import dev.mvc.customer.CustomerProcInter;
+import dev.mvc.customer.CustomerVO;
 
 
 @Controller
@@ -28,7 +29,7 @@ public class SmsCont {
     System.out.println("-> SMSCont created.");
   }
   
-  // http://localhost:9091/sms/form.do
+  // http://localhost:9093/sms/form.do
   /**
    * 사용자의 전화번호 입력 화면
    * @return
@@ -42,8 +43,38 @@ public class SmsCont {
     
     return mav;
   }
+  // http://localhost:9093/sms/form.do
+  /**
+   * 사용자의 이름,전화번호 입력 화면
+   * @return
+   */
+  @RequestMapping(value = {"/sms/form2.do"}, method=RequestMethod.GET)
+  public ModelAndView form2() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/sms/form2");  // /WEB-INF/views/sms/form.jsp
+    
+    
+    
+    return mav;
+  }
   
-  // http://localhost:9091/sms/proc.do
+  // http://localhost:9093/sms/form.do
+  /**
+   * 사용자의 이름,전화번호 입력 화면
+   * @return
+   */
+  @RequestMapping(value = {"/sms/form3.do"}, method=RequestMethod.GET)
+  public ModelAndView form3() {
+    ModelAndView mav = new ModelAndView();
+    mav.setViewName("/sms/form3");  // /WEB-INF/views/sms/form.jsp
+    
+    
+    
+    return mav;
+  }
+  
+  
+  // http://localhost:9093/sms/proc.do
   /**
    * 사용자에게 인증 번호를 생성하여 전송
    * @param session
@@ -88,7 +119,7 @@ public class SmsCont {
     return mav;
   }
   
-  // http://localhost:9091/sms/confirm.do
+  // http://localhost:9093/sms/confirm.do
   /**
    * 문자로 전송된 번호와 사용자가 입력한 번호를 비교한 결과 화면
    * @param session 사용자당 할당된 서버의 메모리

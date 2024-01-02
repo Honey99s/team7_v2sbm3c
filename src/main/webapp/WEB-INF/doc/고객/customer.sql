@@ -7,7 +7,7 @@ DROP TABLE customer;
 DROP TABLE customer CASCADE CONSTRAINTS; 
  
 CREATE TABLE customer (
-  customerno NUMBER(10) NOT NULL, -- 회원 번호, 레코드를 구분하는 컬럼 
+  customerno NUMBER(10) NOT NULL , -- 회원 번호, 레코드를 구분하는 컬럼 
   id         VARCHAR(30)   NOT NULL UNIQUE, -- 이메일(아이디), 중복 안됨, 레코드를 구분 
   passwd     VARCHAR(60)   NOT NULL, -- 패스워드, 영숫자 조합
   cname      VARCHAR(30)   NOT NULL, -- 성명, 한글 10자 저장 가능
@@ -128,7 +128,12 @@ DELETE FROM customer;
 customerno=3인 경우 삭제
 
 DELETE FROM customer
-WHERE customerno = 3;
+WHERE customerno = 5
+
+
+UPDATE customer
+SET grade = 99
+where customerno=5;
 
 
 COMMIT;

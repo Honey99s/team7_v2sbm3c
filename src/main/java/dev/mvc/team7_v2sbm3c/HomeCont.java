@@ -2,6 +2,8 @@ package dev.mvc.team7_v2sbm3c;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -20,13 +22,17 @@ public class HomeCont {
   @Qualifier("dev.mvc.model.ModelProc")
   private ModelProcInter modelProc;
   
+  @Autowired
+  @Qualifier("dev.mvc.customer.CustomerProc")  // @Component("dev.mvc.customer.CustomerProc")
+  private CustomerProcInter customerProc;
+  
   public HomeCont() {
   System.out.println("-> HomeCont created");
   }
   
   //http://localhost:9093/
   @RequestMapping(value = {"","/","/index.do","/index.resort"}, method=RequestMethod.GET)
-  public ModelAndView home() {
+  public ModelAndView home(HttpSession session) {
     System.out.println("-> home() ver 2.0");
     ModelAndView mav = new ModelAndView();
     mav.setViewName("/index");

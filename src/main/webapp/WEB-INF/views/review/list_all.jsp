@@ -45,8 +45,8 @@
 
       <tr>
           <td class="td_bs">${reviewno }</td>
-          <td><a href="./read.do?reviewno=${reviewno}" style="display:block;">${reviewVO.title}</a></td>
-           <td><a href="./read.do?reviewno=${reviewno}" style="display:block;"> <c:choose>
+          <td class="td_bs"><a href="./read.do?reviewno=${reviewno}" style="display:block;">${reviewVO.title}</a></td>
+           <td class="td_bs"><a href="./read.do?reviewno=${reviewno}" style="display:block;"> <c:choose>
               <c:when test="${reviewVO.content.length() > 160 }">
                 ${reviewVO.content.substring(0, 160) }...
               </c:when>

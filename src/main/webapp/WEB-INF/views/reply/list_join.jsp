@@ -44,7 +44,7 @@
       <thead>
         <tr>
           <th style='text-align: center;'>댓글<br>번호</th>
-          <th style='text-align: center;'>글<br>번호</th>
+          <th style='text-align: center;'>차<br>번호</th>
           <th style='text-align: center;'>회원<br> ID</th>
           <th style='text-align: center;'>내용</th>
           <th style='text-align: center;'>등록일</th>

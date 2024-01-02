@@ -124,6 +124,18 @@ public class CustomerProc implements CustomerProcInter {
     int cnt = this.customerDAO.login(map);
     return cnt;
   }
+
+  @Override
+  public CustomerVO find_id(String cname, String tel) {
+    CustomerVO customerVO = this.customerDAO.find_id(cname, tel);
+    return customerVO;
+  }
+
+  @Override
+  public int drop(CustomerVO customerVO) {
+    int cnt = this.customerDAO.drop(customerVO);
+    return cnt;
+  }
   
 }
 

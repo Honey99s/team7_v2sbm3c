@@ -96,6 +96,21 @@ public interface CustomerProcInter {
    */
   public int login(HashMap<String, Object> map);
   
+  /**
+   * 아이디 찾기
+   * @param cname
+   * @param phone
+   * @return
+   */
+  public CustomerVO find_id(String cname, String tel);
+  
+  /**
+   * 등급 변경 처리
+   * @param customerVO
+   * @return
+   */
+  public int drop(CustomerVO customerVO);
+  
 }
 
 

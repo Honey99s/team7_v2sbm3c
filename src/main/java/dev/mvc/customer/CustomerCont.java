@@ -609,5 +609,32 @@ public ModelAndView login_cookie_proc(
     return mav;
   }
   
+  /**
+   * 회원 정보 수정 처리
+   * @param customerVO
+   * @return
+   */
+  @RequestMapping(value="/customer/drop.do", method=RequestMethod.POST)
+  public ModelAndView drop(CustomerVO customerVO){
+    ModelAndView mav = new ModelAndView();
+    
+    int cnt= this.customerProc.drop(customerVO);
+    
+    
+    if (cnt == 1) {
+      mav.addObject("code", "update_success");
+      mav.addObject("grade", customerVO.getGrade());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+    } else {
+      mav.addObject("code", "update_fail");
+    }
+
+    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
+    mav.addObject("url", "/customer/msg");  // /customer/msg -> /customer/msg.jsp
+    
+    mav.setViewName("redirect:/customer/msg.do");
+    
+    return mav;
+  }
+  
 }
 

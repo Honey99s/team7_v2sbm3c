@@ -65,5 +65,19 @@
     SET passwd=#{passwd}
     WHERE customerno=#{customerno}
   </update>
-        
+  
+  <!-- 이름으로 아이디 찾기 -->
+  <select id="find_id" resultType="dev.mvc.customer.CustomerVO" parameterType="dev.mvc.customer.CustomerVO">
+   SELECT id 
+   FROM customer
+   WHERE cname = #{cname} AND tel = #{tel}
+  </select>
+  
+   <!--  회원 등급 99변경  -->
+    <update id="drop" parameterType="dev.mvc.customer.CustomerVO">
+     UPDATE customer
+     SET grade = 99
+     where customerno=#{customerno}
+  </update>
+
 </mapper> 

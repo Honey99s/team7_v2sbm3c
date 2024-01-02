@@ -28,7 +28,7 @@
 <c:choose>
      <c:when test="${sessionScope.id != null }">
        <div class='title_line'>
-          ${customerVO.cname }님을 위한 추천 차종
+          ${customerVO.cname }회원님을 위한 추천 차종
        </div>
        <c:import url="/car/list_recommend_by_modelno.do" /> <%-- http://localhost:9093/car/list_recommend_by_modelno.do  --%>
          <DIV style='width: 100%; margin: 0px auto;'>

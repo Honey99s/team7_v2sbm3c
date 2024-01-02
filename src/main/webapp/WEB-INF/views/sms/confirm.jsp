@@ -22,7 +22,7 @@
 <!-- ----------------------------------------- -->
  
     <DIV style="font-size: 16px;">${msg}</DIV>
-    <button type='button' onclick="location.href='/customer/passwd_update.do'" class="btn btn-primary btn-sm">패스워드 변경</button>
+    <button type='button' onclick="location.href='/customer/passwd_update.do'" class="btn btn-primary btn-sm">비밀번호 변경</button>
      
 <!-- -------------------------------------------- -->
 </body>
