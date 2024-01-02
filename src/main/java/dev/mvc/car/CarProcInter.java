@@ -145,14 +145,14 @@ public interface CarProcInter {
   public int delete_by_modelno(int modelno);
   
   /**
-   * 글 수 증가
+   * 댓글 수 증가
    * @param 
    * @return
    */ 
   public int increaseReplycnt(int carno);
  
   /**
-   * 글 수 감소
+   * 댓글 수 감소
    * @param 
    * @return
    */   
