@@ -71,6 +71,7 @@
                      <a class="dropdown-item" href="/condition/list_all.do">조건 등록</a>
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
                      <a class="dropdown-item" href="/review/list_all.do">구매후기</a>
+                     <a class="dropdown-item" href="/ggultip/list_all.do">꿀팁</a>
                      <a class="dropdown-item" href="/customer/delete.do">고객탈퇴</a>
                   </c:otherwise>
                 </c:choose>    

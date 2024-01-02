@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="dev.mvc.ggultip.GgultipDAOInter">
+  <insert id="create" parameterType="dev.mvc.ggultip.GgultipVO">
+    INSERT INTO ggultip(ggultipno, content,  rdate) 
+    VALUES(ggultip_seq.nextval, #{content} , sysdate)
+  </insert>
+  
+  <!--  조건 목록  -->
+  <select id="list_all" resultType="dev.mvc.ggultip.GgultipVO">
+    SELECT ggultipno, content,  rdate
+    FROM ggultip
+    ORDER BY ggultipno DESC
+  </select>
+  
+  <!-- 조건 조회 -->
+  <select id="read" resultType="dev.mvc.ggultip.GgultipVO" parameterType="int">
+    SELECT ggultipno, content,  rdate
+    FROM ggultip
+    WHERE ggultipno =#{ggultipno}
+  </select>
+  
+  <!-- 조건 수정 -->
+  <update id="update" parameterType="dev.mvc.ggultip.GgultipVO">
+    UPDATE ggultip
+    SET content=#{content}
+    WHERE ggultipno = #{ggultipno}
+  </update>
+  
+   <!-- 조건 삭제 -->
+   <delete id="delete" parameterType="int">
+    DELETE FROM ggultip
+    WHERE ggultipno=#{ggultipno}
+   </delete>
+
+</mapper>

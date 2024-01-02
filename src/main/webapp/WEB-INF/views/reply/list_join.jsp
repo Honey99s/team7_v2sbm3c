@@ -43,16 +43,10 @@
       <%-- table 컬럼 --%>
       <thead>
         <tr>
-<<<<<<< HEAD
           <th style='text-align: center;'>댓글<br>번호</th>
           <th style='text-align: center;'>차<br>번호</th>
           <th style='text-align: center;'>회원<br> ID</th>
-=======
-          <th style='text-align: center;'>댓글 번호</th>
-          <th style='text-align: center;'>차 번호</th>
-          <th style='text-align: center;'>회원 ID</th>
->>>>>>> 8bb6fcc2fb61f13d799e03eebfc98900b0918c21
-          <th style='text-align: center;'>내용</th>
+          <th style='text-align: center;'>댓글</th>
           <th style='text-align: center;'>등록일</th>
           <th style='text-align: center;'>기타</th>
         </tr>
