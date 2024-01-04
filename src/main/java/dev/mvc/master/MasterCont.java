@@ -46,7 +46,7 @@ public class MasterCont {
   
   /**
    * 로그인 폼
-   * http://localhost:9091/master/login.do
+   * http://localhost:9093/master/login.do
    * @return
    */
   @RequestMapping(value="/master/login.do", method=RequestMethod.GET)
@@ -60,7 +60,7 @@ public class MasterCont {
 
   /**
    * 로그인 처리
-   * http://localhost:9091/master/login.do
+   * http://localhost:9093/master/login.do
    * @return
    */
   @RequestMapping(value="/master/login.do", method=RequestMethod.POST)

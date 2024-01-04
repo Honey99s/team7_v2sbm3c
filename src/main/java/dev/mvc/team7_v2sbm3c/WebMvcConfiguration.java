@@ -1,6 +1,7 @@
 package dev.mvc.team7_v2sbm3c;
 
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
@@ -24,5 +25,14 @@ public class WebMvcConfiguration implements WebMvcConfigurer {
       
       // JSP 인식되는 경로: http://localhost:9093/member/storage";
       // registry.addResourceHandler("/member/storage/**").addResourceLocations("file:///" +  Tool.getOSPath() + "/member/storage/");
+  }
+  
+  @Override
+  public void addCorsMappings(CorsRegistry registry) {
+      registry.addMapping("/**")
+              .allowedOrigins("http://localhost:3000") // React 앱의 URL
+              .allowedMethods("GET", "POST", "PUT", "DELETE")
+              .allowedHeaders("*")
+              .allowCredentials(true);
   }
 }
