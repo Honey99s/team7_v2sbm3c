@@ -2,7 +2,7 @@
 
 
 <h3>논리적 모델링</h3>
-<img width="1150" alt="image" src="https://github.com/Honey99s/team7_v2sbm3c/assets/149447004/f1267ee6-bba3-4b03-be83-98b4a44a4851">
+<img width="1150" alt="image" src="https://github.com/Honey99s/team7_v2sbm3c/assets/149447004/842e897a-f773-4b79-ad1b-64d80ca7ebbc">
 
 
 
@@ -10,7 +10,7 @@
 
 
 <h3>물리적 모델링</h3>
-<img width="1150" alt="image" src="https://github.com/Honey99s/team7_v2sbm3c/assets/149447004/992595b7-4f5e-4e22-b955-40fe6cf86e35">
+<img width="1150" alt="image" src="https://github.com/Honey99s/team7_v2sbm3c/assets/149447004/01e63b25-5ba7-40fa-8791-fbc078cb8b53">
 
 
 
