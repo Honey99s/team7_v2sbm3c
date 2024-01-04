@@ -54,7 +54,7 @@ public class MasterContRest {
   
   /**
    * 로그아웃 처리
-   * http://localhost:9091/master/logout_rest.do 
+   * http://localhost:9093/master/logout_rest.do 
    * @param session
    * @return
    */

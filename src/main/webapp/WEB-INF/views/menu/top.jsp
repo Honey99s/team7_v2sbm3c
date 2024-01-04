@@ -53,6 +53,10 @@
             <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
               <a class="nav-link top_menu_link" href="/car/list_all.do">전체 글 목록</a>
             </li>
+            
+              <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
+              <a class="nav-link top_menu_link" href="http://13.124.141.127:3000">긴급 공지사항</a>
+            </li>
 
             <li class="nav-item dropdown"> <%-- 고객서브 메뉴 --%>
               <a class="nav-link top_menu_link dropdown-toggle" data-bs-toggle="dropdown" href="#">회원</a>
