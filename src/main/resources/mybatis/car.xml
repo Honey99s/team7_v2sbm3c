@@ -217,6 +217,20 @@
      SET replycnt = replycnt - 1
      WHERE carno = #{carno}
    </update>
+   
+   <!-- 추천 수 증가 -->
+   <update id="increaseRecom" parameterType="int">
+     UPDATE car
+     SET recom = recom + 1
+     WHERE carno = #{carno}
+   </update>
+
+   <!-- 추천 수 감소 -->
+   <update id="decreaseRecom" parameterType="int">
+     UPDATE car
+     SET recom = recom - 1
+     WHERE carno = #{carno}
+   </update>
   
          
 </mapper> 

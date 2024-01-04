@@ -8,6 +8,7 @@
 <c:set var="file1saved" value="${carVO.file1saved }" />
 <c:set var="title" value="${carVO.title }" />
 <c:set var="content" value="${carVO.content }" />
+<c:set var="recom" value="${carVO.recom }" />
 <c:set var="rdate" value="${carVO.rdate }" />
 <c:set var="youtube" value="${carVO.youtube }" />
 <c:set var="map" value="${carVO.map }" />
@@ -17,9 +18,7 @@
 <c:set var="manufacturer" value="${carVO.manufacturer }" />
 <c:set var="minprice" value="${carVO.minprice }" />
 <c:set var="maxprice" value="${carVO.maxprice }" />
-<c:set var="reply_id" value="" />
-<c:set var="reply_content" value="" />
-<c:set var="reply_rdate" value="" />
+
 
 <!DOCTYPE html> 
 <html lang="ko"> 
@@ -37,18 +36,66 @@
 
 $(document).ready(function()
 {
-    // ---------------------------------------- 댓글 관련 시작 ----------------------------------------
-    var frm_reply = $('#frm_reply');
-    $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
-    $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
-    // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
-    
+
+  $('#btn_recom').on("click", function() { update_recom_ajax(${carno}); });
+  //$('#btn_login').on('click', login_ajax);
+  //$('#btn_loadDefault').on('click', loadDefault);  
+  
+  // ---------------------------------------- 댓글 관련 시작 ----------------------------------------
+  var frm_reply = $('#frm_reply');
+  $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
+  $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
+  
+  //list_by_contentsno_join(); // 댓글 목록
+  // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
+   
+  // 좋아요
+    function update_recom_ajax(carno)
+    {
+      // console.log('-> contentsno:' + contentsno);
+      var params = "";
+      // params = $('#frm').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+      params = 'carno=' + carno; // 공백이 값으로 있으면 안됨.
+      $.ajax(
+        {
+          url: '/car/update_recom_ajax.do',
+          type: 'post',  // get, post
+          cache: false, // 응답 결과 임시 저장 취소
+          async: true,  // true: 비동기 통신
+          dataType: 'json', // 응답 형식: json, html, xml...
+          data: params,      // 데이터
+          success: function(rdata)
+          { // 응답이 온경우
+            // console.log('-> rdata: '+ rdata);
+            var str = '';
+            if (rdata.count == 1)
+            {
+              // console.log('-> btn_recom: ' + $('#btn_recom').val());  // X
+              // console.log('-> btn_recom: ' + $('#btn_recom').html());
+              $('#btn_recom').html('♥'+rdata.recom);  
+              console.log(rdata.recom);
+              $('#span_animation').hide();
+            } else {
+              // $('#span_animation').html("로그인을 해야 추천을 할 수 있습니다.");
+              $('#modal_title').html('추천 수 증가'); // 제목
+              $('#modal_content').html("로그인해야 추천 할 수 있습니다."); // 내용
+              $('#modal_panel').modal('show');  // 다이얼로그 출력
+              // $('#modal_panel').modal();            
+              return false;  // 실행 종료
+            }
+          },
+          // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+          error: function(request, status, error) { // callback 함수
+            console.log(error);
+          }
+        });  //  $.ajax END  
+      } // function update_recom_ajax    
 
   // 댓글 작성시 로그인 여부 확인
   function check_login() {
     var frm_reply = $('#frm_reply');
     if ($('#customerno', frm_reply).val().length == 0 ) {
-    	console.log("로그인 안되어 있슴");
+      console.log("로그인 안되어 있슴");
       $('#modal_title').html('댓글 등록'); // 제목
       $('#modal_content').html("로그인해야 등록 할 수 있습니다."); // 내용
       $('#modal_panel').modal('show');  // 다이얼로그 출력
@@ -60,7 +107,7 @@ $(document).ready(function()
   // 댓글 등록
   function reply_create(e)
   {
-	 e.preventDefault(); // 폼 제출 방지
+   e.preventDefault(); // 폼 제출 방지
     
     var frm_reply = $('#frm_reply');
     
@@ -151,14 +198,14 @@ $(document).ready(function()
         }
       });
     }
-  }
+   }
 
   //댓글 목록 갱신
   /* function refreshReplyList() {
     // 댓글 목록을 갱신하는 로직 추가
     // 아마도 Ajax를 통해 서버에서 댓글 목록을 다시 불러와서 출력하는 방식으로 구현할 것입니다.
   } */
-});
+});   //  $(document).ready(function() end
   
 </script>
  
@@ -270,7 +317,7 @@ $(document).ready(function()
 
           <form>
           <button type='button' onclick="" class="btn btn-info">관심 상품</button>
-          <button type='button' id="btn_recom" class="btn btn-info">♥(${recom })</button>
+          <button type='button' id="btn_recom" class="btn btn-info">♥${recom}</button>
           <span id="span_animation"></span>
           </form>
       <c:if test="${youtube.trim().length() > 0 }">

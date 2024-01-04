@@ -505,6 +505,17 @@ WHERE carno = 1;
 
 commit;
 
+1) 댓글수 증가
+UPDATE car
+SET recom = recom + 1
+WHERE carno = 10;
+
+2) 댓글수 감소
+UPDATE car
+SET recom = recom - 1
+WHERE carno = 10;  
+
+commit;
 
 
 

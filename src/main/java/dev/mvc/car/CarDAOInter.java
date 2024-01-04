@@ -145,4 +145,18 @@ public interface CarDAOInter {
    */   
   public int decreaseReplycnt(int carno);
   
+  /**
+   * 추천 수 증가
+   * @param 
+   * @return
+   */ 
+  public int increaseRecom(int carno);
+ 
+  /**
+   * 추천 수 감소
+   * @param 
+   * @return
+   */   
+  public int decreaseRecom(int carno);
+  
 }

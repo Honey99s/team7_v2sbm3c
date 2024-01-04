@@ -3,6 +3,7 @@ package dev.mvc.car;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -12,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -28,6 +30,7 @@ import dev.mvc.reply.ReplyProcInter;
 import dev.mvc.reply.ReplyVO;
 import dev.mvc.tool.Tool;
 import dev.mvc.tool.Upload;
+import dev.mvc.car.CarVO;
 
 @Controller
 public class CarCont {
@@ -545,6 +548,31 @@ public class CarCont {
 //   
 //   return mav;
 // }
+ 
+ /**
+  * 추천 수 증가
+  * http://localhost:9093/car/map.do?carno=1
+  * @return
+  */
+ @ResponseBody
+ @RequestMapping(value="/car/update_recom_ajax.do", method = RequestMethod.POST)
+ public Map<String, Object> recom_update(HttpSession session, int carno) {
+     Map<String, Object> result = new HashMap<>();
+     
+     if (this.customerProc.isCustomer(session)) { // 회원 로그인 확인
+         int count = this.carProc.increaseRecom(carno);
+         CarVO carVO = this.carProc.read(carno);
+         int recom = carVO.getRecom();
+         result.put("count", count);
+         result.put("recom", recom);
+     } else {
+         result.put("error", "user_not_authenticated");
+     }
+     
+     return result;
+ }
+
+ 
  
  
   /**
