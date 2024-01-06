@@ -55,7 +55,7 @@
             </li>
             
               <li class="nav-item"> <%-- 서브 메뉴가 없는 독립메뉴 --%>
-              <a class="nav-link top_menu_link" href="http://13.124.141.127:3000">긴급 공지사항</a>
+              <a class="nav-link top_menu_link" href="http://43.202.225.181:3000">긴급 공지사항</a>
             </li>
 
             <li class="nav-item dropdown"> <%-- 고객서브 메뉴 --%>
@@ -76,7 +76,7 @@
                      <a class="dropdown-item" href="/qna/list_all.do">문의사항</a>
                      <a class="dropdown-item" href="/review/list_all.do">구매후기</a>
                      <a class="dropdown-item" href="/ggultip/list_all.do">꿀팁</a>
-                     <a class="dropdown-item" href="/customer/delete.do">고객탈퇴</a>
+                     <a class="dropdown-item" href="/customer/drop.do">고객탈퇴</a>
                   </c:otherwise>
                 </c:choose>    
               </div>

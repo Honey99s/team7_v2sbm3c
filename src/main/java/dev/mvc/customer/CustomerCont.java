@@ -615,15 +615,20 @@ public ModelAndView login_cookie_proc(
    * @return
    */
   @RequestMapping(value="/customer/drop.do", method=RequestMethod.POST)
-  public ModelAndView drop(CustomerVO customerVO){
+  public ModelAndView drop(HttpSession session, CustomerVO customerVO){
     ModelAndView mav = new ModelAndView();
+    
+    int customerno = (int)(session.getAttribute("customerno"));
+    System.out.println("-> customerno : " +session.getAttribute("customerno") );
+    
+    customerVO = this.customerProc.read(customerno);
     
     int cnt= this.customerProc.drop(customerVO);
     
     
     if (cnt == 1) {
       mav.addObject("code", "update_success");
-      mav.addObject("grade", customerVO.getGrade());  // 홍길동님(user4) 회원 정보를 변경했습니다.
+      mav.addObject("grade", customerVO.getGrade());  
     } else {
       mav.addObject("code", "update_fail");
     }

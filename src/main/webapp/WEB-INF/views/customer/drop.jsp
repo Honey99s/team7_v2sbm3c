@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <c:set var="customerno" value="${customerVO.customerno }" />
+<c:set var="grade" value="${customerVO.grade }" />
 
  
 <!DOCTYPE html> 
@@ -18,14 +19,11 @@
 <body>
 <c:import url="/menu/top.do" />
  
-  <DIV class='title_line'>회원 번호 수정</DIV>
+  <DIV class='title_line'>회원 탈퇴</DIV>
   
   <aside class="aside_right">
-    <a href="./create.do?customerno=${customerno }">등록</a>
     <span class='menu_divide' >│</span>
-    <a href="javascript:location.reload();">새로고침</a>
-    <span class='menu_divide' >│</span>    
-    <a href="./list_all">조건 목록</a>    
+    <a href="javascript:location.reload();">새로고침</a> 
   </aside>`
   
   <div style="text-align: right; clear: both;">  
@@ -41,8 +39,8 @@
     <input type="hidden" name="customerno" value="${customerno }">
     
     <div>
-     <label>회원번호</label>
-       <input type='int' name='customerno' value='' required="required" class="form-control" style='width: 100%;'>
+     <label>회원 번호</label>
+       <input type='int' name='grade' value='99' required="required" class="form-control" style='width: 100%;'>
     </div>
 
        

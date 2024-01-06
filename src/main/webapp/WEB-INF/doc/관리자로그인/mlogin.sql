@@ -32,3 +32,5 @@ WHERE mloginno=1;
 
 DELETE from mlogin
 WHERE mloginno=1;
+
+commit;
