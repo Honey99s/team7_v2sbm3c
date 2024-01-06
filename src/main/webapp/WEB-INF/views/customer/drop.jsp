@@ -39,7 +39,7 @@
     <input type="hidden" name="customerno" value="${customerno }">
     
     <div>
-     <label>회원 번호</label>
+     <label>회원 탈퇴를 하시려면 저장을 눌러주세요.</label>
        <input type='int' name='grade' value='99' required="required" class="form-control" style='width: 100%;'>
     </div>
 

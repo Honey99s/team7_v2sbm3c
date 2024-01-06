@@ -132,8 +132,8 @@ WHERE customerno = 5
 
 
 UPDATE customer
-SET grade = 99
-where customerno=5;
+SET grade = 15
+where customerno=4;
 
 
 COMMIT;

@@ -66,18 +66,18 @@
         
         <c:when test="${param.code == 'delete_success'}"> <%-- Java if --%>
           <li class='li_none'>
-            <span class="span_success">${param.cname }님(${param.id }) 고객 정보 삭제에 성공했습니다.</span>
+            <span class="span_success">고객 정보 삭제에 성공했습니다.</span>
           </li>   
           <li class='li_none'>
             <button type='button' 
-                         onclick="location.href='/customer/list.do'"
-                         class="btn btn-primary btn-sm">고객 목록</button>
+                         onclick="location.href='http://43.202.225.181:9093/'"
+                         class="btn btn-primary btn-sm">홈 화면</button>
           </li>                                                                     
         </c:when>    
             
         <c:when test="${code == 'delete_fail'}"> <%-- Java if --%>
           <li class='li_none'>
-            <span class="span_fail">${param.cname }님(${param.id }) 고객 정보 삭제에 실패했습니다.</span>
+            <span class="span_fail">고객 정보 삭제에 실패했습니다.</span>
           </li>                                                                      
         </c:when> 
         

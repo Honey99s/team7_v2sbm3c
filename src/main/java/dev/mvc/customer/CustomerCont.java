@@ -24,6 +24,7 @@ import dev.mvc.master.MasterProcInter;
 import dev.mvc.model.ModelVO;
 import dev.mvc.recommend.RecommendDAOInter;
 import dev.mvc.clogin.CloginVO;
+import dev.mvc.customer.CustomerVO;
 import dev.mvc.recommend.RecommendProcInter;
  
 @Controller
@@ -610,31 +611,54 @@ public ModelAndView login_cookie_proc(
   }
   
   /**
-   * 회원 정보 수정 처리
+   * 회원 등급 변경
+   * http://localhost:9093/customer/drop.do?customerno=1
+   * @return
+   */
+  @RequestMapping(value="/customer/drop.do", method = RequestMethod.GET)
+  public ModelAndView drop(HttpSession session, int customerno ) {  //int customerno = (int)request.getParameter("customerno");
+    System.out.println("->drop");
+    ModelAndView mav = new ModelAndView();
+    
+    if(this.customerProc.isCustomer(session) == true) {
+    System.out.println("->customer");
+    
+    customerno = (int)session.getAttribute("customerno");
+
+    CustomerVO customerVO = this.customerProc.read(customerno);
+    mav.addObject("customerVO", customerVO);
+    mav.setViewName("/customer/drop"); // /WEB-INF/views/customer/update.jsp
+    
+    }else {
+      mav.setViewName("/customer/login_need");
+    }
+    
+    return mav;
+  }
+  
+  /**
+   * 회원 등급 변경 처리
    * @param customerVO
    * @return
    */
   @RequestMapping(value="/customer/drop.do", method=RequestMethod.POST)
   public ModelAndView drop(HttpSession session, CustomerVO customerVO){
     ModelAndView mav = new ModelAndView();
-    
-    int customerno = (int)(session.getAttribute("customerno"));
-    System.out.println("-> customerno : " +session.getAttribute("customerno") );
-    
+   
+    int customerno = (int) session.getAttribute("customerno");
     customerVO = this.customerProc.read(customerno);
-    
     int cnt= this.customerProc.drop(customerVO);
     
-    
     if (cnt == 1) {
-      mav.addObject("code", "update_success");
+      mav.addObject("code", "delete_success");
       mav.addObject("grade", customerVO.getGrade());  
     } else {
-      mav.addObject("code", "update_fail");
+      mav.addObject("code", "delete_fail");
     }
 
     mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
     mav.addObject("url", "/customer/msg");  // /customer/msg -> /customer/msg.jsp
+    
     
     mav.setViewName("redirect:/customer/msg.do");
     
