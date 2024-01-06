@@ -64,7 +64,7 @@ ORDER BY r.replyno DESC;
 SELECT c.id,
            r.replyno, r.carno, r.customerno, r.content, r.passwd, r.rdate
 FROM customer c,  reply r
-WHERE (c.customerno = r.customerno) AND r.carno=5
+WHERE (c.customerno = r.customerno) AND r.carno=10
 ORDER BY r.replyno DESC;
 
 ID                                REPLYNO      CARNO CUSTOMERNO CONTENT   PASSWD   RDATE              

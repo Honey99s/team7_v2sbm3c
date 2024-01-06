@@ -46,7 +46,7 @@ $(document).ready(function()
   $('#content', frm_reply).on('click', check_login);  // 댓글 작성시 로그인 여부 확인
   $('#btn_create', frm_reply).on('click', reply_create);  // 댓글 작성시 로그인 여부 확인
   
-  //list_by_contentsno_join(); // 댓글 목록
+  list_by_carno_join(); // 댓글 목록
   // ---------------------------------------- 댓글 관련 종료 ----------------------------------------
    
   // 좋아요
@@ -83,13 +83,62 @@ $(document).ready(function()
               // $('#modal_panel').modal();            
               return false;  // 실행 종료
             }
-          },
+          }, 
           // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
           error: function(request, status, error) { // callback 함수
             console.log(error);
           }
         });  //  $.ajax END  
-      } // function update_recom_ajax    
+     // $('#span_animation').css('text-align', 'center');
+        $('#span_animation').html("<img src='/car/images/ani04.gif' style='width: 8%;'>");
+        $('#span_animation').show(); // 숨겨진 태그의 출력
+      } // function update_recom_ajax   
+
+  function loadDefault() {
+      $('#id').val('user1');
+      $('#passwd').val('1234');
+    } 
+
+  <%-- 로그인 --%>
+  function login_ajax() {
+    var params = "";
+    params = $('#frm_login').serialize(); // 직렬화, 폼의 데이터를 키와 값의 구조로 조합
+    // params += '&${ _csrf.parameterName }=${ _csrf.token }';
+    // console.log(params);
+    // return;
+    
+    $.ajax(
+      {
+        url: '/customer/login_ajax.do',
+        type: 'post',  // get, post
+        cache: false, // 응답 결과 임시 저장 취소
+        async: true,  // true: 비동기 통신
+        dataType: 'json', // 응답 형식: json, html, xml...
+        data: params,      // 데이터
+        success: function(rdata) { // 응답이 온경우
+          var str = '';
+          console.log('-> login cnt: ' + rdata.cnt);  // 1: 로그인 성공
+          
+          if (rdata.cnt == 1) {
+            // 쇼핑카트에 insert 처리 Ajax 호출
+            $('#div_login').hide();
+            // alert('로그인 성공');
+            $('#login_yn').val('YES'); // 로그인 성공 기록
+            cart_ajax_post(); // 쇼핑카트에 insert 처리 Ajax 호출     
+            
+          } else {
+            alert('로그인에 실패했습니다.<br>잠시후 다시 시도해주세요.');
+            
+          }
+        },
+        // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+        error: function(request, status, error) { // callback 함수
+          console.log(error);
+        }
+      }
+    );  //  $.ajax END
+
+  }
 
   // 댓글 작성시 로그인 여부 확인
   function check_login() {
@@ -165,15 +214,10 @@ $(document).ready(function()
             // 댓글 목록 갱신
             //refreshReplyList();
 
-            // list_by_carno_join(); // 댓글 목록을 새로 읽어옴
+            list_by_carno_join(); // 댓글 목록을 새로 읽어옴
             
             $('#reply_list').html(''); // 댓글 목록 패널 초기화, val(''): 안됨
             $("#reply_list").attr("data-replypage", 1);  // 댓글이 새로 등록됨으로 1로 초기화
-
-            // modal이 닫힌 후에 페이지 새로고침
-            $('#modal_panel').on('hidden.bs.modal', function (e) {
-              window.location.reload();
-            });
             
             // list_by_carno_join_add(); // 페이징 댓글, 페이징 문제 있음.
             // alert('댓글 목록 읽기 시작');
@@ -199,6 +243,114 @@ $(document).ready(function()
       });
     }
    }
+
+//car 별 소속된 댓글 목록
+  function list_by_carno_join() {
+    var params = 'carno=' + ${carVO.carno };
+
+    $.ajax({
+      url: "/reply/list_by_carno_join.do", // action 대상 주소
+      type: "get",           // get, post
+      cache: false,          // 브러우저의 캐시영역 사용안함.
+      async: true,           // true: 비동기
+      dataType: "json",   // 응답 형식: json, xml, html...
+      data: params,        // 서버로 전달하는 데이터
+      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+        // alert(rdata);
+        var msg = '';
+        
+        $('#reply_list').html(''); // 패널 초기화, val(''): 안됨
+        
+        for (i=0; i < rdata.list.length; i++) {
+          var row = rdata.list[i];
+          
+          msg += "<DIV id='"+row.replyno+"' style='border-bottom: solid 1px #EEEEEE; margin-bottom: 10px;'>";
+          msg += "<span style='font-weight: bold;'>" + row.id + "</span>";
+          msg += "  " + row.rdate;
+          
+          if ('${sessionScope.customerno}' == row.customerno) { // 글쓴이 일치여부 확인, 본인의 글만 삭제 가능함 ★
+        	  msg += " <A href='#' class='delete-link' data-replyno='" + row.replyno + "'><IMG src='/reply/images/delete.png'></A>";
+          }
+          msg += "  " + "<br>";
+          msg += row.content;
+          msg += "</DIV>";
+        }
+        // alert(msg);
+        $('#reply_list').append(msg);
+      },
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      error: function(request, status, error) { // callback 함수
+        console.log(error);
+      }
+    });
+    
+  } 
+
+  $(document).on('click', '.delete-link', function() {
+	    var replyno = $(this).data('replyno');
+	    console.log(replyno);
+	    reply_delete(replyno);
+	});
+
+  $(document).on('click', '#reply_delete_proc', function() {
+	  var replyno = $("#replyno").val();
+      console.log(replyno);
+      reply_delete_proc(replyno);
+  });
+
+//댓글 삭제 레이어 출력
+  function reply_delete(replyno) {
+    // alert('replyno: ' + replyno);
+    var frm_reply_delete = $('#frm_reply_delete');
+    $('#replyno', frm_reply_delete).val(replyno); // 삭제할 댓글 번호 저장
+    $('#modal_panel_delete').modal('show');             // 삭제폼 다이얼로그 출력
+  }
+
+
+
+  // 댓글 삭제 처리
+  function reply_delete_proc(replyno) {
+    // alert('replyno: ' + replyno);
+    var params = $('#frm_reply_delete').serialize();
+    $.ajax({
+      url: "/reply/delete.do", // action 대상 주소
+      type: "post",           // get, post
+      cache: false,          // 브러우저의 캐시영역 사용안함.
+      async: true,           // true: 비동기
+      dataType: "json",   // 응답 형식: json, xml, html...
+      data: params,        // 서버로 전달하는 데이터
+      success: function(rdata) { // 서버로부터 성공적으로 응답이 온경우
+        // alert(rdata);
+        var msg = "";
+        
+        if (rdata.passwd_cnt ==1) { // 패스워드 일치
+          if (rdata.delete_cnt == 1) { // 삭제 성공
+
+            $('#btn_frm_reply_delete_close').trigger("click"); // 삭제폼 닫기, click 발생 
+            $('#' + replyno).remove(); // 태그 삭제
+              
+            return; // 함수 실행 종료
+          } else {  // 삭제 실패
+            msg = "패스 워드는 일치하나 댓글 삭제에 실패했습니다. <br>";
+            msg += " 다시한번 시도해주세요."
+          }
+        } else { // 패스워드 일치하지 않음.
+          // alert('패스워드 불일치');
+          // return;
+          
+          msg = "패스워드가 일치하지 않습니다.";
+          $('#modal_panel_delete_msg').html(msg);
+
+          $('#passwd', '#frm_reply_delete').focus();  // frm_reply_delete 폼의 passwd 태그로 focus 설정
+          
+        }
+      },
+      // Ajax 통신 에러, 응답 코드가 200이 아닌경우, dataType이 다른경우 
+      error: function(request, status, error) { // callback 함수
+        console.log(error);
+      }
+    });
+  }
 
   //댓글 목록 갱신
   /* function refreshReplyList() {
@@ -236,7 +388,35 @@ $(document).ready(function()
       <div class="modal-footer">
         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
       </div>
-      
+    </div>
+  </div>
+</div> <!-- Modal 알림창 종료 -->
+
+<!-- -------------------- 댓글 삭제폼 시작 -------------------- -->
+<div class="modal fade" id="modal_panel_delete" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content">
+    
+      <div class="modal-header">
+        <button type="button" class="close" data-bs-dismiss="modal">×</button>
+        <h4 class="modal-title">댓글 삭제</h4><!-- 제목 -->
+      </div>
+      <div class="modal-body">
+        <form name='frm_reply_delete' id='frm_reply_delete'>
+          <input type='hidden' name='replyno' id='replyno' value=''>
+          
+          <label>패스워드</label>
+          <input type='password' name='passwd' id='passwd' class='form-control'>
+          <DIV id='modal_panel_delete_msg' style='color: #AA0000; font-size: 1.1em;'></DIV>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button id = 'reply_delete_proc' type='button' class='btn btn-danger' >삭제</button>
+
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal" 
+                     id='btn_frm_reply_delete_close'>Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -368,35 +548,7 @@ $(document).ready(function()
     <HR>
     <DIV id='reply_list' data-replypage='1'>
       <%-- 댓글 목록 --%>
-      <table class="table table-hover">
-        <colgroup>
-            <col style='width: 20%;'/>
-            <col style='width: 60%;'/>
-            <col style='width: 20%;'/>    
-         </colgroup>
-<!--          <thead>
-            <tr>
-              <th class="th_bs">Id</th>
-              <th class="th_bs">내용</th>
-              <th class="th_bs">등록일</th>
-            </tr>
-          </thead> -->
-          <tbody>
-          <c:forEach var="reply" items="${list}">
-             <c:set var="reply_id" value="${reply.id}" />
-             <c:set var="reply_content" value="${reply.content}" />
-             <c:set var="reply_rdate" value="${reply.rdate}" />
-
-            <!-- 여기서부터 <tr> 태그 시작 -->    
-            <tr>
-              <td class="td_bs">${reply_id}</td>
-              <td class="td_bs">${reply_content}</td>
-              <td class="td_bs">${reply_rdate.substring(0,16)}</td>
-              <%-- <td class="td_bs">${modelVO.rdate.substring(0,10)}</td> --%>
-            </tr>
-            </c:forEach>
-          </tbody>
-         </table> 
+      
     </DIV>
 
     <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>
