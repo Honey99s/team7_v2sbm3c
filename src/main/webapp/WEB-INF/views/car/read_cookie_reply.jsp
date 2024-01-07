@@ -90,8 +90,8 @@ $(document).ready(function()
           }
         });  //  $.ajax END  
      // $('#span_animation').css('text-align', 'center');
-        $('#span_animation').html("<img src='/car/images/ani04.gif' style='width: 8%;'>");
-        $('#span_animation').show(); // 숨겨진 태그의 출력
+/*         $('#span_animation').html("<img src='/car/images/ani04.gif' style='width: 8%;'>");
+        $('#span_animation').show(); // 숨겨진 태그의 출력 */
       } // function update_recom_ajax   
 
   function loadDefault() {
@@ -555,7 +555,7 @@ $(document).ready(function()
     </DIV>
 
     <DIV id='reply_list_btn' style='border: solid 1px #EEEEEE; margin: 0px auto; width: 100%; background-color: #EEFFFF;'>
-        <button id='btn_add' class='btn btn-secondary btn-sm' style='width: 100%;'>더보기 ▽</button>
+        <!-- <button id='btn_add' class='btn btn-secondary btn-sm' style='width: 100%;'>더보기 ▽</button> -->
     </DIV>  
   
 </DIV>
