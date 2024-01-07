@@ -194,7 +194,7 @@ $(document).ready(function()
       }
 
       $.ajax({
-        url: "../reply/create.do", // action 대상 주소
+        url: "/reply/create.do", // action 대상 주소
         type: "post",          // get, post
         cache: false,          // 브러우저의 캐시영역 사용안함.
         async: true,           // true: 비동기
@@ -326,6 +326,9 @@ $(document).ready(function()
         if (rdata.passwd_cnt ==1) { // 패스워드 일치
           if (rdata.delete_cnt == 1) { // 삭제 성공
 
+        	 // 폼 초기화
+            $('#frm_reply_delete')[0].reset();
+            
             $('#btn_frm_reply_delete_close').trigger("click"); // 삭제폼 닫기, click 발생 
             $('#' + replyno).remove(); // 태그 삭제
               

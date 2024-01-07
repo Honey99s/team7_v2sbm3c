@@ -106,10 +106,10 @@ public interface CustomerProcInter {
   
   /**
    * 등급 변경 처리
-   * @param customerVO
+   * @param map
    * @return
    */
-  public int drop(CustomerVO customerVO);
+  public int drop(HashMap<String, Object> map); 
   
 }
 

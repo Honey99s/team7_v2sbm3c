@@ -100,7 +100,7 @@ public interface CustomerDAOInter {
    * @param customerVO
    * @return
    */
-  public int drop(CustomerVO customerVO);
+  public int drop(HashMap<String, Object> map);
   
 }
  

@@ -2,6 +2,7 @@ package dev.mvc.customer;
  
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -616,7 +617,7 @@ public ModelAndView login_cookie_proc(
    * @return
    */
   @RequestMapping(value="/customer/drop.do", method = RequestMethod.GET)
-  public ModelAndView drop(HttpSession session, int customerno ) {  //int customerno = (int)request.getParameter("customerno");
+  public ModelAndView customer_drop(HttpSession session, int customerno ) {  //int customerno = (int)request.getParameter("customerno");
     System.out.println("->drop");
     ModelAndView mav = new ModelAndView();
     
@@ -637,32 +638,37 @@ public ModelAndView login_cookie_proc(
   }
   
   /**
-   * 회원 등급 변경 처리
+   * 회원 등급 변경 처리(탈퇴처리)
    * @param customerVO
    * @return
    */
   @RequestMapping(value="/customer/drop.do", method=RequestMethod.POST)
-  public ModelAndView drop(HttpSession session, CustomerVO customerVO){
+  public ModelAndView customer_dropdrop(HttpSession session, String passwd){
     ModelAndView mav = new ModelAndView();
-   
-    int customerno = (int) session.getAttribute("customerno");
-    customerVO = this.customerProc.read(customerno);
-    int cnt= this.customerProc.drop(customerVO);
     
-    if (cnt == 1) {
-      mav.addObject("code", "delete_success");
-      mav.addObject("grade", customerVO.getGrade());  
+    HashMap<String, Object> map = new HashMap<String, Object>();
+    map.put("passwd", passwd);
+    
+    int customerno = (int) session.getAttribute("customerno");
+    // CustomerVO customerVO = this.customerProc.read(customerno);
+    map.put("customerno", customerno);
+    
+    int passwd_cnt = customerProc.passwd_check(map);
+    int delete_cnt = 0; 
+    
+    if (passwd_cnt == 1) { // 패스워드가 일치할 경우
+      delete_cnt = customerProc.drop(map); // 회원 탈퇴
+      mav.addObject("delete_cnt", delete_cnt);
+      mav.addObject("passwd_cnt", passwd_cnt);
+      mav.setViewName("/customer/drop_sucess"); // 회원 탈퇴 성공 했을 때 jsp
     } else {
-      mav.addObject("code", "delete_fail");
+      mav.addObject("delete_cnt", delete_cnt);
+      mav.addObject("passwd_cnt", passwd_cnt);
+      mav.setViewName("/customer/failPage"); // 실패 페이지의 JSP 경로를 지정해주세요.
     }
 
-    mav.addObject("cnt", cnt); // request.setAttribute("cnt", cnt)
-    mav.addObject("url", "/customer/msg");  // /customer/msg -> /customer/msg.jsp
-    
-    
-    mav.setViewName("redirect:/customer/msg.do");
-    
-    return mav;
+  return mav;   
+
   }
   
 }

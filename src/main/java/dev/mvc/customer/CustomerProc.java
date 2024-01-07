@@ -132,11 +132,12 @@ public class CustomerProc implements CustomerProcInter {
   }
 
   @Override
-  public int drop(CustomerVO customerVO) {
-    int cnt = this.customerDAO.drop(customerVO);
+  public int drop(HashMap<String, Object> map) {
+    int cnt = this.customerDAO.drop(map);
     return cnt;
   }
-  
+
+
 }
 
 
